@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>爱才网不一样的猎头体验</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Loading  UI -->
+    <link href="css/flat-ui.css" rel="stylesheet">
+    <link href="css/likevery.css" rel="stylesheet">
+    <link href="css/media.css" rel="stylesheet">
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="bg-resumer">
+  	<!--企业完善信息弹层-->
+  	<div class="modal" style="display:block">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h6 class="modal-title">信息填写 <small class="green" phone-hidden >完善信息即可查看简历</small></h6>
+      </div>
+      <div class="modal-body">
+        <ul class="hr-ul">
+                <li class="clearfix">
+                    <span class="pull-left left-form"><span class="green">*</span>联系人</span>
+                    <span class="pull-left form-group has-error"><input type="text" placeholder="请输入" class="form-control" /></span>
+                    <span class="pull-left tips has-error">必须输入联系人</span>
+                </li>
+
+                <li class="clearfix">
+                    <span class="pull-left left-form"><span class="green">*</span>联系方式</span>
+                    <span class="pull-left form-group has-success "><input type="text" placeholder="130 4454 7854" class="form-control" /><span class="input-icon fui-check-inverted"></span></span>
+                </li>
+                <li class="clearfix">
+                    <span class="pull-left left-form">公司网址</span>
+                    <span class="pull-left form-group"><input type="text" placeholder="www.likevery.com" class="form-control" /></span>
+                </li>
+           </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">确定</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+	<!-- /.modal -->
+  	<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+      <span class="sr-only">爱才网</span>
+    </button>
+    <a class="navbar-brand" href="#">爱才网</a>
+  </div>
+  <div class="collapse navbar-collapse" id="navbar-collapse-01">
+    <ul class="nav navbar-nav">           
+      <li ><a>No.568号候选人</a></li>
+    </ul>   
+    <div class="pull-right confirm"><a href="#"><span class="fui-check"></span>保存</a></div>        
+  </div><!-- /.navbar-collapse -->
+</nav><!-- /navbar -->
+
+    <div class="container">
+        <div class="row">
+        	<div class="col-md-4">
+            	<div class="box">
+                	<div class="avatar">
+          			  <img src="images/login.png" alt="企业登录">
+                    </div>
+                     <ul class="jd-ul">
+                <li class="clearfix">
+                    <span class="pull-left">性别</span>
+                    <span class="pull-right green gender">
+                    	<label class="radio">
+                          <input type="radio" name="group1" value="1" data-toggle="radio">
+                          男
+                        </label>
+                        
+                        <label class="radio">
+                          <input type="radio" name="group1" value="2" data-toggle="radio" >
+                          女
+                          </label>
+                    </span>
+                </li>
+
+                <li class="clearfix">
+                    <span class="pull-left">出生年份</span>
+                    <span class="pull-right green "><input type="text" placeholder="1982" class="form-control input-sm" /></span>
+                </li>
+
+                <li class="clearfix">
+                    <span class="pull-left">学历</span>
+                    <span class="pull-right green "><input type="text" placeholder="本科" class="form-control input-sm" />
+</span>
+                </li>
+                <li class="clearfix">
+                    <span class="pull-left">工作年限</span>
+                    <span class="pull-right green "><input type="text" placeholder="4" class="form-control input-sm" />
+</span>
+                </li>
+
+
+                <li class="clearfix " >
+                    <span class="pull-left">在线作品集</span>
+                    <span class="pull-right green "><input type="text" placeholder="www.likevery.com" class="form-control input-sm"  /></span>
+                </li>
+           </ul>
+                </div>
+                <div class="box">
+                	<h6>求职意向</h6>
+                    <ul class="jd-ul">
+                <li class="clearfix">
+                    <span class="pull-left">期望职位</span>
+                    <span class="pull-right green "><input type="text" placeholder="PHP开发工程师" class="form-control input-sm" /></span>
+                </li>
+
+                <li class="clearfix">
+                    <span class="pull-left">当前所在城市</span>
+                    <span class="pull-right green "><input type="text" placeholder="北京" class="form-control input-sm" /></span>
+                </li>
+                 <li class="clearfix">
+                    <span class="pull-left">目标城市</span>
+                    <span class="pull-right green "><input type="text" placeholder="上海" class="form-control input-sm" /></span>
+                </li>
+
+                <li class="clearfix">
+                    <span class="pull-left">当前薪资</span>
+                    <span class="pull-right green "><input type="text" placeholder="50" class="form-control input-sm" /></span>
+                </li>
+                <li class="clearfix">
+                    <span class="pull-left">期望薪资</span>
+                    <span class="pull-right green "><input type="text" placeholder="400" class="form-control input-sm" /></span>
+                </li>
+                <li class="clearfix">
+                    <span class="pull-left">到岗时间</span>
+                    <span class="pull-right green "><input type="text" placeholder="offer后一个月内" class="form-control input-sm" /></span>
+                </li>
+           </ul>
+                </div>
+            </div>
+            <div class="col-md-8">
+           	 <div class="box">
+             	<h6>我的简介</h6>
+                <div class="">
+                	<p><textarea cols="200" rows="4" class="form-control"></textarea></p>
+             </div>
+             	<input name="tagsinput" class="tagsinput" value="" style="display:none" />
+            </div>
+            <div class="box">
+				<h6>面试回答</h6>
+                <div class="qa">
+                    <div class="green">
+						<p><input type="text" placeholder="提问：为什么想换工作？" class="form-control input-sm" /> </p>
+                     </div>
+                    <p><input type="text" placeholder="回答" class="form-control input-sm" /></p>
+                </div>
+                <div class="qa">
+                    <div class="green">
+						<p><input type="text" placeholder="提问:为什么想换工作？" class="form-control input-sm" /> </p>
+                     </div>
+                    <p><input type="text" placeholder="回答" class="form-control input-sm" /></p>
+                </div>
+			</div>
+            <div class="box">
+            	<h6>竞拍倒计时</h6>
+                <div class="counter"><span class="fui-time"></span>13天:15时：16分</div>
+                <p><small class="gray">超时将不能邀请求职者，牛人可遇不可求哦，要抓紧！！！</small></p>
+            	<a class="btn btn-lg btn-info " href="#" style="width:30%">查看简历</a>
+				<a class="btn btn-primary btn-lg " href="#" style="width:30%">邀请我吧</a>
+                
+            </div>
+            </div>
+            </div>
+</div>  
+        </div>
+      <!-- /.container -->
+</div>
+    <!-- Load JS here for greater good =============================-->
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+    <script src="js/flatui-checkbox.js"></script>
+    <script src="js/flatui-radio.js"></script>
+    <script src="js/jquery.tagsinput.js"></script>
+    <script src="js/jquery.placeholder.js"></script>
+    <script>
+    	$(document).ready(function(){
+		$(".tagsinput").tagsInput();					   	
+		})
+    </script>
+  </body>
+</html>
