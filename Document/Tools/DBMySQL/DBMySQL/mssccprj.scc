@@ -1,0 +1,5 @@
+SCC = This is a Source Code Control file
+
+[DBMySQL.csproj]
+SCC_Aux_Path = "\\sourcesafe\vss$"
+SCC_Project_Name = "$/SpyNet/1.0/Tools/DBMySQL/DBMySQL", JNUCBAAA
