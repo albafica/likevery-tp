@@ -2,14 +2,14 @@
 
 namespace Backend\Model;
 
-use Think\Model;
+use Common\Model\BaseModel;
 
 /**
  * Description of UserModel
  *  后台用户相关操作逻辑
  * @author albafica.wang
  */
-class UserModel extends Model {
+class UserModel extends BaseModel {
 
     /**
      * 用户登陆
