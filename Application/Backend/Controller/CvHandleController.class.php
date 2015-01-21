@@ -16,11 +16,12 @@ class CvHandleController extends BaseController {
      */
     public function index() {
         $cvUploadModel = D('Cvupload');
-        $cvList = $cvUploadModel->search();
-        var_dump($cvUploadModel->getLastSql());
-        var_dump($cvList);
-        echo $cvList['show'];
-        exit();
+        $map = array(
+            'status' => '0000',
+        );
+        $cvList = $cvUploadModel->search($map);
+        $this->cvList = $cvList;
+        $this->display();
     }
 
 }

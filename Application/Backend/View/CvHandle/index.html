@@ -1,0 +1,27 @@
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>简历id</th>
+            <th>简历名称</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+    <if condition='$cvList.total == 0'>
+        <tr style="text-align: center">
+            <td colspan="3"><b>没有未分配的简历</b></td>
+        </tr>
+        <else />
+        <volist name='cvList.rows' id="cvInfo">
+            <tr>
+                <td>{$cvInfo.id}</td>
+                <td>{$cvInfo.filename}</td>
+                <td>{$cvInfo.id}</td>
+            </tr>
+        </volist>
+    </if>
+</tbody>
+</table>
+<nav>
+    <div class="pagination">{$cvList.show}</div>
+</nav>

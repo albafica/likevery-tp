@@ -29,20 +29,27 @@ class IndexController extends Controller {
             // 上传错误提示错误信息        
             $this->error($upload->getError());
         } else {
-            // 上传成功 获取上传文件信息,保存数据库
-            $cvUploadModel = D('cvupload');
-            $cvData = array(
-                'path' => $info['savepath'] . $info['savename'],
-                'filename' => $info['name'],
-                'status' => '00',
-                'createdate' => date('Y-m-d H:i:s'),
-            );
-            $addResult = $cvUploadModel->add($cvData);
+            try {
+                // 上传成功 获取上传文件信息,保存数据库
+                $cvUploadModel = D('cvupload');
+                $cvData = array(
+                    'path' => $info['savepath'] . $info['savename'],
+                    'filename' => $info['name'],
+                    'status' => '00',
+                    'createdate' => date('Y-m-d H:i:s'),
+                );
+
+                $addResult = $cvUploadModel->add($cvData);
+            } catch (\Think\Exception $e) {
+                $addResult = false;
+            }
+
             if (!$addResult) {
                 //添加记录失败，返回错误信息，同时删除上传的附件
-                $fileHandle = new \lib\FileHandle();
-                $fileHandle->tryDelFile($info['savepath'] . $info['savename']);
-                $this->error('系统繁忙，简历上传失败，请稍后再试');
+                $fileHandle = new \Lib\FileHandle();
+                $rootPath = $upload->__get('rootPath');
+                $fileHandle->tryDelFile($rootPath . $info['savepath'] . $info['savename']);
+                $this->error('系统繁忙，简历上传失败，请稍后再试', '', 3);
             }
             $this->success('简历上传成功');
         }
