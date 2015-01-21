@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>爱才网后台管理页面</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+
+        <!-- Loading Bootstrap -->
+        <link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet">
+        <link href="__PUBLIC__/css/backend/login.css" rel="stylesheet">
+
+        <link rel="shortcut icon" href="__PUBLIC__/images/favicon.ico">
+    </head>
+
+    <body>
+        <div class="container">
+            <form class="form-signin" action="{:U('Backend/login/index')}" method="post">
+                <h2 class="form-signin-heading">请登录爱才网后台</h2>
+                <label for="inputUsername" class="sr-only">用户名</label>
+                <input type="text" id="inputUsername" name="username" class="form-control" placeholder="用户名" required autofocus>
+                <label for="inputPassword" class="sr-only">密码</label>
+                <input type="password" id="inputPassword" name="password" class="form-control" placeholder="密码" required>
+                <div class="checkbox">
+                    <label>
+                        <a href="#">忘记密码</a>
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+            </form>
+        </div>
+    </body>
+</html>

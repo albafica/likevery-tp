@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱才网后台管理页面</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+
+        <!-- Loading Bootstrap -->
+        <link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet">
+        <link href="__PUBLIC__/css/backend/dashboard.css" rel="stylesheet">
+
+        <link rel="shortcut icon" href="__PUBLIC__/images/favicon.ico">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+        <!--[if lt IE 9]>
+          <script src="__PUBLIC__/js/html5shiv.js"></script>
+          <script src="__PUBLIC__/js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#" class="navbar-brand">爱才网</a>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">{$cname}</a></li>
+                        <li><a href="#">修改密码</a></li>
+                        <li><a href="{:U('Backend/Index/logout')}">注销</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <include file="Layout:sideMenu" />
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    {__CONTENT__}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+    <script src="__PUBLIC__/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="__PUBLIC__/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/js/bootstrap-select.js"></script>
+    <script src="__PUBLIC__/js/bootstrap-switch.js"></script>
+</body>
+</html>
