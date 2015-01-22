@@ -24,6 +24,7 @@ class IndexController extends Controller {
             'application/msword',
         );
         $upload->savePath = 'CV/uncheck/'; // 设置附件上传目录
+        $upload->rootPath = C('UPLOAD_PATH');
         $info = $upload->uploadOne($_FILES['resumes']);
         if (!$info) {
             // 上传错误提示错误信息        
@@ -47,8 +48,7 @@ class IndexController extends Controller {
             if (!$addResult) {
                 //添加记录失败，返回错误信息，同时删除上传的附件
                 $fileHandle = new \Lib\FileHandle();
-                $rootPath = $upload->__get('rootPath');
-                $fileHandle->tryDelFile($rootPath . $info['savepath'] . $info['savename']);
+                $fileHandle->tryDelFile(C('UPLOAD_PATH') . $info['savepath'] . $info['savename']);
                 $this->error('系统繁忙，简历上传失败，请稍后再试', '', 3);
             }
             $this->success('简历上传成功');

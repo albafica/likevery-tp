@@ -85,6 +85,9 @@ class FileDownload {
             $finfo = finfo_open(FILEINFO_MIME);
             $this->mineType = finfo_file($finfo, $filePath);
             finfo_close($finfo);
+        }  else {
+            $this->errMsg = '请开启fileinfo相关函数';
+            return false;
         }
         if (empty($this->mineType) && isset($this->fileType[$filetype])) {
             $this->mineType = $this->fileType[$filetype];
