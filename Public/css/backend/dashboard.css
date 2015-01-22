@@ -113,3 +113,17 @@ body {
     display: inline-block;
     border-radius: 50%;
 }
+
+/*------list-------*/
+/*div.list {overflow: hidden;width: 100%;}
+div.list table {margin:0px;}
+div.list table tr td {border-bottom: 1px solid #EEEEEE;padding: 3px;}
+div.list table tr th {line-height: 22px;}
+div.list table tr:hover {background: #FFB;}
+div.list table tfoot {font-style: normal;}*/
+/*-------list_search---------*/
+/* list pager*/
+.pageNav{margin:0 auto;line-height:25px;text-align:center; font-family:Arial, Helvetica, sans-serif;}
+.pageNav a{border:1px #2E6AB1 solid;text-decoration:none; padding:2px 4px; background:#FFF; color:#2E6AB1;}
+.pageNav a:hover{border:1px #000080 solid;text-decoration:none; padding:2px 4px; background:#2E6AB1; color:#FFF;}
+.pageNav span.current{border:1px #000080 solid;text-decoration:none; padding:2px 4px; background:#2E6AB1; color:#FFF;font-weight:bold;}
