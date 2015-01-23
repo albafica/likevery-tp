@@ -85,15 +85,17 @@ class FileDownload {
             $finfo = finfo_open(FILEINFO_MIME);
             $this->mineType = finfo_file($finfo, $filePath);
             finfo_close($finfo);
-        }  else {
-            $this->errMsg = '请开启fileinfo相关函数';
-            return false;
+        } elseif (function_exists('mime_content_type')) {
+            $this->mineType = mime_content_type($filePath);
+        } else {
+            //使用默认下载类型
+            $this->mineType = 'application/octet-stream';
         }
         if (empty($this->mineType) && isset($this->fileType[$filetype])) {
             $this->mineType = $this->fileType[$filetype];
         }
         if (empty($this->mineType)) {
-            $this->errMsg = '获取' . $filePath . '文件类型时候发生错误，或者不存在预定文件类型内';
+            $this->errMsg = '未知的文件类型，下载失败';
             return false;
         }
         return true;

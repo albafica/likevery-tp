@@ -299,13 +299,15 @@ class Upload {
         /* 检查文件Mime类型 */
         //TODO:FLASH上传的文件获取到的mime类型都为application/octet-stream
         if (!$this->checkMime($file['type'])) {
-            $this->error = '上传文件MIME类型不允许！';
+//            $this->error = '上传文件MIME类型不允许！';
+            $this->error = '文件格式不正确,请上传' . implode(',', $this->exts) . '等格式文件';
             return false;
         }
 
         /* 检查文件后缀 */
         if (!$this->checkExt($file['ext'])) {
-            $this->error = '上传文件后缀不允许';
+//            $this->error = '上传文件后缀不允许';
+            $this->error = '文件格式不正确,请上传' . implode(',', $this->exts) . '等格式文件';
             return false;
         }
 
@@ -320,10 +322,12 @@ class Upload {
     private function error($errorNo) {
         switch ($errorNo) {
             case 1:
-                $this->error = '上传的文件超过了 php.ini 中 upload_max_filesize 选项限制的值！';
+//                $this->error = '上传的文件超过了 php.ini 中 upload_max_filesize 选项限制的值！';
+                $this->error = '文件大小超过限制，请勿上传超过' . $this->maxSize / 1048576 . 'M的文件';
                 break;
             case 2:
-                $this->error = '上传文件的大小超过了 HTML 表单中 MAX_FILE_SIZE 选项指定的值！';
+//                $this->error = '上传文件的大小超过了 HTML 表单中 MAX_FILE_SIZE 选项指定的值！';
+                $this->error = '文件大小超过限制，请勿上传超过' . $this->maxSize / 1048576 . 'M的文件';
                 break;
             case 3:
                 $this->error = '文件只有部分被上传！';
