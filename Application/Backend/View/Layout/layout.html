@@ -33,7 +33,7 @@
                 <div class="navbar-collapse collapse" id="navbar">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#">{$cname}</a></li>
-                        <li><a href="#">修改密码</a></li>
+                        <li><a href="{:U('Backend/Index/changepwd')}">修改密码</a></li>
                         <li><a href="{:U('Backend/Index/logout')}">注销</a></li>
                     </ul>
                 </div>
@@ -41,7 +41,7 @@
         </nav>
         <div class="container-fluid">
             <div class="row">
-                <include file="Layout:sideMenu" />
+                <!--<include file="Layout:sideMenu" />-->
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     {__CONTENT__}
                 </div>

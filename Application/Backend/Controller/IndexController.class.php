@@ -20,6 +20,32 @@ class IndexController extends BaseController {
         var_dump($mail->getErrMsg());
     }
 
+    public function changePwd() {
+        $this->display();
+    }
+
+    public function chgPwd() {
+        if (!IS_AJAX) {
+            $this->error('错误的访问方式', U('Backend/Index/index'));
+        }
+        $userId = I('post.userid', 0, 'intval');
+        $oldPwd = I('post.oldName', '', 'trim');
+        $newPwd = I('post.newName', '', 'trim');
+        $renewPwd = I('post.renewoldName', '', 'trim');
+        if ($userId <= 0) {
+            
+        }
+        if (empty($oldPwd) || empty($newPwd) || empty($renewPwd)) {
+            $this->ajaxReturn(array('status' => false, 'message' => '密码必须输入'));
+        }
+        if ($newPwd != $renewPwd) {
+            $this->ajaxReturn(array('status' => false, 'message' => '两次输入的密码不一致'));
+        }
+        if (!chkPwd($newPwd)) {
+            $this->ajaxReturn(array('status' => false, 'message' => '密码长度6-15位，同时包含数字、大写字母，小写字母'));
+        }
+    }
+
     /**
      * 用户注销
      */
