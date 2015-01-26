@@ -10,6 +10,8 @@ class IndexController extends BaseController {
      * 后台首页
      */
     public function index() {
+        $simplePwd = cookie(('simplepwd')) ? true : false;
+        $this->simplePwd = $simplePwd;
         $this->display();
     }
 
@@ -20,30 +22,47 @@ class IndexController extends BaseController {
         var_dump($mail->getErrMsg());
     }
 
+    /**
+     * 修改密码页面
+     */
     public function changePwd() {
+        if (IS_POST) {
+            $oldPwd = I('post.oldPwd', '', 'trim');
+            $newPwd = I('post.newPwd', '', 'trim');
+            $renewPwd = I('post.renewPwd', '', 'trim');
+            if (empty($oldPwd) || empty($newPwd) || empty($renewPwd)) {
+                $this->error('必须输入原密码和新密码');
+            }
+            if ($newPwd != $renewPwd) {
+                $this->error('两次输入的密码不一致');
+            }
+            if (!chkPwd($newPwd)) {
+                $this->error('密码长度6-15位，同时包含数字、大写字母，小写字母');
+            }
+            $userModel = D('User');
+            $where = array(
+                'id' => session('userid'),
+                'status' => '01',
+            );
+            $userInfo = $userModel->field('username,password')->where($where)->find();
+            if (empty($userInfo)) {
+                $this->error('账号出现异常，请重新登陆', U('Backend/Index/logout'));
+            }
+            if (md5(md5($userInfo['username']) . $oldPwd) != $userInfo['password']) {
+                $this->error('原密码不正确');
+            }
+            $data = array(
+                'password' => md5(md5($userInfo['username']) . $newPwd),
+            );
+            $result = $userModel->where($where)->save($data);
+            if (!$result) {
+                $this->error('密码修改失败');
+            }
+            cookie(('simplepwd'), NULL);
+            $this->success('密码修改成功', U('Backend/Index/index'));
+            exit();
+        }
         $this->display();
-    }
-
-    public function chgPwd() {
-        if (!IS_AJAX) {
-            $this->error('错误的访问方式', U('Backend/Index/index'));
-        }
-        $userId = I('post.userid', 0, 'intval');
-        $oldPwd = I('post.oldName', '', 'trim');
-        $newPwd = I('post.newName', '', 'trim');
-        $renewPwd = I('post.renewoldName', '', 'trim');
-        if ($userId <= 0) {
-            
-        }
-        if (empty($oldPwd) || empty($newPwd) || empty($renewPwd)) {
-            $this->ajaxReturn(array('status' => false, 'message' => '密码必须输入'));
-        }
-        if ($newPwd != $renewPwd) {
-            $this->ajaxReturn(array('status' => false, 'message' => '两次输入的密码不一致'));
-        }
-        if (!chkPwd($newPwd)) {
-            $this->ajaxReturn(array('status' => false, 'message' => '密码长度6-15位，同时包含数字、大写字母，小写字母'));
-        }
     }
 
     /**

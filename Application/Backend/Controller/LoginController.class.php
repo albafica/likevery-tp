@@ -23,6 +23,10 @@ class LoginController extends Controller {
                 session('userid', $loginResult['userinfo']['id']);
                 cookie('username', $loginResult['userinfo']['username']);
                 cookie('cname', $loginResult['userinfo']['cname']);
+                if (!chkPwd($password)) {
+                    //密码规则太过简单，提示用户
+                    cookie(('simplepwd'), 1);
+                }
                 $this->redirect('Backend/Index/index');
             }
         }

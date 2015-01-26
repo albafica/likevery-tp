@@ -1,0 +1,56 @@
+<nav role="navigation" class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">角色管理</a>
+        </div>
+        <div id="bs-example-navbar-collapse-5" class="collapse navbar-collapse">
+            <a class="btn btn-primary navbar-btn navbar-right" href="{:U('Backend/Role/addRole')}">新增角色</a>
+        </div>
+    </div>
+</nav>
+<div class="list">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>角色id</th>
+                <th>角色名称</th>
+                <th>超级管理员角色</th>
+                <th>备注</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <if condition='$roleList.total == 0'>
+            <tbody>
+                <tr style="text-align: center; font-size: 16px;">
+                    <td colspan="5"><b>没有角色信息</b></td>
+                </tr>
+            </tbody>
+            <else />
+            <tbody>
+            <volist name='roleList.rows' id="roleInfo">
+                <tr>
+                    <td>{$roleInfo.id}</td>
+                    <td>{$roleInfo.rolename}</td>
+                    <td>{$roleInfo['isadmin']?'Y':'-'}</td>
+                    <td>{$roleInfo.memo}</td>
+                    <td>
+                        <if condition="$roleInfo['isadmin'] == 1">
+                            -
+                        <else />
+                            <a href="{:U('Backend/Role/addrole', array('roleid' => $roleInfo['id']))}">编辑</a>
+                            <a href="{:U('Backend/Role/delRole', array('roleid' => $roleInfo['id']))}" onClick="return confirm('确定删除此角色?') ? true : false;">删除</a>
+                        </if>
+                    </td>
+                </tr>
+            </volist>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <div class="pageNav">{$roleList.show}</div>
+                    </td>
+                </tr>
+            </tfoot>
+        </if>
+    </table>
+</div>

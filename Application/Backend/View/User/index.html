@@ -1,0 +1,60 @@
+<nav role="navigation" class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">用户管理</a>
+        </div>
+        <div id="bs-example-navbar-collapse-5" class="collapse navbar-collapse">
+            <a class="btn btn-primary navbar-btn navbar-right" href="{:U('Backend/User/addUser')}">新增用户</a>
+        </div>
+    </div>
+</nav>
+<div class="list">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>用户id</th>
+                <th>姓名</th>
+                <th>邮箱</th>
+                <th>备注</th>
+                <th>创建日期</th>
+                <th>角色名称</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <if condition='$userList.total == 0'>
+            <tbody>
+                <tr style="text-align: center; font-size: 16px;">
+                    <td colspan="7"><b>没有用户信息</b></td>
+                </tr>
+            </tbody>
+            <else />
+            <tbody>
+            <volist name='userList.rows' id="userInfo">
+                <tr>
+                    <td>{$userInfo.id}</td>
+                    <td>{$userInfo.cname}</td>
+                    <td>{$userInfo.email}</td>
+                    <td>{$userInfo.memo}</td>
+                    <td><?php echo date('Y-m-d', strtotime($userInfo['createdate']));?></td>
+                    <td>{$userInfo['rolename']}</td>
+                    <td>
+                <if condition="$userInfo['issys'] == 1">
+                    -
+                    <else />
+                    <a href="{:U('Backend/User/addUser', array('roleid' => $userInfo['id']))}">编辑</a>
+                    <a href="{:U('Backend/User/delUser', array('roleid' => $userInfo['id']))}" onClick="return confirm('确定删除此用户?') ? true : false;">删除</a>
+                </if>
+                </td>
+                </tr>
+            </volist>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="7">
+                        <div class="pageNav">{$userList.show}</div>
+                    </td>
+                </tr>
+            </tfoot>
+        </if>
+    </table>
+</div>

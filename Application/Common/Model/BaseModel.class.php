@@ -2,14 +2,14 @@
 
 namespace Common\Model;
 
-use Think\Model;
+use Think\Model\RelationModel;
 
 /**
  * Description of BaseModel
  * 基础模型类，提供模型基础方法
  * @author albafica.wang
  */
-class BaseModel extends Model {
+class BaseModel extends RelationModel {
 
     /**
      * 查询基本通用方法
@@ -23,8 +23,8 @@ class BaseModel extends Model {
      * @param array         fields 要搜索的字段
      * @return array        搜索结果，包括列表数据和分页信息
      */
-    public function search($map = '', $condition = array(), $relation = false, $fields = '') {
-        $count = $this->where($map)->count();
+    public function search($map = '', $condition = array(), $relation = false, $fields = '', $join = '') {
+        $count = $this->where($map)->join($join)->count();
         if (isset($condition['count']) && !empty($condition['count'])) {
             $count = ($condition['count'] <= $count) ? $condition['count'] : $count;
         }
@@ -48,7 +48,7 @@ class BaseModel extends Model {
         if ($relation) {
             $list = $this->relation(true)->where($map)->limit($page->firstRow . ',' . $page->listRows)->order($order)->select();
         } else {
-            $list = $this->field($fields)->where($map)->limit($page->firstRow . ',' . $page->listRows)->order($order)->select();
+            $list = $this->field($fields)->where($map)->join($join)->limit($page->firstRow . ',' . $page->listRows)->order($order)->select();
         }
 
         $show = $page->show();
