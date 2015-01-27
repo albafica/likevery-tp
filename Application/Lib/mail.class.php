@@ -7,7 +7,7 @@ namespace Lib;
  *  邮件发送类
  * @author albafica.wang
  */
-class mail {
+class Mail {
 
     protected $_mail;               //邮件类示例对象
     protected $errMsg = '';         //错误信息
@@ -58,7 +58,12 @@ class mail {
         if (!empty($replayAddress)) {
             $this->_mail->addReplyTo($replayAddress, $replayName);
         }
-        $this->_mail->From = $fromAddress;
+        if (C('MAIL_TYPE') == 'SMTP') {
+            //SMTP方式发送邮件，发信人为SMTP账号
+            $this->_mail->From = C('SMTP_PARAM.USERNAME');
+        } else {
+            $this->_mail->From = $fromAddress;
+        }
         $this->_mail->FromName = $fromName;
         $this->_mail->addAddress($toAddress, $toName);
         //添加抄送人
