@@ -15,19 +15,20 @@
 
     <body>
         <div class="container">
-            <form class="form-signin" action="{:U('Backend/login/index')}" method="post">
-                <h2 class="form-signin-heading">请登录爱才网后台</h2>
+            <form class="form-signin" action="{:U('Backend/login/findPwd')}" method="post">
+                <h2 class="form-signin-heading">找回密码</h2>
                 <label for="inputUsername" class="sr-only">用户名</label>
                 <input type="text" id="inputUsername" name="username" class="form-control" placeholder="用户名" required autofocus>
-                <label for="inputPassword" class="sr-only">密码</label>
-                <input type="password" id="inputPassword" name="password" class="form-control" placeholder="密码" required>
+                <label for="inputEmail" class="sr-only">邮箱</label>
+                <input type="email" id="inputEmail" name="email" class="form-control" placeholder="邮箱" required>
                 <div class="checkbox">
                     <label>
-                        <a href="{:U('Backend/Login/findPwd')}">忘记密码</a>
+                        <a href="{:U('Backend/Login/index')}">登陆后台</a>
                     </label>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">重置密码</button>
             </form>
         </div>
     </body>
 </html>
+

@@ -41,8 +41,8 @@
                 <if condition="$userInfo['issys'] == 1">
                     -
                     <else />
-                    <a href="{:U('Backend/User/addUser', array('roleid' => $userInfo['id']))}">编辑</a>
-                    <a href="{:U('Backend/User/delUser', array('roleid' => $userInfo['id']))}" onClick="return confirm('确定删除此用户?') ? true : false;">删除</a>
+                    <a href="{:U('Backend/User/editUser', array('userid' => $userInfo['id']))}">编辑</a>
+                    <a href="{:U('Backend/User/delUser', array('userid' => $userInfo['id']))}" onClick="return confirm('确定删除此用户?') ? true : false;">删除</a>
                 </if>
                 </td>
                 </tr>

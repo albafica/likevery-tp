@@ -15,11 +15,34 @@ class IndexController extends BaseController {
         $this->display();
     }
 
-    public function testMail() {
-        $mail = new \Lib\mail();
-        $mailResult = $mail->sendMail('测试邮件', '你好，这是一封测试邮件', 'albafica.wang@51job.com', '测试发送人', '', '');
-        var_dump($mailResult);
-        var_dump($mail->getErrMsg());
+    /**
+     * 修改个人基本信息
+     */
+    public function editProfile() {
+        if (IS_POST) {
+            $userModel = D('User');
+            $userId = I('post.userid', 0, 'intval');
+            $cname = I('post.cname', '', 'trim');
+            $email = I('post.email', '', 'trim');
+            $userData = array(
+                'cname' => $cname,
+                'email' => $email,
+            );
+            $userWhere = array(
+                'id' => $userId,
+            );
+            $result = $userModel->where($userWhere)->save($userData);
+            if ($result == 0) {
+                $this->error('用户信息修改失败:' . $userModel->getError());
+            }
+            cookie('cname', $cname);
+            $this->success('修改成功', U('Backend/Index/index'));
+            exit();
+        }
+        $userModel = D('User');
+        $userInfo = $userModel->field('id,username,cname,email,memo')->where(array('id' => session('userid')))->find();
+        $this->userInfo = $userInfo;
+        $this->display();
     }
 
     /**

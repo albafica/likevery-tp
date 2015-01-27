@@ -13,7 +13,6 @@ class UserModel extends BaseModel {
 
     protected $_auto = array(
 //        array(完成字段1,完成规则,[完成条件,附加规则]),   
-        array('password', 'generatePwd', 1, 'callback'),
         array('createdate', 'getSysDate', 1, 'callback'),
     );
     protected $_validate = array(
@@ -27,14 +26,6 @@ class UserModel extends BaseModel {
         array('repassword', 'password', '两次密码不一致', 0, 'confirm', 1),
         array('email', 'email', '邮箱格式不正确', 2),
     );
-
-    /**
-     * 生成加密密码
-     * @return type
-     */
-    public function generatePwd() {
-        return md5(md5($this->username) . $this->password);
-    }
 
     /**
      * 获取当前系统时间
@@ -60,6 +51,24 @@ class UserModel extends BaseModel {
             return array('status' => false, 'message' => '用户名或者密码错误');
         }
         return array('status' => true, 'message' => '登陆成功', 'userinfo' => $userInfo);
+    }
+
+    /**
+     * 生成随机密码
+     */
+    public function createPassword($pwdLength = 8) {
+        $pwd = array();
+//        $pwd[0] = chr(mt_rand(33, 47));       //生成特殊符号
+//        $pwd[0] = '!';
+        $pwd[0] = chr(mt_rand(48, 57));       //生成数字
+        $pwd[1] = chr(mt_rand(48, 57));       //生成数字
+        $pwd[2] = chr(mt_rand(48, 57));       //生成数字
+        $pwd[3] = chr(mt_rand(65, 90));       //生成大写字母
+        for ($i = 4; $i < $pwdLength; $i++) {
+            $pwd[$i] = chr(mt_rand(97, 122));   //生成小写字母
+        }
+        shuffle($pwd);  //对数组重新排序
+        return implode('', $pwd);
     }
 
 }

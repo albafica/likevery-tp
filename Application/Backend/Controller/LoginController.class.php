@@ -34,4 +34,41 @@ class LoginController extends Controller {
         $this->display();
     }
 
+    /**
+     * 找回密码页面
+     */
+    public function findPwd() {
+        if (IS_POST) {
+            $userName = I('post.username', '', 'trim');
+            $email = I('post.email', '', 'trim');
+            $userModel = D('User');
+            $where = array(
+                'username' => $userName,
+                'email' => $email,
+            );
+            $userInfo = $userModel->where($where)->find();
+            if (empty($userInfo)) {
+                $this->error('该用户不存在');
+            }
+            $newPwd = $userModel->createPassword();
+            $data = array(
+                'password' => md5(md5($userInfo['username']) . $newPwd),
+            );
+            $result = $userModel->where(array('id' => $userInfo['id']))->save($data);
+            if ($result === FALSE) {
+                $this->error('密码重置失败：' . $userModel->getError());
+            }
+            //将新密码发送到邮箱中去
+            $mail = new \Lib\Mail();
+            $mailResult = $mail->sendMail('重置密码', '您的新密码为：' . $newPwd, $userInfo['email'], $userInfo['cname']);
+            if ($mailResult) {
+                $this->success('新密码已发送到您的邮箱中，请登陆邮箱查收', U('Backend/Index/index'));
+                exit;
+            }
+            $this->error('密码已重置，邮件发送失败，请联系系统管理员', U('Backend/Index/index'));
+        }
+        layout(false);
+        $this->display();
+    }
+
 }

@@ -82,9 +82,9 @@ class RoleController extends BaseController {
     public function delRole() {
         $roleId = I('roleid', 0, 'intval');
         $roleModel = D('Role');
-        $roleInfo = $roleModel->getById($roleId);
+        $roleInfo = $roleModel->where(array('id' => $roleId))->find();
         if (empty($roleInfo)) {
-            $this->error('该角色不存在不存在');
+            $this->error('该角色下还有未删除的用户，不可删除');
         }
         if ($roleInfo['isadmin']) {
             $this->error('系统分组，不可删除');

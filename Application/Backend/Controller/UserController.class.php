@@ -16,7 +16,7 @@ class UserController extends BaseController {
      */
     public function index() {
         $roleModel = D('User');
-        $field = 'user.id,user.cname,user.email,user.createdate,user.memo,role.rolename';
+        $field = 'user.id,user.cname,user.email,user.createdate,user.memo,user.issys,role.rolename';
         $where = array(
             'user.status' => '01',
         );
@@ -31,7 +31,7 @@ class UserController extends BaseController {
     }
 
     /**
-     * 新增角色
+     * 新增用户
      */
     public function addUser() {
         if (IS_POST) {
@@ -39,6 +39,14 @@ class UserController extends BaseController {
             if (!$userModel->create()) {
                 $this->error($userModel->getError());
             }
+            $where = array(
+                'id' => $userModel->roleid
+            );
+            $roleInfo = D('Role')->where($where)->find();
+            if (empty($roleInfo) || $roleInfo['status'] != '01') {
+                $this->error('该角色不存在');
+            }
+            $userModel->password = md5(md5($userModel->username) . $userModel->password);
             $result = $userModel->add();
             if ($result == 0) {
                 $this->error('用户添加失败:' . $userModel->getError());
@@ -53,32 +61,64 @@ class UserController extends BaseController {
     }
 
     /**
+     * 编辑用户
+     */
+    public function editUser() {
+        if (IS_POST) {
+            $userModel = D('User');
+            $userId = I('post.userid', 0, 'intval');
+            $cname = I('post.cname', '', 'trim');
+            $email = I('post.email', '', 'trim');
+            $memo = I('post.memo', '', 'trim');
+            $roleId = I('post.roleid', 0, 'intval');
+            $where = array(
+                'id' => $roleId,
+            );
+            $roleInfo = D('Role')->where($where)->find();
+            if (empty($roleInfo) || $roleInfo['status'] != '01') {
+                $this->error('该角色不存在');
+            }
+            $userData = array(
+                'cname' => $cname,
+                'email' => $email,
+                'memo' => $memo,
+                'roleid' => $roleId,
+            );
+            $userWhere = array(
+                'id' => $userId,
+            );
+            $result = $userModel->where($userWhere)->save($userData);
+            if ($result == 0) {
+                $this->error('用户信息修改失败:' . $userModel->getError());
+            }
+            $this->success('修改成功', U('Backend/User/index'));
+            exit();
+        }
+        $userId = I('userid', 0, 'intval');
+        $userModel = D('User');
+        $userInfo = $userModel->find($userId);
+        if (empty($userInfo)) {
+            $this->error('该用户不存在');
+        }
+        $this->userInfo = $userInfo;
+        $roleModel = D('Role');
+        $roleList = $roleModel->field('id,rolename')->where("status = '01'")->order('id DESC')->select();
+        $this->roleList = $roleList;
+        $this->display();
+    }
+
+    /**
      * 删除角色
      */
     public function delUser() {
-        $roleId = I('roleid', 0, 'intval');
-        $roleModel = D('Role');
-        $roleInfo = $roleModel->getById($roleId);
-        if (empty($roleInfo)) {
-            $this->error('该角色不存在不存在');
-        }
-        if ($roleInfo['isadmin']) {
-            $this->error('系统分组，不可删除');
-        }
+        $userId = I('userid', 0, 'intval');
         $userModel = D('User');
-        $where = array(
-            'roleid' => $roleId,
-        );
-        $userCount = $userModel->where($where)->count();
-        if ($userCount > 0) {
-            $this->error('该角色不为空，不可删除');
-        }
         $delWhere = array(
-            'id' => $roleId,
-            'isadmin' => 0,
+            'id' => $userId,
+            'issys' => 0,
         );
-        $result = $roleModel->where($delWhere)->delete();
-        if ($result === false) {
+        $result = $userModel->where($delWhere)->delete();
+        if ($result == false) {
             $this->error('删除失败，请稍后再试');
         }
         $this->success('删除成功');
