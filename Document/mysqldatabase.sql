@@ -8,7 +8,7 @@ GRANT ALL PRIVILEGES ON spy.* TO spy@'%';*/
 Create Database If Not Exists likevery;
 USE likevery;
 
-/**************表名：user  表描述:后台用户表  字段数量:10    生成时间:2015/1/27 17:12:03***********/
+/**************表名：user  表描述:后台用户表  字段数量:10    生成时间:2015-1-27 21:13:17***********/
 drop table if exists user;
 CREATE TABLE user( 
 id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
@@ -25,7 +25,7 @@ id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
 
 
 
-/**************表名：cvupload  表描述:简历上传表  字段数量:11    生成时间:2015/1/27 17:12:03***********/
+/**************表名：cvupload  表描述:简历上传表  字段数量:11    生成时间:2015-1-27 21:13:17***********/
 drop table if exists cvupload;
 CREATE TABLE cvupload( 
 id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
@@ -43,7 +43,7 @@ id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
 
 
 
-/**************表名：role  表描述:角色表  字段数量:6    生成时间:2015/1/27 17:12:03***********/
+/**************表名：role  表描述:角色表  字段数量:6    生成时间:2015-1-27 21:13:17***********/
 drop table if exists role;
 CREATE TABLE role( 
 id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
@@ -53,5 +53,13 @@ id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
 ,status varchar(2) NOT NULL Default '01' comment '角色状态'
 ,memo varchar(255) comment '备注'
 ) ;
+
+
+
+Insert into user(id,username,password,roleid,issys,email,createdate,status,memo) values ( '1','admin','86f3059b228c8acf99e69734b6bb32cc','1','0','albafica.wang@51job.com',null,'01',null) ;
+
+
+
+Insert into role(id,rolename,isadmin,rights,status,memo) values ( '1','超级管理员','1','0000000000','01','超级管理员分组') ;
 
 
