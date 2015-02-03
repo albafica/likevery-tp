@@ -14,6 +14,7 @@
             <tr>
                 <th>用户id</th>
                 <th>姓名</th>
+                <th>登陆名</th>
                 <th>邮箱</th>
                 <th>备注</th>
                 <th>创建日期</th>
@@ -24,7 +25,7 @@
         <if condition='$userList.total == 0'>
             <tbody>
                 <tr style="text-align: center; font-size: 16px;">
-                    <td colspan="7"><b>没有用户信息</b></td>
+                    <td colspan="8"><b>没有用户信息</b></td>
                 </tr>
             </tbody>
             <else />
@@ -33,6 +34,7 @@
                 <tr>
                     <td>{$userInfo.id}</td>
                     <td>{$userInfo.cname}</td>
+                    <td>{$userInfo.username}</td>
                     <td>{$userInfo.email}</td>
                     <td>{$userInfo.memo}</td>
                     <td><?php echo date('Y-m-d', strtotime($userInfo['createdate']));?></td>
@@ -50,7 +52,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="7">
+                    <td colspan="8">
                         <div class="pageNav">{$userList.show}</div>
                     </td>
                 </tr>

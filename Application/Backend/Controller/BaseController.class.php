@@ -9,6 +9,9 @@ use Think\Controller;
  */
 class BaseController extends Controller {
 
+    const HANDLECV = 0;
+    const ADMINRIGHT = -1;
+
     /**
      * 构造函数，验证用户是否登陆
      */
@@ -19,6 +22,17 @@ class BaseController extends Controller {
         }
         $this->cname = cookie('cname');
         $this->username = cookie('username');
+    }
+
+    /**
+     * 验证用户操作权限
+     * @param type $operation
+     */
+    public function checkRight($operation) {
+        $roleModel = D('Role');
+        if (!$roleModel->checkRight($operation)) {
+            $this->error('对不起，您没有权限操作', U('Backend/Index/index'));
+        }
     }
 
 }

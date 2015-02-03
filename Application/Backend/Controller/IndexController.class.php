@@ -93,6 +93,7 @@ class IndexController extends BaseController {
      */
     public function logout() {
         session('userid', null);
+        session('roleid', null);
         cookie('username', null);
         cookie('cname', null);
         $this->redirect('Backend/Login/index');

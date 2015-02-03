@@ -11,6 +11,11 @@ use Backend\Controller\BaseController;
  */
 class CvHandleController extends BaseController {
 
+    public function __construct() {
+        parent::__construct();
+        $this->checkRight(self::HANDLECV);
+    }
+
     /**
      * 简历处理首页，列出所有未分配的简历
      */

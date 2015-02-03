@@ -11,12 +11,17 @@ use Backend\Controller\BaseController;
  */
 class UserController extends BaseController {
 
+    public function __construct() {
+        parent::__construct();
+        $this->checkRight(self::ADMINRIGHT);
+    }
+
     /**
      * 角色列表页
      */
     public function index() {
         $roleModel = D('User');
-        $field = 'user.id,user.cname,user.email,user.createdate,user.memo,user.issys,role.rolename';
+        $field = 'user.id,user.cname,user.username,user.email,user.createdate,user.memo,user.issys,role.rolename';
         $where = array(
             'user.status' => '01',
         );

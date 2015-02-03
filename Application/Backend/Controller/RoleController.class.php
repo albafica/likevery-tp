@@ -11,6 +11,11 @@ use Backend\Controller\BaseController;
  */
 class RoleController extends BaseController {
 
+    public function __construct() {
+        parent::__construct();
+        $this->checkRight(self::ADMINRIGHT);
+    }
+
     /**
      * 角色列表页
      */

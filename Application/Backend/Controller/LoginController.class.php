@@ -20,6 +20,7 @@ class LoginController extends Controller {
             $loginResult = $userModel->login($userName, $password);
             if ($loginResult['status']) {
                 //登陆成功，设置相应session值
+                session('roleid', $loginResult['userinfo']['roleid']);
                 session('userid', $loginResult['userinfo']['id']);
                 cookie('username', $loginResult['userinfo']['username']);
                 cookie('cname', $loginResult['userinfo']['cname']);
