@@ -1,0 +1,50 @@
+<nav role="navigation" class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">分配给我的已初审简历</a>
+        </div>
+    </div>
+</nav>
+<div class="list">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>简历id</th>
+                <th>简历名称</th>
+                <th>初审日期</th>
+                <th>初审人</th>
+                <th>求职者姓名</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <if condition='$cvList.total == 0'>
+            <tbody>
+                <tr style="text-align: center; font-size: 16px;">
+                    <td colspan="6"><b>没有通过初审的简历</b></td>
+                </tr>
+            </tbody>
+            <else />
+            <tbody>
+            <volist name='cvList.rows' id="cvInfo">
+                <tr>
+                    <td>{$cvInfo.id}</td>
+                    <td><a target="_blank" href="{:U('Backend/CvHandle/downloadcv', array('filePath' => base64_encode($cvInfo['path']), 'filename' => base64_encode($cvInfo['filename'])))}" title="下载简历">{$cvInfo.filename}</a></td>
+                    <td><?php echo date('Y-m-d', strtotime($cvInfo['operadate']));?></td>
+                    <td>{$cvInfo['operatorname']}</td>
+                    <td><a class='customerinfo' href="" cname='{$cvInfo.cname}' mobilephone='{$cvInfo.mobilephone}' email='{$cvInfo.email}'>{$cvInfo.cname}</a></td>
+                    <td>
+                        <a href="{:U('Backend/CvHandle/cancelassigncv', array('cvid' => $cvInfo['id']))}" onClick="return confirm('确定取消分配此简历?') ? true : false;">取消分配</a>
+                    </td>
+                </tr>
+            </volist>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">
+                        <div class="pageNav">{$cvList.show}</div>
+                    </td>
+                </tr>
+            </tfoot>
+        </if>
+    </table>
+</div>

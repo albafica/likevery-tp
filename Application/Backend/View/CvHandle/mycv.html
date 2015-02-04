@@ -31,8 +31,7 @@
                     <td>
                         <a href="{:U('Backend/CvHandle/cancelassigncv', array('cvid' => $cvInfo['id']))}" onClick="return confirm('确定取消分配此简历?') ? true : false;">取消分配</a>
                         <a href="{:U('Backend/CvHandle/delcv', array('cvid' => $cvInfo['id']))}" onClick="return confirm('确定删除此简历?') ? true : false;">删除简历</a>
-                        <a href="{:U('Backend/CvHandle/delcv', array('cvid' => $cvInfo['id']))}">审核通过</a>
-                        <a href="{:U('Backend/CvHandle/unchkcv', array('cvid' => $cvInfo['id']))}" onClick="return confirm('确定审核不通过?') ? true : false;">审核不通过</a>
+                        <a href="{:U('Backend/CvHandle/simpleHandle', array('cvid' => $cvInfo['id']))}">简历初审</a>
                     </td>
                 </tr>
             </volist>

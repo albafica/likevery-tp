@@ -14,6 +14,8 @@ class CvHandleController extends BaseController {
     public function __construct() {
         parent::__construct();
         $this->checkRight(self::HANDLECV);
+        $this->loadBottomJs(array('backend/handlecv.js'));
+        $this->loadPlugin(array('artDialog4.1.7/artDialog.js?skin=black'));
     }
 
     /**
@@ -21,10 +23,12 @@ class CvHandleController extends BaseController {
      */
     public function index() {
         $cvUploadModel = D('Cvupload');
+        //查询未处理或者通过初审的未分配的简历
         $map = array(
-            'status' => '00',
+            'isassigned' => '0',
+            '_string' => "status = '00' OR status = '01'",
         );
-        $field = 'id,filename,createdate';
+        $field = 'id,filename,createdate,status';
         $condition = array('sort' => 'createdate', 'order' => 'ASC', 'rows' => 10,);
         $cvList = $cvUploadModel->search($map, $condition, false, $field);
         $this->cvList = $cvList;
@@ -32,16 +36,34 @@ class CvHandleController extends BaseController {
     }
 
     /**
-     * 获取分配给我的简历列表
+     * 获取分配给我的未处理简历列表
      */
     public function mycv() {
         $cvUploadModel = D('Cvupload');
         $map = array(
-            'status' => '01',
+            'isassigned' => '1',
+            'status' => '00',
             'assignerid' => session('userid'),
         );
         $field = 'id,path,filename,createdate';
         $condition = array('sort' => 'createdate', 'order' => 'ASC', 'rows' => 10,);
+        $cvList = $cvUploadModel->search($map, $condition, false, $field);
+        $this->cvList = $cvList;
+        $this->display();
+    }
+
+    /**
+     * 我初审通过的简历列表
+     */
+    public function simplePassedCv() {
+        $cvUploadModel = D('Cvupload');
+        $map = array(
+            'status' => '01',
+            'isassigned' => '1',
+            'assignerid' => session('userid'),
+        );
+        $field = 'id,path,filename,operadate,operatorid,operatorname,cname,email,mobilephone';
+        $condition = array('sort' => 'operadate', 'order' => 'ASC', 'rows' => 10,);
         $cvList = $cvUploadModel->search($map, $condition, false, $field);
         $this->cvList = $cvList;
         $this->display();
@@ -57,13 +79,13 @@ class CvHandleController extends BaseController {
         }
         $cvUploadModel = D('Cvupload');
         $data = array(
-            'status' => '01',
+            'isassigned' => '1',
             'assignerid' => session('userid'),
             'assignername' => cookie('username'),
             'assigndate' => date('Y-m-d H:i:s'),
         );
         $where = array(
-            'status' => '00',
+            'isassigned' => '0',
             'id' => $cvid,
         );
         $result = $cvUploadModel->where($where)->save($data);
@@ -84,13 +106,13 @@ class CvHandleController extends BaseController {
         }
         $cvUploadModel = D('Cvupload');
         $data = array(
-            'status' => '00',
+            'isassigned' => '0',
             'assignerid' => null,
             'assignername' => null,
             'assigndate' => null,
         );
         $where = array(
-            'status' => '01',
+            'isassigned' => '1',
             'assignerid' => session('userid'),
             'id' => $cvid,
         );
@@ -114,11 +136,12 @@ class CvHandleController extends BaseController {
         $data = array(
             'status' => '06',
             'operatorid' => session('userid'),
-            'operatorname' => cookie('username'),
+            'operatorname' => cookie('cname'),
             'operadate' => date('Y-m-d H:i:s'),
         );
         $where = array(
-            'status' => '01',
+            'status' => '00',
+            'isassigned' => '1',
             'assignerid' => session('userid'),
             'id' => $cvid,
         );
@@ -138,38 +161,41 @@ class CvHandleController extends BaseController {
     }
 
     /**
-     * 简历审核通过
+     * 初审简历
      */
-    public function checkcv() {
-        
-    }
-
-    /**
-     * 简历审核不通过
-     */
-    public function unchkcv() {
+    public function simpleHandle() {
         $cvid = I('cvid', 0, 'intval');
-        if ($cvid <= 0) {
-            $this->error('该简历不存在或者已被处理');
+        if (IS_POST) {
+            $cname = I('post.cname', '', 'trim');
+            $mobilephone = I('post.mobilephone', '', 'trim');
+            $email = I('post.email', '', 'trim');
+            if (empty($cname) || (empty($mobilephone) && empty($email))) {
+                $this->error('姓名必填，手机和邮箱必填一个');
+            }
+            $cvModel = D('Cvupload');
+            $data = array(
+                'cname' => $cname,
+                'mobilephone' => $mobilephone,
+                'email' => $email,
+                'status' => '01',
+                'operatorid' => session('userid'),
+                'operatorname' => cookie('cname'),
+                'operadate' => date('Y-m-d H:i:s'),
+            );
+            $where = array(
+                'id' => $cvid,
+                'status' => '00',
+            );
+            $result = $cvModel->where($where)->save($data);
+            if ($result == 0) {
+                //未更新到数据
+                $this->error('该简历不存在,初审失败');
+            }
+            $this->success('简历初审成功', U('Backend/CvHandle/mycv'));
+            exit();
         }
-        $cvUploadModel = D('Cvupload');
-        $data = array(
-            'status' => '03',
-            'operatorid' => session('userid'),
-            'operatorname' => cookie('username'),
-            'operadate' => date('Y-m-d H:i:s'),
-        );
-        $where = array(
-            'status' => '01',
-            'assignerid' => session('userid'),
-            'id' => $cvid,
-        );
-        $result = $cvUploadModel->where($where)->save($data);
-        if ($result == 0) {
-            //未更新到数据
-            $this->error('该简历不存在或者已被分配');
-        }
-        $this->success('简历分配成功');
+        $this->cvid = $cvid;
+        $this->display();
     }
 
     /**

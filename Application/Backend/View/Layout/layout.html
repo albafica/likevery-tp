@@ -9,6 +9,11 @@
         <!-- Loading Bootstrap -->
         <link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet">
         <link href="__PUBLIC__/css/backend/dashboard.css" rel="stylesheet">
+        <?php if(!empty($_topCss) && is_array($_topCss)){
+        foreach($_topCss as $css){
+        echo '<link href="__PUBLIC__/css/' . $css . '" rel="stylesheet">';
+        }
+        }?>
 
         <link rel="shortcut icon" href="__PUBLIC__/images/favicon.ico">
 
@@ -17,6 +22,11 @@
           <script src="__PUBLIC__/js/html5shiv.js"></script>
           <script src="__PUBLIC__/js/respond.min.js"></script>
         <![endif]-->
+        <?php if(!empty($_topJs) && is_array($_topJs)){
+        foreach($_topJs as $js){
+        echo '<script src="__PUBLIC__/js/' . $js . '"></script>';
+        }
+        }?>
     </head>
     <body>
         <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -47,6 +57,11 @@
                 </div>
             </div>
         </div>
+        <?php if(!empty($_btmCss) && is_array($_btmCss)){
+        foreach($_btmCss as $css){
+        echo '<link href="__PUBLIC__/css/' . $css . '" rel="stylesheet">';
+        }
+        }?>
 
         <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
         <script src="__PUBLIC__/js/jquery-ui-1.10.3.custom.min.js"></script>
@@ -54,5 +69,20 @@
         <script src="__PUBLIC__/js/bootstrap.min.js"></script>
         <script src="__PUBLIC__/js/bootstrap-select.js"></script>
         <script src="__PUBLIC__/js/bootstrap-switch.js"></script>
+        <?php if(!empty($_btmJs) && is_array($_btmJs)){
+        foreach($_btmJs as $js){
+        echo '<script src="__PUBLIC__/js/' . $js . '"></script>';
+        }
+        }?>
+        <?php if(!empty($_pluginCss) && is_array($_pluginCss)){
+        foreach($_pluginCss as $css){
+        echo '<link href="__PUBLIC__/plugin/' . $css . '" rel="stylesheet">';
+        }
+        }?>
+        <?php if(!empty($_pluginJs) && is_array($_pluginJs)){
+        foreach($_pluginJs as $js){
+        echo '<script src="__PUBLIC__/plugin/' . $js . '"></script>';
+        }
+        }?>
     </body>
 </html>
