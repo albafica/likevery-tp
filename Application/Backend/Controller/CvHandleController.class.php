@@ -165,37 +165,61 @@ class CvHandleController extends BaseController {
      */
     public function simpleHandle() {
         $cvid = I('cvid', 0, 'intval');
-        if (IS_POST) {
-            $cname = I('post.cname', '', 'trim');
-            $mobilephone = I('post.mobilephone', '', 'trim');
-            $email = I('post.email', '', 'trim');
-            if (empty($cname) || (empty($mobilephone) && empty($email))) {
-                $this->error('姓名必填，手机和邮箱必填一个');
-            }
-            $cvModel = D('Cvupload');
-            $data = array(
-                'cname' => $cname,
-                'mobilephone' => $mobilephone,
-                'email' => $email,
-                'status' => '01',
-                'operatorid' => session('userid'),
-                'operatorname' => cookie('cname'),
-                'operadate' => date('Y-m-d H:i:s'),
-            );
-            $where = array(
-                'id' => $cvid,
-                'status' => '00',
-            );
-            $result = $cvModel->where($where)->save($data);
-            if ($result == 0) {
-                //未更新到数据
-                $this->error('该简历不存在,初审失败');
-            }
-            $this->success('简历初审成功', U('Backend/CvHandle/mycv'));
-            exit();
+        if (!IS_AJAX) {
+            $this->error('错误的访问方式', U('Backend/Index/index'));
         }
-        $this->cvid = $cvid;
-        $this->display();
+        if ($cvid <= 0) {
+            $this->ajaxReturn(array('status' => 0, 'message' => '请求错误'));
+        }
+        $cname = I('post.cname', '', 'trim');
+        $mobilephone = I('post.mobilephone', '', 'trim');
+        $email = I('post.email', '', 'trim');
+        if (empty($cname) || (empty($mobilephone) && empty($email))) {
+            $this->error('姓名必填，手机和邮箱必填一个');
+        }
+        $cvModel = D('Cvupload');
+        $data = array(
+            'cname' => $cname,
+            'mobilephone' => $mobilephone,
+            'email' => $email,
+            'status' => '01',
+            'operatorid' => session('userid'),
+            'operatorname' => cookie('cname'),
+            'operadate' => date('Y-m-d H:i:s'),
+        );
+        $where = array(
+            'id' => $cvid,
+            'status' => '00',
+        );
+        $result = $cvModel->where($where)->save($data);
+        $returnData = array(
+            'status' => $result ? 1 : 0,
+            'message' => $result ? '初审成功' : '简历不存在或者已被初审通过，审核失败',
+        );
+        $this->ajaxReturn($returnData);
+    }
+
+    /**
+     * 正式审核简历
+     */
+    public function auditcv() {
+        $cvid = I('cvid', 0, 'intval');
+        if (IS_POST) {
+            
+        }
+        $cvModel = D('Cvupload');
+        //根据id获取简历基本信息
+        $where = array(
+            'id' => $cvid,
+            'status' => '01',
+            'isassigned' => 1,
+            'assignerid' => session('userid'),
+        );
+        $field = 'id,path,filename,cname,email,mobilephone';
+        $cvInfo = $cvModel->field($field)->where($where)->find();
+        if (empty($cvInfo)) {
+            $this->error('简历不存在或者尚未通过初审，不可审核');
+        }
     }
 
     /**

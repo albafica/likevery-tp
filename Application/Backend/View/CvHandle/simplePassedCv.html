@@ -34,6 +34,7 @@
                     <td><a class='customerinfo' href="" cname='{$cvInfo.cname}' mobilephone='{$cvInfo.mobilephone}' email='{$cvInfo.email}'>{$cvInfo.cname}</a></td>
                     <td>
                         <a href="{:U('Backend/CvHandle/cancelassigncv', array('cvid' => $cvInfo['id']))}" onClick="return confirm('确定取消分配此简历?') ? true : false;">取消分配</a>
+                        <a href="{:U('Backend/CvHandle/auditcv', array('cvid' => $cvInfo['id']))}">审核简历</a>
                     </td>
                 </tr>
             </volist>

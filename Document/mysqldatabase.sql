@@ -8,7 +8,7 @@ GRANT ALL PRIVILEGES ON spy.* TO spy@'%';*/
 Create Database If Not Exists likevery;
 USE likevery;
 
-/**************表名：user  表描述:后台用户表  字段数量:10    生成时间:2015/2/4 10:17:54***********/
+/**************表名：user  表描述:后台用户表  字段数量:10    生成时间:2015/2/4 16:21:59***********/
 drop table if exists user;
 CREATE TABLE user( 
 id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
@@ -25,7 +25,7 @@ id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
 
 
 
-/**************表名：cvupload  表描述:简历上传表  字段数量:15    生成时间:2015/2/4 10:17:54***********/
+/**************表名：cvupload  表描述:简历上传表  字段数量:15    生成时间:2015/2/4 16:21:59***********/
 drop table if exists cvupload;
 CREATE TABLE cvupload( 
 id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
@@ -47,7 +47,7 @@ id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
 
 
 
-/**************表名：role  表描述:角色表  字段数量:6    生成时间:2015/2/4 10:17:54***********/
+/**************表名：role  表描述:角色表  字段数量:6    生成时间:2015/2/4 16:21:59***********/
 drop table if exists role;
 CREATE TABLE role( 
 id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
@@ -56,6 +56,48 @@ id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
 ,rights varchar(10) NOT NULL Default '0000000000' comment '角色权限'
 ,status varchar(2) NOT NULL Default '01' comment '角色状态'
 ,memo varchar(255) comment '备注'
+) ;
+
+
+
+/**************表名：manager  表描述:求职者表  字段数量:35    生成时间:2015/2/4 16:21:59***********/
+drop table if exists manager;
+CREATE TABLE manager( 
+id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
+,jobtype int(5) NOT NULL Default 4 comment '求职者职位类型'
+,cname varchar(50) NOT NULL comment '求职者姓名'
+,email varchar(50) comment '求职者邮箱'
+,mobilephone varchar(20) comment '手机'
+,tel varchar(20) comment '座机'
+,gender varchar(2) comment '性别'
+,brithday date comment '生日'
+,homepage varchar(100) comment '个人主页'
+,targetposition varchar(100) comment '期望职位'
+,getjobtime varchar(100) comment '到岗时间'
+,area varchar(100) comment '用户居住城市'
+,targetarea varchar(100) comment '用户目标城市'
+,edulevel int(5) comment '学历'
+,workyear int(5) comment '工作年限'
+,salary int(5) comment '当前年薪'
+,targetsalary int(5) comment '目标年薪'
+,tag varchar(500) comment '标签'
+,selfintroduce text comment '自我评价'
+,memo text comment '备注信息'
+,createdate date comment '创建日期'
+,updatedate date comment '更新日期'
+,cvid int comment '简历id'
+,refuseemail int(1) comment '拒绝接受邮件'
+,status varchar(2) comment '简历状态'
+,question1 text comment '问题1'
+,answear1 text comment '回答1'
+,question2 text comment '问题2'
+,answear2 text comment '回答2'
+,question3 text comment '问题3'
+,answear3 text comment '回答3'
+,question4 text comment '问题4'
+,answear4 text comment '回答4'
+,question5 text comment '问题5'
+,answear5 text comment '回答5'
 ) ;
 
 
