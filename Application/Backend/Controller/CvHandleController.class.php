@@ -16,6 +16,7 @@ class CvHandleController extends BaseController {
         $this->checkRight(self::HANDLECV);
         $this->loadBottomJs(array('backend/handlecv.js'));
         $this->loadPlugin(array('artDialog4.1.7/artDialog.js?skin=black'));
+        $this->loadPlugin(array('My97DatePicker/WdatePicker.js'));
     }
 
     /**
@@ -205,7 +206,14 @@ class CvHandleController extends BaseController {
     public function auditcv() {
         $cvid = I('cvid', 0, 'intval');
         if (IS_POST) {
-            
+            $managerModel = D('Manager');
+            $result = $managerModel->addManager();
+            if (!$result[0]) {
+                $this->error($result[1]);
+            } else {
+                $this->success('审核成功', U('Backend/CvHandle/simplePassedCv'));
+            }
+            exit();
         }
         $cvModel = D('Cvupload');
         //根据id获取简历基本信息
@@ -219,6 +227,35 @@ class CvHandleController extends BaseController {
         $cvInfo = $cvModel->field($field)->where($where)->find();
         if (empty($cvInfo)) {
             $this->error('简历不存在或者尚未通过初审，不可审核');
+        }
+        $this->cvInfo = $cvInfo;
+        $this->display();
+    }
+
+    /**
+     * 简历审核不通过
+     */
+    public function unAuditcv() {
+        $cvid = I('get.cvid', 0, 'intval');
+        $cvModel = D('Cvupload');
+        //根据id获取简历基本信息
+        $where = array(
+            'id' => $cvid,
+            'status' => '01',
+            'isassigned' => 1,
+            'assignerid' => session('userid'),
+        );
+        $data = array(
+            'status' => '03',
+            'operatorid' => session('userid'),
+            'operatorname' => cookie('cname'),
+            'operadate' => date('Y-m-d H:i:s'),
+        );
+        $result = $cvModel->where($where)->save($data);
+        if (!$result) {
+            $this->error('操作失败。' . $cvModel->getDbError());
+        } else {
+            $this->success('操作成功', U('Backend/CvHandle/simplePassedCv'));
         }
     }
 
