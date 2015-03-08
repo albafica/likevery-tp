@@ -15,8 +15,7 @@ class CvHandleController extends BaseController {
         parent::__construct();
         $this->checkRight(self::HANDLECV);
         $this->loadBottomJs(array('backend/handlecv.js'));
-        $this->loadPlugin(array('artDialog4.1.7/artDialog.js?skin=black'));
-        $this->loadPlugin(array('My97DatePicker/WdatePicker.js'));
+        $this->loadPlugin(array('artDialog4.1.7/artDialog.js?skin=black', 'My97DatePicker/WdatePicker.js'));
     }
 
     /**
