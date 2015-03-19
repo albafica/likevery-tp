@@ -35,6 +35,7 @@ class ManagerModel extends BaseModel {
         $tag = I('post.tag', '', 'trim');
         $selfintroduce = I('post.selfintroduce', '', 'trim');
         $memo = I('post.memo', '', 'trim');
+        $jobtype = I('post.jobtype', 1, 'intval');
         if (empty($cvid) || empty($cname) || (empty($mobilephone) && empty($email)) || empty($targetposition) || empty($tag)) {
             return array(FALSE, '姓名、联系方式，期望职位，标签等必填字段不可为空');
         }
@@ -67,6 +68,7 @@ class ManagerModel extends BaseModel {
             'cvid' => $cvid,
             'createdate' => date('Y-m-d'),
             'status' => '01',
+            'jobtype' => $jobtype,
         );
         //1、插入精英信息
         $this->startTrans();

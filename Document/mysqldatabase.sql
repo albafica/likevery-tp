@@ -8,7 +8,7 @@ GRANT ALL PRIVILEGES ON spy.* TO spy@'%';*/
 Create Database If Not Exists likevery;
 USE likevery;
 
-/**************表名：user  表描述:后台用户表  字段数量:10    生成时间:2015/3/8 0:17:00***********/
+/**************表名：user  表描述:后台用户表  字段数量:10    生成时间:2015/3/19 16:16:06***********/
 drop table if exists user;
 CREATE TABLE user( 
 id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
@@ -25,7 +25,7 @@ id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
 
 
 
-/**************表名：cvupload  表描述:简历上传表  字段数量:15    生成时间:2015/3/8 0:17:00***********/
+/**************表名：cvupload  表描述:简历上传表  字段数量:16    生成时间:2015/3/19 16:16:06***********/
 drop table if exists cvupload;
 CREATE TABLE cvupload( 
 id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
@@ -43,11 +43,12 @@ id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
 ,cname varchar(20) comment '求职者姓名'
 ,mobilephone varchar(20) comment '求职者手机'
 ,email varchar(50) comment '求职者邮箱'
+,jobtype varchar(2) NOT NULL comment '求职意向'
 ) ;
 
 
 
-/**************表名：role  表描述:角色表  字段数量:6    生成时间:2015/3/8 0:17:00***********/
+/**************表名：role  表描述:角色表  字段数量:6    生成时间:2015/3/19 16:16:06***********/
 drop table if exists role;
 CREATE TABLE role( 
 id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
@@ -60,7 +61,7 @@ id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
 
 
 
-/**************表名：manager  表描述:求职者表  字段数量:36    生成时间:2015/3/8 0:17:00***********/
+/**************表名：manager  表描述:求职者表  字段数量:36    生成时间:2015/3/19 16:16:06***********/
 drop table if exists manager;
 CREATE TABLE manager( 
 id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'

@@ -222,7 +222,7 @@ class CvHandleController extends BaseController {
             'isassigned' => 1,
             'assignerid' => session('userid'),
         );
-        $field = 'id,path,filename,cname,email,mobilephone';
+        $field = 'id,path,filename,cname,email,mobilephone,jobtype';
         $cvInfo = $cvModel->field($field)->where($where)->find();
         if (empty($cvInfo)) {
             $this->error('简历不存在或者尚未通过初审，不可审核');

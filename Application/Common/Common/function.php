@@ -137,3 +137,22 @@ function isFormat($text, $type) {
     }
     return $regexResult;
 }
+
+/**
+ * 翻译求职者工作意向
+ * @param int $jobType
+ */
+function transJobType($jobType) {
+    switch ($jobType) {
+        case 1:
+            return '技术';
+        case 2:
+            return '设计师';
+        case 3:
+            return '产品经理';
+        case 4:
+            return '产品运营';
+        default:
+            return '其他';
+    }
+}

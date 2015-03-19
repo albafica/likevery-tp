@@ -33,11 +33,16 @@ class IndexController extends Controller {
             try {
                 // 上传成功 获取上传文件信息,保存数据库
                 $cvUploadModel = D('cvupload');
+                $jobType = I('post.job_type', 1, 'intval');
+                if (!in_array($jobType, array(1, 2, 3, 4))) {
+                    $jobType = 1;
+                }
                 $cvData = array(
                     'path' => $info['savepath'] . $info['savename'],
                     'filename' => $info['name'],
                     'status' => '00',
                     'createdate' => date('Y-m-d H:i:s'),
+                    'jobtype' => $jobType,
                 );
 
                 $addResult = $cvUploadModel->add($cvData);

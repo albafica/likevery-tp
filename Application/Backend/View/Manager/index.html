@@ -1,0 +1,57 @@
+<nav role="navigation" class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">求职者管理</a>
+        </div>
+    </div>
+</nav>
+<div class="list">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>求职者id</th>
+                <th>姓名</th>
+                <th>邮箱</th>
+                <th>联系方式</th>
+                <th>求职方向</th>
+                <th>查看简历</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <if condition='$managerList.total == 0'>
+            <tbody>
+                <tr style="text-align: center; font-size: 16px;">
+                    <td colspan="7"><b>没有求职者信息</b></td>
+                </tr>
+            </tbody>
+            <else />
+            <tbody>
+            <volist name='managerList.rows' id="managerInfo">
+                <tr>
+                    <td>{$managerInfo.id}</td>
+                    <td>{$managerInfo.cname}</td>
+                    <td>{$managerInfo.email}</td>
+                    <td>{$managerInfo.mobilephone}</td>
+                    <td><?php echo transJobType($managerInfo['jobtype']);?></td>
+                    <td><a target="_blank" href="{:U('Backend/CvHandle/downloadcv', array('filePath' => base64_encode($managerInfo['path']), 'filename' => base64_encode($managerInfo['filename'])))}" title="下载简历">{$managerInfo.filename}</a></td>
+                    <td>
+                <if condition="$managerList['issys'] == 1">
+                    -
+                    <else />
+                    <a href="{:U('Backend/User/editUser', array('userid' => $managerInfo['id']))}">编辑</a>
+                    <a href="{:U('Backend/User/delUser', array('userid' => $managerInfo['id']))}" onClick="return confirm('确定删除此用户?') ? true : false;">删除</a>
+                </if>
+                </td>
+                </tr>
+            </volist>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="7">
+                        <div class="pageNav">{$managerList.show}</div>
+                    </td>
+                </tr>
+            </tfoot>
+        </if>
+    </table>
+</div>
