@@ -38,8 +38,14 @@
                 <if condition="$managerList['issys'] == 1">
                     -
                     <else />
-                    <a href="{:U('Backend/User/editUser', array('userid' => $managerInfo['id']))}">编辑</a>
-                    <a href="{:U('Backend/User/delUser', array('userid' => $managerInfo['id']))}" onClick="return confirm('确定删除此用户?') ? true : false;">删除</a>
+                    <a href="{:U('Backend/Manager/editManager', array('managerid' => $managerInfo['id']))}">编辑</a>
+                    <a href="javascript:void(0);" onclick="uploadNewCV({$managerInfo.cvid}, {$managerInfo.id});">更新简历</a>
+                    <?php if($managerInfo['releasestatus'] == '00'):?>
+                    <a href="{:U('Backend/Manager/releaseManager', array('managerid' => $managerInfo['id']))}" onClick="return confirm('确定发布此求职者信息?') ? true : false;">发布</a>
+                    <?php else:?>
+                    已发布
+                    <?php endif;?>
+
                 </if>
                 </td>
                 </tr>

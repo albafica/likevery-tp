@@ -8,7 +8,7 @@ GRANT ALL PRIVILEGES ON spy.* TO spy@'%';*/
 Create Database If Not Exists likevery;
 USE likevery;
 
-/**************表名：user  表描述:后台用户表  字段数量:10    生成时间:2015/3/19 16:16:06***********/
+/**************表名：user  表描述:后台用户表  字段数量:10    生成时间:2015/3/21 16:02:16***********/
 drop table if exists user;
 CREATE TABLE user( 
 id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
@@ -25,7 +25,7 @@ id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
 
 
 
-/**************表名：cvupload  表描述:简历上传表  字段数量:16    生成时间:2015/3/19 16:16:06***********/
+/**************表名：cvupload  表描述:简历上传表  字段数量:16    生成时间:2015/3/21 16:02:16***********/
 drop table if exists cvupload;
 CREATE TABLE cvupload( 
 id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
@@ -48,7 +48,7 @@ id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
 
 
 
-/**************表名：role  表描述:角色表  字段数量:6    生成时间:2015/3/19 16:16:06***********/
+/**************表名：role  表描述:角色表  字段数量:6    生成时间:2015/3/21 16:02:16***********/
 drop table if exists role;
 CREATE TABLE role( 
 id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
@@ -61,7 +61,7 @@ id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
 
 
 
-/**************表名：manager  表描述:求职者表  字段数量:36    生成时间:2015/3/19 16:16:06***********/
+/**************表名：manager  表描述:求职者表  字段数量:37    生成时间:2015/3/21 16:02:16***********/
 drop table if exists manager;
 CREATE TABLE manager( 
 id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
@@ -88,8 +88,9 @@ id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
 ,createdate date comment '创建日期'
 ,updatedate date comment '更新日期'
 ,cvid int comment '简历id'
-,refuseemail int(1) comment '拒绝接受邮件'
-,status varchar(2) comment '简历状态'
+,refuseemail int(1) Default 0 comment '拒绝接受邮件'
+,status varchar(2) Default 01 comment '简历状态'
+,releasestatus varchar(2) Default 00 comment '发布状态'
 ,question1 text comment '问题1'
 ,answear1 text comment '回答1'
 ,question2 text comment '问题2'
@@ -100,6 +101,18 @@ id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
 ,answear4 text comment '回答4'
 ,question5 text comment '问题5'
 ,answear5 text comment '回答5'
+) ;
+
+
+
+/**************表名：employee  表描述:求职信息表  字段数量:5    生成时间:2015/3/21 16:02:16***********/
+drop table if exists employee;
+CREATE TABLE employee( 
+id int(4) NOT NULL PRIMARY KEY AUTO_INCREMENT  comment '主键id'
+,managerid int(4) NOT NULL comment '求职者id'
+,status varchar(2) NOT NULL Default '00' comment '状态'
+,startdate date NOT NULL comment '开始时间'
+,enddate date NOT NULL comment '结束时间'
 ) ;
 
 

@@ -36,6 +36,7 @@
                         <a href="{:U('Backend/CvHandle/cancelassigncv', array('cvid' => $cvInfo['id']))}" onClick="return confirm('确定取消分配此简历?') ? true : false;">取消分配</a>
                         <a href="{:U('Backend/CvHandle/auditcv', array('cvid' => $cvInfo['id']))}">审核简历</a>
                         <a href="{:U('Backend/CvHandle/unAuditcv', array('cvid' => $cvInfo['id']))}">审核不通过</a>
+                        <a href="javascript:void(0);" onclick="uploadNewCV({$cvInfo.id});">更新简历</a>
                     </td>
                 </tr>
             </volist>

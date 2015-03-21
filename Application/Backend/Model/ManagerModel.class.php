@@ -96,4 +96,68 @@ class ManagerModel extends BaseModel {
         }
     }
 
+    /**
+     * 添加求职者信息
+     */
+    public function editManager() {
+        $managerId = I('post.id', 0, 'intval');
+        $ename = I('post.ename', '', 'trim');
+        $email = I('post.email', '', 'trim');
+        $mobilephone = I('post.mobilephone', '', 'trim');
+        $tel = I('post.tel', '', 'trim');
+        $gender = I('post.gender', 0, 'intval');
+        $brithday = I('post.brithday', '', 'trim');
+        $homepage = I('post.homepage', '', 'trim');
+        $targetposition = I('post.targetposition', '', 'trim');
+        $getjobtime = I('post.getjobtime', '', 'trim');
+        $area = I('post.area', '', 'trim');
+        $targetarea = I('post.targetarea', '', 'trim');
+        $edulevel = I('post.edulevel', 0, 'intval');
+        $workyear = I('post.workyear', 0, 'intval');
+        $salary = I('post.salary', '', 'trim');
+        $targetsalary = I('post.targetsalary', '', 'trim');
+        $tag = I('post.tag', '', 'trim');
+        $selfintroduce = I('post.selfintroduce', '', 'trim');
+        $memo = I('post.memo', '', 'trim');
+        if (empty($managerId) || (empty($mobilephone) && empty($email)) || empty($targetposition) || empty($tag)) {
+            return array(FALSE, '联系方式，期望职位，标签等必填字段不可为空');
+        }
+        if (!empty($mobilephone) && !isFormat($mobilephone, 'I4')) {
+            return array(FALSE, '手机格式不正确');
+        }
+        if (!empty($email) && !isFormat($email, 'S0')) {
+            return array(FALSE, '邮件格式不正确');
+        }
+        $where = array(
+            'id' => $managerId,
+        );
+        $data = array(
+            'ename' => $ename,
+            'email' => $email,
+            'mobilephone' => $mobilephone,
+            'tel' => $tel,
+            'gender' => $gender,
+            'brithday' => $brithday,
+            'homepage' => $homepage,
+            'targetposition' => $targetposition,
+            'getjobtime' => $getjobtime,
+            'area' => $area,
+            'targetarea' => $targetarea,
+            'edulevel' => $edulevel,
+            'workyear' => $workyear,
+            'salary' => $salary,
+            'targetsalary' => $targetsalary,
+            'tag' => $tag,
+            'selfintroduce' => $selfintroduce,
+            'memo' => $memo,
+            'status' => '01',
+        );
+        //1、插入精英信息
+        $result = $this->where($where)->save($data);
+        if ($result !== false) {
+            return array(TRUE, '更新成功');
+        }
+        return array(false, '系统繁忙，请稍后再试');
+    }
+
 }

@@ -127,3 +127,17 @@ div.list table tfoot {font-style: normal;}*/
 .pageNav a{border:1px #2E6AB1 solid;text-decoration:none; padding:2px 4px; background:#FFF; color:#2E6AB1;}
 .pageNav a:hover{border:1px #000080 solid;text-decoration:none; padding:2px 4px; background:#2E6AB1; color:#FFF;}
 .pageNav span.current{border:1px #000080 solid;text-decoration:none; padding:2px 4px; background:#2E6AB1; color:#FFF;font-weight:bold;}
+
+.upload_file {
+width: 92px;
+height: 43px;
+cursor: pointer;
+display: block;
+margin: 0 auto;
+position: relative;
+top: -43px;
+filter: alpha(opacity=0);
+-moz-opacity: 0;
+-khtml-opacity: 0;
+opacity: 0;
+}

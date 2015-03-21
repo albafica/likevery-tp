@@ -274,4 +274,64 @@ class CvHandleController extends BaseController {
         }
     }
 
+    /**
+     * 覆盖旧简历
+     */
+    public function coverCV() {
+        //检验旧简历信息
+        $cvId = I('post.cvid', 0, 'intval');
+        $cvModel = D('Cvupload');
+        $where = array(
+            'id' => $cvId,
+            'status' => '01',
+            'isassigned' => 1,
+            'assignerid' => session('userid'),
+        );
+        $cvInfo = $cvModel->field('id')->where($where)->find();
+        if (empty($cvInfo)) {
+            $this->error('上传失败，请稍后重试', U('Backend/CvHandle/simplePassedCv'));
+            exit();
+        }
+        $upload = new \Think\Upload();
+        // 简历附件最大2M
+        $upload->maxSize = 2097152;
+        $upload->exts = array('doc', 'docx');
+        //只允许上传word文档
+        $upload->mimes = array(
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'application/msword',
+        );
+        $upload->savePath = 'CV/uncheck/'; // 设置附件上传目录
+        $upload->rootPath = C('UPLOAD_PATH');
+        $info = $upload->uploadOne($_FILES['uploadNewCv']);
+        if (!$info) {
+            // 上传错误提示错误信息        
+            $this->error($upload->getError(), U('Backend/CvHandle/simplePassedCv'));
+        } else {
+            try {
+                // 上传成功 获取上传文件信息,保存数据库
+                $cvUploadModel = D('cvupload');
+                $cvData = array(
+                    'id' => $cvId,
+                    'path' => $info['savepath'] . $info['savename'],
+                    'filename' => $info['name'],
+                    'operatorid' => session('userid'),
+                    'operatorname' => cookie('cname'),
+                    'operadate' => date('Y-m-d H:i:s'),
+                );
+                $addResult = $cvUploadModel->save($cvData);
+            } catch (\Think\Exception $e) {
+                $addResult = false;
+            }
+
+            if (!$addResult) {
+                //添加记录失败，返回错误信息，同时删除上传的附件
+                $fileHandle = new \Lib\FileHandle();
+                $fileHandle->tryDelFile(C('UPLOAD_PATH') . $info['savepath'] . $info['savename']);
+                $this->error('系统繁忙，简历上传失败，请稍后再试', U('Backend/CvHandle/simplePassedCv'), 3);
+            }
+            $this->success('简历上传成功');
+        }
+    }
+
 }
