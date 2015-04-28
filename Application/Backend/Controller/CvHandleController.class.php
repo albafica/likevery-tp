@@ -298,8 +298,8 @@ class CvHandleController extends BaseController {
         $upload->exts = array('doc', 'docx');
         //只允许上传word文档
         $upload->mimes = array(
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-            'application/msword',
+//            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+//            'application/msword',
         );
         $upload->savePath = 'CV/uncheck/'; // 设置附件上传目录
         $upload->rootPath = C('UPLOAD_PATH');

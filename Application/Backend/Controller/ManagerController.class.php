@@ -28,7 +28,7 @@ class ManagerController extends BaseController {
         //获取所有求职者信息列表
         $map = array(
             'manager.status' => '01',
-            'cvupload.status' => '01',
+            'cvupload.status' => '02',
         );
         $field = 'manager.id,manager.jobtype,manager.cname,manager.email,manager.mobilephone,releasestatus,manager.cvid,path,filename';
         $join = 'LEFT JOIN cvupload ON manager.cvid = cvupload.id';
@@ -86,8 +86,8 @@ class ManagerController extends BaseController {
         $upload->exts = array('doc', 'docx');
         //只允许上传word文档
         $upload->mimes = array(
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-            'application/msword',
+//            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+//            'application/msword',
         );
         $upload->savePath = 'CV/uncheck/'; // 设置附件上传目录
         $upload->rootPath = C('UPLOAD_PATH');
