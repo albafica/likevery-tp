@@ -1,8 +1,0 @@
-1、20150203简历上传表新增求职者姓名，邮箱，手机号
-ALTER TABLE cvupload
-ADD COLUMN cname VARCHAR(20) NULL COMMENT '求职者姓名' AFTER `operadate`,
-ADD COLUMN mobilephone VARCHAR(20) NULL COMMENT '求职者手机' AFTER `cname`,
-ADD COLUMN email VARCHAR(50) NULL COMMENT '求职者邮箱' AFTER `mobilephone`;
-2、将是否分配拆分出来，新增是否被分配字段
-ALTER TABLE `cvupload`
-ADD COLUMN `isassigned`  varchar(2) NOT NULL DEFAULT '0' COMMENT '是否被分配' AFTER `createdate`;
