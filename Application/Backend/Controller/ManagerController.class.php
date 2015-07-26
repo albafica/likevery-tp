@@ -128,6 +128,11 @@ class ManagerController extends BaseController {
     public function releaseManager() {
         $managerId = I('managerid', 0, 'intval');
         $managerModel = D('Manager');
+        $managerInfo = $managerModel->field('id,jobtype')->where(array('id' => $managerId))->find();
+        if (empty($managerInfo)) {
+            $this->error('该求职者不存在', U('Backend/Manager/index'));
+            exit();
+        }
         $employeeModel = D('Employee');
         $employeeModel->startTrans();
         $employeedata = array(
@@ -149,6 +154,15 @@ class ManagerController extends BaseController {
         $result2 = $managerModel->where($where)->save($updData);
         if ($result && $result2) {
             $employeeModel->commit();
+            //简历发布成功，向企业发送推荐邮件
+            $subscriptionModel = D('Subscription');
+            $subscriptionList = $subscriptionModel->where(array('type' => $managerInfo['jobtype']))->select();
+            $companyIdArr = array();
+            for ($i = 0; $i < count($subscriptionList); $i++) {
+                $companyIdArr[] = $subscriptionList[$i]['companyid'];
+            }
+            $cvmailModel = D('Cvmail');
+            $cvmailModel->sendSubscriptionMial($managerId, $companyIdArr);
             $this->success('发布成功', U('Backend/Manager/index'));
         } else {
             $employeeModel->rollback();

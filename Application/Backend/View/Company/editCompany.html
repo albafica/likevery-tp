@@ -1,0 +1,64 @@
+<nav role="navigation" class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">
+                编辑企业信息
+            </a>
+        </div>
+    </div>
+</nav>
+<div class="row">
+    <div class="col-md-5">
+        <form class="form-horizontal" role="form" method="post" action="">
+            <div class="form-group">
+                <label for="loginname" class="col-sm-4 control-label">登陆账号:</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">{$objInfo.loginname}</p>
+                    <input type="hidden" value="{$objInfo.id}" name="id" id="id" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="companyname" class="col-sm-4 control-label">企业名称:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="companyname" name="companyname" placeholder="企业名称" value="{$objInfo.companyname}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="contact" class="col-sm-4 control-label">企业联系人:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="contact" name="contact" placeholder="企业联系人" value="{$objInfo.contact}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mobilephone" class="col-sm-4 control-label">联系方式:</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" rows="3" name="mobilephone" id='mobilephone' placeholder="联系方式">{$objInfo.mobilephone}</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-sm-4 control-label">邮箱地址:</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" rows="3" name="email" id='email' placeholder="联系方式">{$objInfo.email}</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address" class="col-sm-4 control-label">企业地址</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" rows="3" name="address" id='address' placeholder="联系方式">{$objInfo.address}</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="url" class="col-sm-4 control-label">官网地址</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" rows="3" name="url" id='url' placeholder="联系方式">{$objInfo.url}</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                    <button type="submit" class="btn btn-primary">保存</button>
+                    <a href="{:U('Backend/Company/index')}" style="margin-left: 30px;">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

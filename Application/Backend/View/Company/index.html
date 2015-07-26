@@ -1,0 +1,65 @@
+<nav role="navigation" class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">企业管理</a>
+        </div>
+    </div>
+</nav>
+<div class="list">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>企业ID</th>
+                <th>企业名称</th>
+                <th>企业联系人</th>
+                <th>推荐简历数</th>
+                <th>竞拍简历数</th>
+                <th>邮箱</th>
+                <th>联系方式</th>
+                <th>企业地址</th>
+                <th>官网地址</th>
+                <th>注册时间</th>
+                <th>等级</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <if condition='$List.total == 0'>
+            <tbody>
+                <tr style="text-align: center; font-size: 16px;">
+                    <td colspan="20"><b>没有企业信息</b></td>
+                </tr>
+            </tbody>
+            <else />
+            <tbody>
+            <volist name='List.rows' id="item">
+                <tr>
+                    <td>{$item.id}</td>
+                    <td>{$item.companyname}</td>
+                    <td>{$item.contact}</td>
+                    <td>{$item.getcvcount}</td>
+                    <td>{$item.auctioncvcount}</td>
+                    <td>{$item.email}</td>
+                    <td>{$item.mobilephone}</td>
+                    <td>{$item.address}</td>
+                    <td><a href="{$item.url}" target="_blank">{$item.url}</a></td>
+                    <td>{$item.createdate}</td>
+                    <td>{$item.degree}</td>
+                    <td><a href="{:U('Backend/Company/editCompany', array('id' => $item['id']))}">编辑</a>
+                        <a href="{:U('Backend/Company/delete', array('id' => $item['id']))}" onClick="return confirm('确定删除吗?') ? true : false;">删除</a>
+                    </td>
+                </tr>
+            </volist>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="20">
+                        <div class="pageNav">{$List.show}</div>
+                    </td>
+                </tr>
+            </tfoot>
+        </if>
+    </table>
+    等级A：用户只注册<br/>
+    等级B：用户注册，并且填写了公司资料<br/>
+    等级C：用户注册，填写公司资料，并且竞拍简历。优质客户<br/>
+</div>
