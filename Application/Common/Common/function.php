@@ -156,3 +156,43 @@ function transJobType($jobType) {
             return '其他';
     }
 }
+
+/**
+ * utf8字符串无乱码截取
+ * @param string $str       待截取的字符串
+ * @param int $len       截取中文字符个数
+ * @param string $suffix    字符串被截取后后缀
+ * @return string           截取后的字符串
+ */
+function cutStr($str, $len, $suffix = '...') {
+    if ($len <= 0) {
+        return '';
+    }
+    $length = strlen($str);
+    if ($length <= $len) {
+        return $str;
+    }
+    $offset = 0;
+    $chars = 0;
+    $res = '';
+    while ($chars < $len && $offset < $length) {
+        $heigh = decbin(ord(substr($str, $offset, 1)));
+        if (strlen($heigh) < 8) {
+            $count = 1;
+        } else if (substr($heigh, 0, 3) == '110') {
+            $count = 2;
+        } else if (substr($heigh, 0, 4) == '1110') {
+            $count = 3;
+        } else if (substr($heigh, 0, 5) == '11110') {
+            $count = 4;
+        } else if (substr($heigh, 0, 6) == '111110') {
+            $count = 5;
+        } else if (substr($heigh, 0, 7) == '1111110') {
+            $count = 6;
+        }
+        $res .= substr($str, $offset, $count);
+        $chars += 1;
+        $offset += $count;
+    }
+    return $res . $suffix;
+}

@@ -1,0 +1,85 @@
+<nav role="navigation" class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">邮件管理</a>
+        </div>
+        <div id="bs-example-navbar-collapse-5" class="collapse navbar-collapse">
+            <a class="btn btn-primary navbar-btn navbar-right" href="{:U('Backend/Cvmail/sendmail')}">发送邮件</a>
+        </div>
+    </div>
+</nav>
+<div class="list">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form method="post" action="{:U('Backend/Cvmail/index')}" name="search" >
+                <label class="radio-inline">
+                    <input type="radio" name="status" id="status0" value="0" {$status != 1 && $status != 2 ?'checked="checked"':''}> 全部
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="status" id="status1" value="1" {$status == 1 ? 'checked="checked"':''}> 已发送
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="status" id="status2" value="2" {$status == 2 ? 'checked="checked"':''}> 未发送
+                </label>
+            </form>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>邮件ID</th>
+                <th>求职者</th>
+                <th>企业</th>
+                <th>邮件内容</th>
+                <th>邮件创建时间</th>
+                <th>邮件更新时间</th>
+                <th>状态</th>
+            </tr>
+        </thead>
+        <if condition='$List.total == 0'>
+            <tbody>
+                <tr style="text-align: center; font-size: 16px;">
+                    <td colspan="7"><b>没有邮件</b></td>
+                </tr>
+            </tbody>
+            <else />
+            <tbody>
+            <volist name='List.rows' id="item">
+                <tr>
+                    <td>{$item.id}</td>
+                    <td><a href='{:U("Backend/Manager/index")}' target="_blank">{$item.cname}</a></td>
+                    <td><a href='{:U("Backend/Company/index")}' target="_blank">{$item.companyname}</a></td>
+                    <td title="<?php echo $item['content'];?>"><?php echo cutStr($item['content'], 10);?></td>
+                    <td>{$item.createdate}</td>
+                    <td>{$item.updatedate}</td>
+                    <td>
+                        <?php
+                        if($item['status'] == '00'){
+                        echo '未发送';
+                        }elseif($item['status'] == '01'){
+                        echo '已发送';
+                        }else{
+                        echo '-';
+                        }
+                        ?>
+                    </td>
+                </tr>
+            </volist>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="20">
+                        <div class="pageNav">{$List.show}</div>
+                    </td>
+                </tr>
+            </tfoot>
+        </if>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+    });
+    $('input[name="status"]').change(function () {
+        $('form[name="search"]').submit();
+    });
+</script>

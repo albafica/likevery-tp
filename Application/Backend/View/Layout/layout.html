@@ -17,6 +17,12 @@
 
         <link rel="shortcut icon" href="__PUBLIC__/images/favicon.ico">
 
+        <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+        <script src="__PUBLIC__/js/jquery-ui-1.10.3.custom.min.js"></script>
+        <script src="__PUBLIC__/js/jquery.ui.touch-punch.min.js"></script>
+        <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+        <script src="__PUBLIC__/js/bootstrap-select.js"></script>
+        <script src="__PUBLIC__/js/bootstrap-switch.js"></script>
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
         <!--[if lt IE 9]>
           <script src="__PUBLIC__/js/html5shiv.js"></script>
@@ -62,13 +68,6 @@
         echo '<link href="__PUBLIC__/css/' . $css . '" rel="stylesheet">';
         }
         }?>
-
-        <script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
-        <script src="__PUBLIC__/js/jquery-ui-1.10.3.custom.min.js"></script>
-        <script src="__PUBLIC__/js/jquery.ui.touch-punch.min.js"></script>
-        <script src="__PUBLIC__/js/bootstrap.min.js"></script>
-        <script src="__PUBLIC__/js/bootstrap-select.js"></script>
-        <script src="__PUBLIC__/js/bootstrap-switch.js"></script>
         <?php if(!empty($_btmJs) && is_array($_btmJs)){
         foreach($_btmJs as $js){
         echo '<script src="__PUBLIC__/js/' . $js . '"></script>';
