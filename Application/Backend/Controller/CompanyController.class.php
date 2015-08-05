@@ -33,6 +33,26 @@ class CompanyController extends BaseController {
     }
 
     /**
+     * 查看
+     */
+    public function viewCompany() {
+        $Id = I('id', 0, 'intval');
+        if ($Id < 1) {
+            $this->error('参数错误', U('Backend/Company/index'));
+            exit();
+        }
+
+        $objModel = D('Company');
+        $objInfo = $objModel->find($Id);
+        if (empty($objInfo)) {
+            $this->error('该企业不存在');
+            exit();
+        }
+        $this->objInfo = $objInfo;
+        $this->display();
+    }
+
+    /**
      * 编辑用户
      */
     public function editCompany() {

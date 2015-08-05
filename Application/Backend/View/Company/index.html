@@ -44,7 +44,8 @@
                     <td><a href="{$item.url}" target="_blank">{$item.url}</a></td>
                     <td>{$item.createdate}</td>
                     <td>{$item.degree}</td>
-                    <td><a href="{:U('Backend/Company/editCompany', array('id' => $item['id']))}">编辑</a>
+                    <td><a href="{:U('Backend/Company/viewCompany', array('id' => $item['id']))}">查看</a>
+                        <a href="{:U('Backend/Company/editCompany', array('id' => $item['id']))}">编辑</a>
                         <a href="{:U('Backend/Company/delete', array('id' => $item['id']))}" onClick="return confirm('确定删除吗?') ? true : false;">删除</a>
                     </td>
                 </tr>

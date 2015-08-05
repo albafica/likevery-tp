@@ -39,6 +39,21 @@ class ManagerController extends BaseController {
     }
 
     /**
+     * 查看简历
+     */
+    public function viewManager() {
+        $managerModel = D('Manager');
+        $managerId = I('managerid', 0, 'intval');
+        $managerInfo = $managerModel->find($managerId);
+        if (empty($managerInfo)) {
+            $this->error('求职者信息查询出错，请稍后再试', U('Backend/Manager/index'));
+            exit();
+        }
+        $this->managerInfo = $managerInfo;
+        $this->display();
+    }
+
+    /**
      * 编辑求职者简历
      */
     public function editManager() {

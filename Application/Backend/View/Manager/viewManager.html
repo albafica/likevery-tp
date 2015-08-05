@@ -1,0 +1,160 @@
+<nav role="navigation" class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">求职者信息编辑</a>
+        </div>
+    </div>
+</nav>
+<div class="list">
+    <form class="form-horizontal" action="" method="post">
+        <div class="form-group col-md-6">
+            <label for="cname" class="col-md-3 control-label">中文名<span style="color: red;">*</span></label>
+            <div class="col-md-9">
+                <input type="hidden" name="id" id="cvid" value="{$managerInfo.id}" />
+                <input type="text" name="cname" class="form-control" id="cname" value="{$managerInfo.cname}" maxlength="50" placeholder="中文名" readonly="" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="ename" class="col-md-3 control-label">英文名</label>
+            <div class="col-md-9">
+                <input type="text" name="ename" class="form-control" id="ename" value="{$managerInfo.ename}" maxlength="50" placeholder="ename" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="email" class="col-md-3 control-label">邮箱<span style="color: red;">*</span></label>
+            <div class="col-md-9">
+                <input type="text" name="email" class="form-control" id="email" value="{$managerInfo.email}" maxlength="50" placeholder="邮箱" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="mobilephone" class="col-md-3 control-label">手机<span style="color: red;">*</span></label>
+            <div class="col-md-9">
+                <input type="text" name="mobilephone" class="form-control" id="mobilephone" value="{$managerInfo.mobilephone}" maxlength="20" placeholder="手机" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="tel" class="col-md-3 control-label">座机</label>
+            <div class="col-md-9">
+                <input type="text" name="tel" class="form-control" id="tel" maxlength="20" value="{$managerInfo.tel}" placeholder="座机" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="gender0" class="col-md-3 control-label">性别</label>
+            <div class="col-md-9" style="height: 34px;">
+                <label class="radio-inline">
+                    <input type="radio" name="gender" id="gender0" value="0" <?php echo $managerInfo['gender'] == 0 ? 'checked' : '';?> disabled="disabled">保密
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="gender" id="gender1" value="1" <?php echo $managerInfo['gender'] == 1 ? 'checked' : '';?> disabled="disabled">男
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="gender" id="gender2" value="2" <?php echo $managerInfo['gender'] == 2 ? 'checked' : '';?> disabled="disabled">女
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="brithday" class="col-md-3 control-label">生日</label>
+            <div class="col-md-9">
+                <input type="text" name="brithday" class="form-control" value="{$managerInfo.brithday}" placeholder="点击选择生日" id="brithday" onClick="WdatePicker({skin: 'whyGreen', startDate: '1980-05-01', maxDate: '%y-%M-%d'})" disabled="disabled" >
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="homepage" class="col-md-3 control-label">个人主页</label>
+            <div class="col-md-9">
+                <input type="text" name="homepage" class="form-control" value="{$managerInfo.homepage}" id="homepage" maxlength="100" placeholder="个人主页" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="targetposition" class="col-md-3 control-label">期望职位<span style="color: red;">*</span></label>
+            <div class="col-md-9">
+                <input type="text" name="targetposition" class="form-control" value="{$managerInfo.targetposition}" id="targetposition" maxlength="100" placeholder="期望职位" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="getjobtime" class="col-md-3 control-label">到岗时间</label>
+            <div class="col-md-9">
+                <input type="text" name="getjobtime" class="form-control" value="{$managerInfo.getjobtime}" id="getjobtime" maxlength="100" placeholder="到岗时间" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="area" class="col-md-3 control-label">当前居住地</label>
+            <div class="col-md-9">
+                <input type="text" name="area" class="form-control" id="area" value="{$managerInfo.area}" maxlength="100" placeholder="当前居住地" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="targetarea" class="col-md-3 control-label">期望工作地</label>
+            <div class="col-md-9">
+                <input type="text" name="targetarea" class="form-control" value="{$managerInfo.targetarea}" id="targetarea" maxlength="100" placeholder="期望工作地" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="edulevel" class="col-md-3 control-label">最高学历</label>
+            <div class="col-md-9">
+                <select class="form-control" name="edulevel" id="edulevel" disabled="disabled">
+                    <option value="" >最高学历</option>
+                    <option value="7" <?php echo $managerInfo['edulevel'] == 7 ? 'selected' : '';?>>博士</option>
+                    <option value="6" <?php echo $managerInfo['edulevel'] == 6 ? 'selected' : '';?>>研究生</option>
+                    <option value="5" <?php echo $managerInfo['edulevel'] == 5 ? 'selected' : '';?>>本科</option>
+                    <option value="4" <?php echo $managerInfo['edulevel'] == 4 ? 'selected' : '';?>>专科</option>
+                    <option value="3" <?php echo $managerInfo['edulevel'] == 3 ? 'selected' : '';?>>高中</option>
+                    <option value="8" <?php echo $managerInfo['edulevel'] == 8 ? 'selected' : '';?>>其他</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="workyear" class="col-md-3 control-label">工作年限</label>
+            <div class="col-md-9">
+                <select class="form-control" name="workyear" id="workyear" disabled="disabled">
+                    <option value="">工作年限</option>
+                    <option value="8" <?php echo $managerInfo['workyear'] == 8 ? 'selected' : '';?>>十五年以上</option>
+                    <option value="7" <?php echo $managerInfo['workyear'] == 7 ? 'selected' : '';?>>十到十五年</option>
+                    <option value="6" <?php echo $managerInfo['workyear'] == 6 ? 'selected' : '';?>>七到十年</option>
+                    <option value="5" <?php echo $managerInfo['workyear'] == 5 ? 'selected' : '';?>>五到七年</option>
+                    <option value="4" <?php echo $managerInfo['workyear'] == 4 ? 'selected' : '';?>>三到五年</option>
+                    <option value="3" <?php echo $managerInfo['workyear'] == 3 ? 'selected' : '';?>>两到三年</option>
+                    <option value="2" <?php echo $managerInfo['workyear'] == 2 ? 'selected' : '';?>>一到两年</option>
+                    <option value="1" <?php echo $managerInfo['workyear'] == 1 ? 'selected' : '';?>>一年以内</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="salary" class="col-md-3 control-label">目前年薪</label>
+            <div class="col-md-9">
+                <input type="text" name="salary" class="form-control" value="{$managerInfo.salary}" id="salary" placeholder="目前年薪" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="targetsalary" class="col-md-3 control-label">期望年薪</label>
+            <div class="col-md-9">
+                <input type="text" name="targetsalary" class="form-control" value="{$managerInfo.targetsalary}" id="targetsalary" placeholder="期望年薪" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="tag" class="col-md-3 control-label">用户标签<span style="color: red;">*</span></label>
+            <div class="col-md-9">
+                <input type="text" name="tag" class="form-control" id="tag" maxlength="300" value="{$managerInfo.tag}" placeholder="用户标签，用空格分隔" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-group col-md-6" style="height: 34px;">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="selfintroduce" class="col-md-3 control-label">自我评价</label>
+            <div class="col-md-9">
+                <textarea name="selfintroduce" id="selfintroduce" class="form-control" rows="3" placeholder="自我评价" disabled="disabled">{$managerInfo.selfintroduce}</textarea>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="memo" class="col-md-3 control-label">备注</label>
+            <div class="col-md-9">
+                <textarea name="memo" id="memo" class="form-control" rows="3" placeholder="备注" disabled="disabled">{$managerInfo.memo}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12 text-center">
+                 <a href="{:U('Backend/Manager/index')}">返回</a>
+            </div>
+        </div>
+    </form>
+</div>

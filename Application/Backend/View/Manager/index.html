@@ -38,6 +38,7 @@
                 <if condition="$managerList['issys'] == 1">
                     -
                     <else />
+                    <a href="{:U('Backend/Manager/viewManager', array('managerid' => $managerInfo['id']))}">查看</a>
                     <a href="{:U('Backend/Manager/editManager', array('managerid' => $managerInfo['id']))}">编辑</a>
                     <a href="javascript:void(0);" onclick="uploadNewCV({$managerInfo.cvid}, {$managerInfo.id});">更新简历</a>
                     <?php if($managerInfo['releasestatus'] == '00'):?>

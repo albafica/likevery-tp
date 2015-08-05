@@ -47,8 +47,8 @@
             <volist name='List.rows' id="item">
                 <tr>
                     <td>{$item.id}</td>
-                    <td><a href='{:U("Backend/Manager/index")}' target="_blank">{$item.cname}</a></td>
-                    <td><a href='{:U("Backend/Company/index")}' target="_blank">{$item.companyname}</a></td>
+                    <td><a href='{:U("Backend/Manager/viewManager", array("managerid" => $item["managerid"]))}' target="_blank">{$item.cname}</a></td>
+                    <td><a href='{:U("Backend/Company/viewCompany", array("id" => $item["companyid"]))}' target="_blank">{$item.companyname}</a></td>
                     <td title="<?php echo $item['content'];?>"><?php echo cutStr($item['content'], 10);?></td>
                     <td>{$item.createdate}</td>
                     <td>{$item.updatedate}</td>
