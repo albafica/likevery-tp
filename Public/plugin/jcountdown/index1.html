@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jCountdown倒计时插件jQuery - 站长素材</title>
+<script src="jquery/jquery-1.8.2.min.js"></script>
+<link href="jquery/jquery-ui-1.9.1.custom.min.css" rel="stylesheet" type="text/css">
+<script src="jquery/jquery-ui-1.9.1.custom.min.js"></script>
+<link href="jcountdown/jcountdown.css" rel="stylesheet" type="text/css">
+<script src="jcountdown/jquery.jcountdown.min.js"></script>
+<link href="index.css" rel="stylesheet" type="text/css">
+<script src="index1.js"></script>
+</head>
+
+<body>
+
+<div id="tip">
+	<div class="arrow">
+	</div>
+	<div class="content">
+	</div>
+</div>
+<div id="content">
+	<div class="page">
+		<div class="countdown">
+		</div>
+		<div class="backgroundPicker" tip="check how it looks in different background color">
+			<div class="button black">
+			</div>
+			<div class="button white">
+			</div>
+			<div class="button blue">
+			</div>
+			<div class="button orange">
+			</div>
+			<div class="button red">
+			</div>
+		</div>
+		<ul class="panel">
+			<li>
+			<div class="group" tip="Year/Month/Date Hour:Minute:Second">
+				<div class="title">
+					Time Text</div>
+				<div class="content">
+					<input type="text" class="timeText" /></div>
+			</div>
+			<div class="group" tip="GMT number">
+				<div class="title">
+					Time Zone</div>
+				<div class="content">
+					<input type="text" class="timeZone" /></div>
+			</div>
+			</li>
+			<li>
+			<div class="group" tip="Flip, Slide, Metal or Crystal">
+				<div class="title">
+					Style</div>
+				<div class="content">
+					<div class="label">
+						<input type="radio" class="style" value="flip" /> Flip</div>
+					<div class="label">
+						<input type="radio" class="style" value="slide" /> Slide</div>
+				</div>
+				<div class="title">
+				</div>
+				<div class="content">
+					<div class="label">
+						<input type="radio" class="style" value="metal" /> Metal</div>
+					<div class="label">
+						<input type="radio" class="style" value="crystal" /> Crystal</div>
+				</div>
+			</div>
+			<div class="group" tip="Black or White, you can also modify the font, color and others in source psd file">
+				<div class="title">
+					Color</div>
+				<div class="content">
+					<div class="label">
+						<input type="radio" class="color" value="black" /> Black</div>
+					<div class="label">
+						<input type="radio" class="color" value="white" /> White</div>
+				</div>
+			</div>
+			</li>
+			<li tip="0~n (unlimited, default 0), if you don't want to resize it please set it to 0" class="new">
+			<div class="group">
+				<div class="title">
+					Width</div>
+				<div class="content">
+					<div class="label">
+						<input type="radio" class="widthType" value="auto" /> Auto</div>
+					<div class="label">
+						<input type="radio" class="widthType" value="fixed" /> Fixed</div>
+				</div>
+			</div>
+			<div class="group">
+				<div class="title">
+				</div>
+				<div class="content">
+					<div class="value">
+					</div>
+					<div class="slider width">
+					</div>
+				</div>
+			</div>
+			</li>
+			<li>
+			<div class="group" tip="0~n (unlimited, default 15)">
+				<div class="title">
+					Text Group Space</div>
+				<div class="content">
+					<div class="value">
+					</div>
+					<div class="slider textGroupSpace">
+					</div>
+				</div>
+			</div>
+			<div class="group" tip="0~n (unlimited, default 0)">
+				<div class="title">
+					Text Space</div>
+				<div class="content">
+					<div class="value">
+					</div>
+					<div class="slider textSpace">
+					</div>
+				</div>
+			</div>
+			</li>
+			<li>
+			<div class="group" tip="this setting works in Firefox, Chrome, Safari, Opera and most mobile browser">
+				<div class="title">
+					Reflection</div>
+				<div class="content">
+					<input type="checkbox" class="reflection" /></div>
+			</div>
+			<div class="group" tip="0~100 (default 10), this setting works in Firefox, Chrome, Safari, Opera and most mobile browser">
+				<div class="title">
+					Reflection Opacity</div>
+				<div class="content">
+					<div class="value">
+					</div>
+					<div class="slider reflectionOpacity">
+					</div>
+				</div>
+			</div>
+			<div class="group" tip="0~10 (default 0), this setting works in Firefox, Chrome and most mobile browser">
+				<div class="title">
+					Reflection Blur</div>
+				<div class="content">
+					<div class="value">
+					</div>
+					<div class="slider reflectionBlur">
+					</div>
+				</div>
+			</div>
+			</li>
+			<li tip="2~n (unlimited, default 2), you can set a large number, if you want to count a long time">
+			<div class="group">
+				<div class="title">
+					Day Text number</div>
+				<div class="content">
+					<div class="value">
+					</div>
+					<div class="slider dayTextNumber">
+					</div>
+				</div>
+			</div>
+			</li>
+			<li tip="you can hide some fields, if you only want to count a shot time">
+			<div class="group">
+				<div class="title">
+					Display Day</div>
+				<input type="checkbox" class="displayDay" /> </div>
+			<div class="group">
+				<div class="title">
+					Display Hour</div>
+				<input type="checkbox" class="displayHour" /> </div>
+			<div class="group">
+				<div class="title">
+					Display Minute</div>
+				<input type="checkbox" class="displayMinute" /> </div>
+			<div class="group">
+				<div class="title">
+					Display Second</div>
+				<input type="checkbox" class="displaySecond" /> </div>
+			</li>
+			<li tip="you can hide label, if you want to make it looks more concise" class="new">
+			<div class="group">
+				<div class="title">
+					Display Label</div>
+				<input type="checkbox" class="displayLabel" /> </div>
+			</li>
+			<li tip="you can execute some script when time's up, just pass a function when you create the countdown">
+			<div class="title">
+				On Finish Event</div>
+			</li>
+			<li tip="you can Start / Stop it by Javascript">
+			<div class="button stop">
+				Stop</div>
+			<div class="button start">
+				Start</div>
+			</li>
+			<li tip="you can Create / Destroy it by Javascript">
+			<div class="button destroy">
+				Destroy</div>
+			<div class="button create">
+				Create</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<div style="text-align:center;clear:both">
+<p>适用浏览器：IE8、360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. </p>
+<p>来源：<a href="http://sc.chinaz.com/" target="_blank">站长素材</a></p>
+</div>
+</body>
+
+</html>

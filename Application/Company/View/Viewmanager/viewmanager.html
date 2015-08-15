@@ -1,0 +1,107 @@
+<div class="container">
+    <div class="page-header">
+        <h1>No.{$managerInfo.id}号候选人<small></small></h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="box">
+                <ul class="jd-ul">
+                    <li class="clearfix">
+                        <span class="pull-left">性别</span>
+                        <span class="pull-right green ">
+                            {$managerInfo['gender'] == '1' ? '男' : ($managerInfo['gender'] == '2' ? '女' : '保密')}
+                        </span>
+                    </li>
+
+                    <li class="clearfix">
+                        <span class="pull-left">出生年份</span>
+                        <span class="pull-right green ">
+                            <?php echo $managerInfo['brithday'] == '0000-00-00' ? '保密' : (date("Y年", strtotime($managerInfo['brithday'])));?>
+                        </span>
+                    </li>
+
+                    <li class="clearfix">
+                        <span class="pull-left">学历</span>
+                        <span class="pull-right green ">{$managerInfo.edulevel|getEduByLevel}</span>
+                    </li>
+                    <li class="clearfix">
+                        <span class="pull-left">工作年限</span>
+                        <span class="pull-right green ">{$managerInfo.workyear|getWordYearByCode}</span>
+                    </li>
+
+
+                    <li class="clearfix " >
+                        <span class="pull-left">在线作品集</span>
+                        <span class="pull-right green ">{$managerInfo.homepage}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="box">
+                <h6>求职意向</h6>
+                <ul class="jd-ul">
+                    <li class="clearfix">
+                        <span class="pull-left">期望职位</span>
+                        <span class="pull-right green ">{$managerInfo.targetposition}</span>
+                    </li>
+
+                    <li class="clearfix">
+                        <span class="pull-left">当前所在城市</span>
+                        <span class="pull-right green ">{$managerInfo.area}</span>
+                    </li>
+                    <li class="clearfix">
+                        <span class="pull-left">目标城市</span>
+                        <span class="pull-right green ">{$managerInfo.targetarea}</span>
+                    </li>
+
+                    <li class="clearfix">
+                        <span class="pull-left">当前薪资</span>
+                        <span class="pull-right green ">{$managerInfo.salary}</span>
+                    </li>
+                    <li class="clearfix">
+                        <span class="pull-left">期望薪资</span>
+                        <span class="pull-right green ">{$managerInfo.targetsalary}</span>
+                    </li>
+                    <li class="clearfix">
+                        <span class="pull-left">到岗时间</span>
+                        <span class="pull-right green ">{$managerInfo.getjobtime}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="box">
+                <h6>我的简介</h6>
+                <p>{$managerInfo.selfintroduce}</p>
+                <if condition="!empty($managerInfo['question' . $i])">
+                    <div id="tagsinput_tagsinput" class="tagsinput " style="height: 100%;">
+                        <foreach name="tagArr" item="tag" >
+                            <span class="tag"><span>{$tag}</span></span>
+                        </foreach>
+                    </div>
+                </if>
+            </div>
+            <div class="box">
+                <h6>面试回答</h6>
+                <for start="1" end="6">
+                    <if condition="!empty($managerInfo['question' . $i])">
+                        <div class="qa">
+                            <div class="green q"><?php echo $managerInfo['question' . $i]?></div>
+                            <p><?php echo $managerInfo['answear' . $i]?></p>
+                        </div>
+                    </if>
+                </for>
+            </div>
+            <div class="box">
+                <h6>竞拍倒计时</h6>
+                <div class="counter">
+                    <!--<span class="fui-time"></span>&nbsp;-->
+                    <div id="retroclockbox"></div>
+                </div>
+                <p><small class="gray">超时将不能邀请求职者，牛人可遇不可求哦，要抓紧！！！</small></p>
+                <a class="btn btn-lg btn-info " href="#" style="width:30%">查看简历</a>
+                <a class="btn btn-primary btn-lg " href="#" style="width:30%">邀请我吧</a>
+            </div>
+        </div>
+    </div>
+</div>  
+<div id="timer"></div>

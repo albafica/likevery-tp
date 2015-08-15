@@ -196,3 +196,56 @@ function cutStr($str, $len, $suffix = '...') {
     }
     return $res . $suffix;
 }
+
+/**
+ * 翻译教育水平
+ * @param type $eduLevel
+ */
+function getEduByLevel($eduLevel) {
+    switch ($eduLevel) {
+        case 1:
+            return '小学';
+        case 2:
+            return '初中';
+        case 3:
+            return '高中';
+        case 4:
+            return '专科';
+        case 5:
+            return '本科';
+        case 6:
+            return '研究生';
+        case 7:
+            return '博士';
+        case 8:
+        default :
+            return '其他';
+    }
+}
+
+/**
+ * 翻译工作年限
+ * @param type $code
+ */
+function getWordYearByCode($code) {
+    switch ($code) {
+        case 1:
+            return '一年以内';
+        case 2:
+            return '一到两年';
+        case 3:
+            return '两到三年';
+        case 4:
+            return '三到五年';
+        case 5:
+            return '五到七年';
+        case 6:
+            return '七到十年';
+        case 7:
+            return '十到十五年';
+        case 8:
+            return '十五年以上';
+        default :
+            return '其他';
+    }
+}

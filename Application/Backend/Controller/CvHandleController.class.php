@@ -2,14 +2,14 @@
 
 namespace Backend\Controller;
 
-use Backend\Controller\BaseController;
+use Backend\Controller\BackendBaseController;
 
 /**
  * Description of CvHandleController
  *  简历处理业务逻辑控制器成
  * @author albafica.wang
  */
-class CvHandleController extends BaseController {
+class CvHandleController extends BackendBaseController {
 
     public function __construct() {
         parent::__construct();

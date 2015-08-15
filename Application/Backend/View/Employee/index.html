@@ -13,8 +13,8 @@
                 <th>姓名</th>
                 <th>邮箱</th>
                 <th>联系方式</th>
-                <th>开始时间</th>
-                <th>结束时间</th>
+<!--                <th>开始时间</th>
+                <th>结束时间</th>-->
                 <th>发布状态</th>
                 <th>操作</th>
             </tr>
@@ -22,7 +22,7 @@
         <if condition='$employeeList.total == 0'>
             <tbody>
                 <tr style="text-align: center; font-size: 16px;">
-                    <td colspan="8"><b>没有发布中的求职者</b></td>
+                    <td colspan="6"><b>没有发布中的求职者</b></td>
                 </tr>
             </tbody>
             <else />
@@ -33,8 +33,8 @@
                     <td>{$employeeInfo.cname}</td>
                     <td>{$employeeInfo.email}</td>
                     <td>{$employeeInfo.mobilephone}</td>
-                    <td>{$employeeInfo.startdate}</td>
-                    <td>{$employeeInfo.enddate}</td>
+<!--                    <td>{$employeeInfo.startdate}</td>
+                    <td>{$employeeInfo.enddate}</td>-->
                     <td>
                         <?php
                         if($employeeInfo['status'] == '01'){
@@ -57,7 +57,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="8">
+                    <td colspan="6">
                         <div class="pageNav">{$employeeList.show}</div>
                     </td>
                 </tr>

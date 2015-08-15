@@ -8,9 +8,9 @@
 
 namespace Backend\Controller;
 
-use Backend\Controller\BaseController;
+use Backend\Controller\BackendBaseController;
 
-class CvmailController extends BaseController {
+class CvmailController extends BackendBaseController {
 
     public function __construct() {
         parent::__construct();

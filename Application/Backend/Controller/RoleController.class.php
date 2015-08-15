@@ -2,14 +2,14 @@
 
 namespace Backend\Controller;
 
-use Backend\Controller\BaseController;
+use Backend\Controller\BackendBaseController;
 
 /**
  * Description of RoleController
  *  角色管理相关业务逻辑
  * @author albafica.wang
  */
-class RoleController extends BaseController {
+class RoleController extends BackendBaseController {
 
     public function __construct() {
         parent::__construct();

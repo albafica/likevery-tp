@@ -2,9 +2,9 @@
 
 namespace Backend\Controller;
 
-use Backend\Controller\BaseController;
+use Backend\Controller\BackendBaseController;
 
-class IndexController extends BaseController {
+class IndexController extends BackendBaseController {
 
     /**
      * 后台首页

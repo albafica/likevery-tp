@@ -8,9 +8,9 @@
 
 namespace Backend\Controller;
 
-use Backend\Controller\BaseController;
+use Backend\Controller\BackendBaseController;
 
-class EmployeeController extends BaseController {
+class EmployeeController extends BackendBaseController {
 
     public function __construct() {
         parent::__construct();
@@ -25,7 +25,7 @@ class EmployeeController extends BaseController {
         $employeeModel = D('Employee');
         //获取所有求职者信息列表
         $map = array(
-            'enddate' => array('gt', date('Y-m-d')),
+//            'enddate' => array('gt', date('Y-m-d')),
             'employee.status' => array('in', array('01', '02',))
         );
         $field = 'employee.id,employee.managerid,employee.status,employee.startdate,employee.enddate,manager.cname,manager.email,manager.mobilephone';

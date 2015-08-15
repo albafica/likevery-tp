@@ -2,12 +2,12 @@
 
 namespace Backend\Controller;
 
-use Think\Controller;
+use Common\Controller\BaseController;
 
 /**
  * 用户登陆控制逻辑
  */
-class LoginController extends Controller {
+class LoginController extends BaseController {
 
     /**
      * 后台登陆页

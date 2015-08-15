@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="login">
+        <div class="login-screen">
+            <div class="login-icon">
+                <img src="__PUBLIC__/images/super.png" alt="企业登录">
+            </div>
+            <form class="form-horizontal" role="form" method="post" action="">
+                <div class="login-form">
+                    <input type="hidden" value="" id="choseType"  name="choseType"/>
+                    <input type="hidden" value="1" id="isLogin"  name="isLogin"/>
+                    <div class="form-group">
+                        <input type="text" class="form-control login-field" value="" placeholder="公司邮箱" id="loginName">
+                        <label class="login-field-icon fui-user" for="login-name"></label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control login-field" value="" placeholder="登录密码" id="loginPass">
+                        <label class="login-field-icon fui-lock" for="login-pass"></label>
+                    </div>
+                    <div id="login">
+                        <a class="btn btn-primary btn-lg doLogin" href="#" style="width:48%">登录</a>
+                        <a class="btn btn-default btn-lg toRegister" href="#" style="width:48%">注册</a>
+                        <a class="login-link" href="#">忘记密码?</a>
+                    </div>
+                    <div id="register" style="display: none">
+                        <a class="btn btn-primary btn-lg doRegister" href="#" style="width:48%">创建账号</a>
+                        <a class="btn btn-default btn-lg toLogin" href="#" style="width:48%">已有帐号登录</a>
+                        <a class="login-link" href="#">*我们暂时不对从事招聘业务的公司提供服务，
+                            包括猎头、招聘站</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

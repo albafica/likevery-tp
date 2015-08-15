@@ -2,14 +2,14 @@
 
 namespace Backend\Controller;
 
-use Backend\Controller\BaseController;
+use Backend\Controller\BackendBaseController;
 
 /**
  * Description of RoleController
  *  用户管理相关业务逻辑
  * @author albafica.wang
  */
-class UserController extends BaseController {
+class UserController extends BackendBaseController {
 
     public function __construct() {
         parent::__construct();
@@ -51,7 +51,7 @@ class UserController extends BaseController {
             if (empty($roleInfo) || $roleInfo['status'] != '01') {
                 $this->error('该角色不存在');
             }
-            $userModel->password = md5(md5($userModel->username) . $userModel->password);
+            $userModel->password = md5(md5($$userModeluserModel->username) . $userModel->password);
             $result = $userModel->add();
             if ($result == 0) {
                 $this->error('用户添加失败:' . $userModel->getError());

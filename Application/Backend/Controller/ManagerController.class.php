@@ -8,9 +8,9 @@
 
 namespace Backend\Controller;
 
-use Backend\Controller\BaseController;
+use Backend\Controller\BackendBaseController;
 
-class ManagerController extends BaseController {
+class ManagerController extends BackendBaseController {
 
     public function __construct() {
         parent::__construct();
