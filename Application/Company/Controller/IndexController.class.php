@@ -7,6 +7,7 @@ use Common\Controller\BaseController;
 class IndexController extends BaseController {
 
     public function index() {
+        layout('Layout/companylayout');
         $_btmJs[] = "company/login.js";
         $this->loadBottomJs($_btmJs);
         $this->display();
@@ -78,6 +79,7 @@ class IndexController extends BaseController {
             }
             exit();
         }
+        layout('Layout/companylayout');
         $_btmJs[] = "company/login.js";
         $this->loadBottomJs($_btmJs);
         $this->display();
@@ -87,6 +89,7 @@ class IndexController extends BaseController {
         if (IS_AJAX) {
             $this->login();
         }
+        layout('Layout/companylayout');
         $_btmJs[] = "company/login.js";
         $this->loadBottomJs($_btmJs);
         $this->display();

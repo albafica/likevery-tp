@@ -30,7 +30,7 @@
         }
         }?>
     </head>
-    <body class="bg-resumer">
+    <body>
         <nav class="navbar navbar-default" role="navigation">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
@@ -40,8 +40,10 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse-01">
                 <ul class="nav navbar-nav">           
-                    <li><a >企业后台管理</a></li>
-                </ul>            
+                    <li><a href="{:U('Home/Index/index')}">拍卖自己</a></li>
+                    <li class="active"><a href="{:U('Company/Index/index')}">竞拍企业</a></li>
+                    <li><a href="#fakelink">招聘入口</a></li>
+                </ul>           
             </div>
         </nav>
         <div class="container">
