@@ -39,7 +39,6 @@ $(document).on('click', '.doLogin', function () {
                 alert(result.info);
                 return false;
             }
-            alert("登陆成功");
             window.location.href = 'http://www.likevery.com/index.php/Company/Viewmanager/';
         }
     });
@@ -85,7 +84,6 @@ $(document).on('click', '.doRegister', function () {
             $("#register").hide();
             $("#login").show();
             $("#isLogin").val(1);
-            alert("注册成功");
             if ($.trim($(".doLogin").html()) == "") {
                 window.location.href = 'http://www.likevery.com/index.php/Company/Index/login';
             }

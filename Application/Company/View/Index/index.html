@@ -4,10 +4,107 @@
         <div class="container">
             <h3>找行业牛人<br/>就来爱才网</h3>
             <p>免费简历 &bull; 即时竞拍 &bull; 双向选择</p>
-            <p class="masthead-button-links"><a class="btn btn-primary btn-lg" href="{:U('Company/Index/register')}" role="button">马上加入</a></p>
+            <p class="masthead-button-links"><a class="btn btn-primary btn-lg" href="{:U('Company/Index/login')}" role="button">马上加入</a></p>
         </div>
     </div>
 </div>
 <div class="masthead">
     <div class="likeBannerPic likeBannerPicbot"></div>
+</div>
+<div class="container page-jy-list" id="chosejy">
+    <div class="step">
+        <div class="title">
+            <i class="num">1</i>请选择您急需的人才类型
+        </div>
+        <!---step one--->
+        <div class="card_box row">
+            <!--card-->
+            <div class="card col-md-3 col-lg-3 col-sm-6 col-xs-12">
+                <div class="card-bg" jyType='1'>
+                    <img src="__PUBLIC__/images/super.png" class="card_icon" alt="技术">
+                    <h4>产品经理</h4>
+                    <p>互联网超人，什么都懂。需要带领团队完成一个个不可能完成的任务。</p>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <paper-button class="btn  btn-lg btn-primary ">招 聘</paper-button>
+                        <input type="hidden" name="job_type" value="rd">
+                        <input class="upload_file" type="file" onChange="$(this.form).submit();" name="resumes" id="upload_rd">
+                    </form>
+                </div>
+            </div>
+            <!--./ card-->
+            <!--card-->
+            <div class="card col-md-3 col-lg-3 col-sm-6 col-xs-12">
+                <div class="card-bg" jyType='2'>
+                    <img src="__PUBLIC__/images/iron.png" class="card_icon" alt="技术">
+                    <h4>设计师</h4>
+                    <p>互联网超人，什么都懂。需要带领团队完成一个个不可能完成的任务。</p>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <paper-button class="btn  btn-lg btn-primary ">招 聘</paper-button>
+                        <input type="hidden" name="job_type" value="rd">
+                        <input class="upload_file" type="file" onChange="$(this.form).submit();" name="resumes" id="upload_rd">
+                    </form>
+                </div>
+            </div>
+            <!--./ card-->
+            <!--card-->
+            <div class="card col-md-3 col-lg-3 col-sm-6 col-xs-12">
+                <div class="card-bg" jyType='3'>
+                    <img src="__PUBLIC__/images/bat.png" class="card_icon" alt="技术">
+                    <h4>开发</h4>
+                    <p>互联网超人，什么都懂。需要带领团队完成一个个不可能完成的任务。</p>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <paper-button class="btn  btn-lg btn-primary ">招 聘</paper-button>
+                        <input type="hidden" name="job_type" value="rd">
+                        <input class="upload_file" type="file" onChange="$(this.form).submit();" name="resumes" id="upload_rd">
+                    </form>
+                </div>
+            </div>
+            <!--./ card-->
+            <!--card-->
+            <div class="card col-md-3 col-lg-3 col-sm-6 col-xs-12">
+                <div class="card-bg" jyType='4'>
+                    <img src="__PUBLIC__/images/etc.png" class="card_icon" alt="技术">
+                    <h4>运营</h4>
+                    <p>互联网超人，什么都懂。需要带领团队完成一个个不可能完成的任务。</p>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <paper-button class="btn  btn-lg btn-primary ">招 聘</paper-button>
+                        <input type="hidden" name="job_type" value="rd">
+                        <input class="upload_file" type="file" onChange="$(this.form).submit();" name="resumes" id="upload_rd">
+                    </form>
+                </div>
+            </div>
+            <!--./ card-->
+        </div>
+    </div>
+</div>
+<div class="jumbotron masthead likebot">
+    <div class="container">
+        <div class="step">
+            <div class="title">
+                <i class="num">2</i>输入邮件和密码完成注册，即可收到免费简历
+            </div>
+        </div>
+        <!--login-->
+        <div class="login login-zc clearfix">
+            <form class="form-horizontal" role="form" method="post" action="">
+                <input type="hidden" value="" id="choseType"  name="choseType"/>
+                <input type="hidden" value="0" id="isLogin"  name="isLogin"/>
+                <div>
+                    <div class="login-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control login-field" value="" placeholder="公司邮箱" id="loginName" name="loginName">
+                            <label class="login-field-icon fui-user" for="login-name"></label>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" class="form-control login-field" value="" placeholder="登录密码" id="loginPass"  name="loginPass">
+                            <label class="login-field-icon fui-lock" for="login-pass"></label>
+                        </div>
+                        <button class="btn btn-danger btn-lg doRegister" style="width:18%" type="submit">注册</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!--login end-->
+    </div>
 </div>
