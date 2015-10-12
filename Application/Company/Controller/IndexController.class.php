@@ -14,6 +14,9 @@ class IndexController extends BaseController {
     }
 
     public function login() {
+        if (session('companyid') > 0) {
+            $this->redirect('Company/Index/index');
+        }
         if (IS_AJAX) {
             $isLogin = I('post.isLogin', '', 'trim');
             $choseType = I('post.choseType', '', 'trim');
@@ -26,7 +29,6 @@ class IndexController extends BaseController {
             if ($loginPass == "") {
                 $this->error('登陆密码不可为空');
             }
-
             if ($isLogin != 0) {
                 //登陆逻辑
                 $where = array(
@@ -37,8 +39,7 @@ class IndexController extends BaseController {
                 if (count($companyInfo) < 1 || $companyInfo['status'] != '01' || $companyInfo['password'] != md5(md5($loginName) . $loginPass)) {
                     $this->ajaxReturn(array("status" => 0, "info" => '公司邮箱或密码不正确！'), 'JSON');
                 }
-
-                $this->ajaxReturn(array("status" => 1, "info" => '成功'), 'JSON');
+                $companyId = $companyInfo['id'];
             } else {
                 //注册逻辑
                 $where = array(
@@ -68,15 +69,15 @@ class IndexController extends BaseController {
                                 $subscriptionDll->companyid = $companyId;
                                 $result = $subscriptionDll->add();
                                 if ($result < 1) {
-                                    //$this->ajaxReturn(array("status" => 0, "info" => '注册失败！' . $userModel->getError()), 'JSON');
+//                                    $this->ajaxReturn(array("status" => 0, "info" => '注册失败！' . $userModel->getError()), 'JSON');
                                 }
                             }
                         }
                     }
                 }
-
-                $this->ajaxReturn(array("status" => 1, "info" => '成功'), 'JSON');
             }
+            session('companyid', $companyId);
+            $this->ajaxReturn(array("status" => 1, "info" => '成功'), 'JSON');
             exit();
         }
         layout('Layout/companylayout');
@@ -93,6 +94,11 @@ class IndexController extends BaseController {
         $_btmJs[] = "company/login.js";
         $this->loadBottomJs($_btmJs);
         $this->display();
+    }
+
+    public function logout() {
+        session('companyid', null);
+        $this->redirect('/Company/Index/index');
     }
 
 }

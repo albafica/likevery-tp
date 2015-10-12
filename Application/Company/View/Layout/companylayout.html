@@ -43,12 +43,17 @@
                     <li><a href="{:U('Home/Index/index')}">拍卖自己</a></li>
                     <li class="active"><a href="{:U('Company/Index/index')}">竞拍企业</a></li>
                     <li><a href="#fakelink">招聘入口</a></li>
-                </ul>           
+                </ul> 
+                <div class="nav navbar-nav navbar-right hidden-sm">
+                    <?php if(session('companyid') > 0):?>
+                    <a class="btn btn-primary btn-lg" href="{:U('Company/Index/logout')}">注销</a>
+                    <?php else:?>
+                    <a class="btn btn-primary btn-lg" href="{:U('Company/Index/login')}">企业入口</a>
+                    <?php endif;?>
+                </div>
             </div>
         </nav>
-        <div class="container">
-            {__CONTENT__}
-        </div>
+        {__CONTENT__}
         <div class="footer-text">
             <div class="container"><p>2015爱才网-创意猎头解决方案</p></div>
         </div>

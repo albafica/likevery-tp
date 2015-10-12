@@ -41,10 +41,14 @@
             <div class="collapse navbar-collapse" id="navbar-collapse-01">
                 <ul class="nav navbar-nav">           
                     <li><a >企业后台管理</a></li>
-                </ul>            
+                </ul>     
+                <div class="nav navbar-nav navbar-right hidden-sm">
+                    <a class="btn btn-primary btn-lg" href="{:U('Company/Index/logout')}">注销</a>
+                </div>
             </div>
         </nav>
         <div class="container">
+            <include file="Layout:companyNav" />
             {__CONTENT__}
         </div>
         <div class="footer-text">
