@@ -3,57 +3,59 @@
         <div role="alert" class="alert alert-warning">
             <strong>欢迎访问爱才网</strong>您可以随时更新公司最新信息 
         </div>
-        <div class="modal-body">
-            <ul class="hr-ul">
-                <li class="clearfix">
-                    <span class="pull-left left-form">公司名称</span>
-                    <span class="pull-left form-group ">
-                        <input type="text" value="前进网络有限公司" placeholder="请输入" class="form-control">
-                    </span>
-                </li>
-                <li class="clearfix">
-                    <span class="pull-left left-form">工作地点</span>
-                    <span class="pull-left form-group ">
-                        <input type="text" value="上海浦东新区张杨路545号" placeholder="请输入" class="form-control">
-                    </span>
-                </li>
-                <li class="clearfix">
-                    <span class="pull-left left-form">融资情况</span>
-                    <span class="pull-left form-group">
-                        <div class="dropdown">
-                            <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-wide-l">无需融资<span class="caret"></span></button>
-                            <span class="dropdown-arrow dropdown-arrow-inverse"></span>
-                            <ul class="dropdown-menu dropdown-inverse">
-                                <li><a href="#fakelink">天使轮</a></li>
-                                <li><a href="#fakelink">A轮融资</a></li>
-                                <li><a href="#fakelink">B轮融资</a></li>
-                            </ul>
-                        </div>
-                    </span>
-                </li>
-                <li class="clearfix">
-                    <span class="pull-left left-form">联系人</span>                    
-                    <span class="pull-left form-group has-success">
-                        <input type="text" value="张小姐" placeholder="HR经理张小姐" class="form-control">
-                        <span class="input-icon fui-check-inverted"></span>
-                    </span>
-                </li>
-                <li class="clearfix">
-                    <span class="pull-left left-form">联系电话</span>
-                    <span class="pull-left form-group">
-                        <input type="text" value="13400007878" placeholder="13000008888" class="form-control">
-                    </span>              
-                </li>
-                <li class="clearfix">
-                    <span class="pull-left left-form">网站地址</span>
-                    <span class="pull-left form-group">
-                        <input type="text" value="www.likevery.com" placeholder="www.likevery.com" class="form-control">
-                    </span>
-                </li>
-            </ul>
-        </div>
-        <div class="modal-footer text-center">
-            <button class="btn btn-primary" type="button">保存信息</button>
-        </div>
+        <form action="" method="post">
+
+            <div class="modal-body">
+                <ul class="hr-ul">
+                    <li class="clearfix">
+                        <span class="pull-left left-form">公司名称</span>
+                        <span class="pull-left form-group ">
+                            <input name="companyname" type="text" value="{$companyInfo.companyname}" placeholder="请输入" class="form-control" maxlength="100">
+                        </span>
+                    </li>
+                    <li class="clearfix">
+                        <span class="pull-left left-form">工作地点</span>
+                        <span class="pull-left form-group ">
+                            <input name="address" type="text" value="{$companyInfo.address}" placeholder="请输入工作地点" class="form-control" maxlength="250">
+                        </span>
+                    </li>
+                    <!--                <li class="clearfix">
+                                        <span class="pull-left left-form">融资情况</span>
+                                        <span class="pull-left form-group">
+                                            <div class="dropdown">
+                                                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-wide-l">无需融资<span class="caret"></span></button>
+                                                <span class="dropdown-arrow dropdown-arrow-inverse"></span>
+                                                <ul class="dropdown-menu dropdown-inverse">
+                                                    <li><a href="#fakelink">天使轮</a></li>
+                                                    <li><a href="#fakelink">A轮融资</a></li>
+                                                    <li><a href="#fakelink">B轮融资</a></li>
+                                                </ul>
+                                            </div>
+                                        </span>
+                                    </li>-->
+                    <li class="clearfix">
+                        <span class="pull-left left-form">联系人</span>                    
+                        <span class="pull-left form-group">
+                            <input name="contact" type="text" value="{$companyInfo.contact}" placeholder="请输入联系人" class="form-control" maxlength="50">
+                        </span>
+                    </li>
+                    <li class="clearfix">
+                        <span class="pull-left left-form">联系电话</span>
+                        <span class="pull-left form-group">
+                            <input name="mobilephone" type="text" value="{$companyInfo.mobilephone}" placeholder="请输入联系电话" class="form-control" maxlength="20">
+                        </span>              
+                    </li>
+                    <li class="clearfix">
+                        <span class="pull-left left-form">网站地址</span>
+                        <span class="pull-left form-group">
+                            <input name="url" type="text" value="{$companyInfo.url}" placeholder="请输入官网地址" class="form-control" maxlength="100">
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer text-center">
+                <input type="submit" value="保存信息" name="submit" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
 </div>

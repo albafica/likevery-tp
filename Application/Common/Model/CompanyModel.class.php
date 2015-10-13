@@ -1,6 +1,6 @@
 <?php
 
-namespace Backend\Model;
+namespace Common\Model;
 
 use Common\Model\BaseModel;
 
