@@ -39,14 +39,14 @@ $(document).on('click', '.doLogin', function () {
                 alert(result.info);
                 return false;
             }
-            window.location.href = 'http://www.likevery.com/index.php/Company/Viewmanager/';
+            window.location.href = 'http://www.likevery.com/index.php/Company/Cvmanager/';
         }
     });
     return false;
 });
 
 $(document).on('click', '.doRegister', function () {
-    var actObj = $('#chosejy .active');
+    var actObj = $('#chosejy .icon_gou_green');
     var takeType = '';
     for (var i = 0; i < actObj.length; i++) {
         if (actObj.eq(i).attr("jyType") != "" && actObj.eq(i).attr("jyType") > 0) {
@@ -56,6 +56,7 @@ $(document).on('click', '.doRegister', function () {
             takeType += actObj.eq(i).attr("jyType");
         }
     }
+
     $("#choseType").val(takeType);
     if ($.trim($("#loginName").val()) == "") {
         alert("公司邮箱不可为空");
@@ -94,12 +95,12 @@ $(document).on('click', '.doRegister', function () {
 
 
 $(document).on('click', '#chosejy .card-bg', function () {
-    if ($(this).hasClass("active")) {
-        $(this).removeClass("active");
+    var obj = $(this).find(".iconCustom");
+    if (obj.hasClass("icon_gou_green")) {
+        obj.removeClass("icon_gou_green").addClass("icon_gou_grey");
     }
     else {
-        $(this).addClass("active");
+        obj.removeClass("icon_gou_grey").addClass("icon_gou_green");
     }
     return false;
 });
-

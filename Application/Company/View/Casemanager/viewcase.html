@@ -1,0 +1,28 @@
+<div class="row"> 
+    <!--职位简介-->
+    <div class="col-xs-12">
+        <div class="list-resumer post list-post pos ">
+            <div class="post-edit"><span class="fui-new caseEdit" oId="<?php echo $caseInfo['id'];?>" ></span></div>
+            <div class="resumer-head clearfix">
+                <div class="info">
+                    <h4>职位名称:<?php  echo $caseInfo['name'];?></h4>
+                    <div class="green"> <strong>薪资范围:<?php echo $caseInfo['salary'];?></strong> </div>
+                </div>
+            </div>
+            <div class="resumer-body">
+                <?php  echo $caseInfo['content'];?>
+                <div style="height: 100%;" class="tagsinput m30 " id="tagsinput_tagsinput">
+                    <?php
+                    if(trim($caseInfo['tags'])!=""){
+                    $arr = explode(" ",$caseInfo['tags']); 
+                    foreach($arr as $u){ 
+                    echo  '<span class="tag"><span>'.$u.'</span></span>';
+                    }
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--职位简介 end--> 
+</div>

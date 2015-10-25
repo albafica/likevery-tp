@@ -36,13 +36,43 @@ class CompanymanagerController extends CompanyBaseController {
     public function cvroleset() {
         $subscriptionModel = D('Subscription');
         if (IS_POST) {
-            
+            if (I('post.type') > 0 && I('post.type') < 5) {
+                $where = array(
+                    'type' => I('post.type'),
+                    'companyid' => session('companyid')
+                );
+                $result = $subscriptionModel->where($where)->delete();
+                if (I('post.isadd') == "0") {
+                    if ($result == false) {
+                        $this->ajaxReturn(array("status" => 0, "info" => '保存失败'), 'JSON');
+                    } else {
+
+                        $this->ajaxReturn(array("status" => 1, "info" => '保存成功'), 'JSON');
+                    }
+                }
+                if (I('post.isadd') == "1") {
+                    $subscriptionModel->type = I('post.type');
+                    $subscriptionModel->companyid = session('companyid');
+                    $result = $subscriptionModel->add($where);
+                    if ($result < 1) {
+                        $this->ajaxReturn(array("status" => 0, "info" => '保存失败'), 'JSON');
+                    } else {
+                        $this->ajaxReturn(array("status" => 1, "info" => '保存成功'), 'JSON');
+                    }
+                }
+            }
+            exit();
         }
-        $subscriptionList = $subscriptionModel->where(array('companyid' => session('companyid')))->find();
+        $subscriptionList = $subscriptionModel->where(array('companyid' => session('companyid')))->select();
         $subscriptionArr = array();
-        if(isset($subscriptionInfo['type']) && !empty($subscriptionInfo['type'])){
-            $subscriptionArr = explode(',', $subscriptionInfo['type']);
+        if (count($subscriptionList) > 0) {
+            foreach ($subscriptionList as $value) {
+                $subscriptionArr[$value["type"]] = $value["type"];
+            }
         }
+        $_btmJs[] = "company/cvroleset.js";
+        $this->loadBottomJs($_btmJs);
+
         $this->subscriptionArr = $subscriptionArr;
         $this->display();
     }

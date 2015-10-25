@@ -15,7 +15,7 @@ class IndexController extends BaseController {
 
     public function login() {
         if (session('companyid') > 0) {
-            $this->redirect('Company/Index/index');
+            $this->redirect('Company/Cvmanager/index');
         }
         if (IS_AJAX) {
             $isLogin = I('post.isLogin', '', 'trim');

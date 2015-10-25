@@ -1,4 +1,55 @@
 @charset "utf-8";
+.btn_rgst{ width:18%; padding: 9px 19px; margin-left:20px;}
+.title-second{ color:#34495e; font-size:16px;}
+@media (max-width:480px){
+.likeBannerPictop {
+  background: url(../images/banner-p1.jpg) center top no-repeat;
+  height: 480px;
+  background-size: auto 480px;
+}
+.likeBannerPicbot {
+  background: url(../images/banner-p2.jpg) center top no-repeat;
+  height: 69px;
+  background-size: auto 69px;
+
+}
+.likeBannerPictop1 {
+  background: url(../images/banner-p3.jpg) center top no-repeat;
+  height: 480px;
+  background-size: auto 480px;
+}
+.likeBannerPicbot1 {
+  background: url(../images/banner-p4.jpg) center top no-repeat;
+  height: 49px;
+  background-size: auto 49px;
+
+}
+
+.likeBannerPic .container {
+  padding-top: 24px;
+}
+.likeBannerPic h3{ font-size:36px;margin-top: 0px; margin-bottom: 10px;}
+.likeBannerPic p{ font-size:22px;}
+.login-zc .form-group {
+  float:none;
+  margin-left: 0px;
+  width: 100%;}
+ .indexBtn_w{width:26%;padding: 7px 19px;}
+.likeBannerPictop1 .container {
+    padding-top: 148px;
+}
+.btn_rgst{ width:40%;  margin-left:0px;}
+
+
+}
+@media (min-width:481px) and (max-width:768px){
+	.likeBannerPic h3 {
+    font-size: 46px;
+	}
+
+		
+}
+
 @media (min-width:768px){
 	.step .title{
 		text-align:left
@@ -78,16 +129,10 @@
         position:relative;
         left:-60px;
     }
-	
+	.title-second{ margin-left:52px;}
 
 }
 
-@media (min-width:1100px){
-    .step{
-        position:relative;
-        left:-50px;
-    }
-}
 @media (max-width:1099px)
 {
    .step .title{
@@ -103,5 +148,16 @@
 	margin:0;
 	width:100%
 	}
+.page-jy-list .card-bg {
+  padding: 16px 14px;
+}
+	.title-second{ margin-left:52px;}
+}
+@media (min-width:1100px){
+    .step{
+        position:relative;
+        left:-50px;
+    }
+	.title-second{ margin-left:52px;}
 }
 

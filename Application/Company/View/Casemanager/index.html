@@ -1,0 +1,47 @@
+<div class=" col-xs-12">
+    <div class="row">
+        <!--职位简介-->
+        <?php foreach($caseInfo as $case) {?>
+        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+            <div class="list-resumer list-post pos " style="height:483px;">
+                <div class="post-edit">
+                    <span class="fui-new caseEdit" oId="<?php echo $case['id'];?>"></span>
+                    <span class="fui-cross caseDel" oId="<?php echo $case['id'];?>"></span>
+                </div>
+                <div class="resumer-head clearfix">
+                    <div class="info">
+                        <h4>职位名称: <?php echo $case['name'];?></h4>
+                        <div class="green"><strong>薪资范围:<?php echo $case['salary'];?></strong></div>
+                    </div>
+
+                </div>
+                <div class="resumer-body">
+                    <p>岗位职责：<?php echo cutStr($case['content'], 100);?></p>
+                    <div style="height: 100%;" class="tagsinput" id="tagsinput_tagsinput">
+                        <?php
+                        if(trim($case['tags'])!=""){
+                        $arr = explode(" ",$case['tags']); 
+                        foreach($arr as $u){ 
+                        echo  '<span class="tag"><span>'.$u.'</span></span>';
+                        }
+                        }
+                        ?>
+                    </div>
+                </div>
+                <div class="resumer-foot clearfix">
+                    <div class="pull-left"><a  target="_blank"  class="btn btn-primary btn-lg"  href="{:U('/Company/Casemanager/viewcase', array('id' => $case['id']))}">详细介绍</a></div>
+                </div>
+            </div>
+        </div>
+        <?php }?>
+        <!--职位简介 end-->
+
+        <!--职位添加-->
+        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+            <div class="post-add box box-border t-align">
+                <span class="fui-plus caseEdit" oId=""></span>
+            </div>
+        </div>
+        <!--职位添加理 end-->
+    </div>
+</div>
