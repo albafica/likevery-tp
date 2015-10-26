@@ -1,0 +1,67 @@
+<nav role="navigation" class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">发布中的求职者</a>
+        </div>
+    </div>
+</nav>
+<div class="list">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>求职者id</th>
+                <th>姓名</th>
+                <th>邮箱</th>
+                <th>联系方式</th>
+<!--                <th>开始时间</th>
+                <th>结束时间</th>-->
+                <th>发布状态</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <if condition='$employeeList.total == 0'>
+            <tbody>
+                <tr style="text-align: center; font-size: 16px;">
+                    <td colspan="6"><b>没有发布中的求职者</b></td>
+                </tr>
+            </tbody>
+            <else />
+            <tbody>
+            <volist name='employeeList.rows' id="employeeInfo">
+                <tr>
+                    <td>{$employeeInfo.managerid}</td>
+                    <td>{$employeeInfo.cname}</td>
+                    <td>{$employeeInfo.email}</td>
+                    <td>{$employeeInfo.mobilephone}</td>
+<!--                    <td>{$employeeInfo.startdate}</td>
+                    <td>{$employeeInfo.enddate}</td>-->
+                    <td>
+                        <?php
+                        if($employeeInfo['status'] == '01'){
+                        echo '发布中';
+                        }else{
+                        echo '暂停中';
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php if($employeeInfo['status'] == '01'): ?>
+                        <a href="{:U('Backend/Employee/changetatus', array('employeeid' => $employeeInfo['id'], 'status' => 'stop', 'managerid' => $employeeInfo['managerid'],))}" onClick="return confirm('确定暂停?') ? true : false;">暂停</a>
+                        <?php else: ?>
+                        <a href="{:U('Backend/Employee/changetatus', array('employeeid' => $employeeInfo['id'], 'status' => 'restart', 'managerid' => $employeeInfo['managerid'],))}" onClick="return confirm('确定继续?') ? true : false;">继续</a>
+                        <?php endif; ?>
+                        <a href="{:U('Backend/Employee/endEmplyee', array('employeeid' => $employeeInfo['id'], 'status' => 'end', 'managerid' => $employeeInfo['managerid'],))}" onClick="return confirm('确定结束?') ? true : false;">结束</a>
+                    </td>
+                </tr>
+            </volist>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">
+                        <div class="pageNav">{$employeeList.show}</div>
+                    </td>
+                </tr>
+            </tfoot>
+        </if>
+    </table>
+</div>

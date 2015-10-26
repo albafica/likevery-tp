@@ -26,20 +26,18 @@ $(document).on('click', '#auctionemploee', function () {
     if (submitUrl == '') {
         return false;
     }
+    var obj = $(this);
     $.ajax({
         url: submitUrl,
-        type: 'post',
+        type: 'get',
         dataType: 'json',
         data: {},
         success: function (data) {
             if (!data.status) {
-                console.log(data);
-                console.log(data.errCode);
                 if (data.errCode == -1 || data.errCode == -2 || data.errCode == -2) {
-                    console.log($(this));
                     //不可继续竞拍，将竞拍按钮清空
-                    $(this).addClass('disabled');
-                    $(this).attr('url', '');
+                    obj.addClass('disabled');
+                    obj.attr('url', '');
                 }
                 art.dialog({
                     id: 'auctionErr',
@@ -50,8 +48,8 @@ $(document).on('click', '#auctionemploee', function () {
                 });
             } else {
                 //不可继续竞拍，将竞拍按钮清空
-                $(this).addClass('disabled');
-                $(this).attr('url', '');
+                obj.addClass('disabled');
+                obj.attr('url', '');
                 art.dialog({
                     id: 'auctionSucc',
                     lock: true,

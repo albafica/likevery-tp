@@ -1,0 +1,61 @@
+<?php if($employeeList['total'] == 0):?>
+对不起，目前没有发布中的简历
+<?php else:?>
+    <?php foreach($employeeList['rows'] as $cv):?>
+        <!--简历简介-->
+        <?php
+        switch($cv['jobtype']){
+            case '4':
+                $bgClass = 'bg-etc';
+                $bgImg = '/images/etc.png';
+                break;
+            case '3':
+                $bgClass = 'bg-bat';
+                $bgImg = '/images/bat.png';
+                break;
+            case '2':
+                $bgClass = 'bg-iron';
+                $bgImg = '/images/iron.png';
+                break;
+            default:
+            case '1':
+                $bgClass = '';
+                $bgImg = '/images/super.png';
+                break;
+        }
+        if (!empty($cv['tag'])) {
+            $tagArr = explode(' ', $cv['tag']);
+        }
+        ?>
+        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+            <div class="list-resumer ">
+                <div class="resumer-head clearfix <?php echo $bgClass;?>">
+                    <div class="avatar"><img src="__PUBLIC__<?php echo $bgImg;?>"></div>
+                    <div class="info">
+                        <h4 >No.{$cv.id}号</h4>
+                        <div class="address" title='简历投递时间：{$cv.startdate|strtotime|date="m月d日",###} | 居住地：{$cv.area} | 投递职位：{:transJobType($cv["jobtype"])}'>
+                            {$cv.startdate|strtotime|date="m月d日",###} | {$cv.area} | {:transJobType($cv['jobtype'])}
+                        </div>
+                    </div>
+                </div>
+                <div class="resumer-body" >
+                    <p>{$cv.selfintroduce}</p>
+                    <if condition="is_array($tagArr) && !empty($tagArr)">
+                        <div id="tagsinput_tagsinput" class="tagsinput " style="height: 100%;">
+                            <foreach name="tagArr" item="tag" >
+                                <span class="tag"><span>{$tag}</span></span>
+                            </foreach>
+                        </div>
+                    </if>
+                </div>
+                <div class="resumer-foot clearfix">
+                    <div class="pull-left">
+                        <a href="{:U('/Company/Cvmanager/viewmanager', array('employeeid' => $cv['id']))}" target='_blank' class="btn btn-primary btn-lg">详细介绍</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--简历简介 end-->
+    <?php endforeach;?>
+    <?php echo $employeeList['show'];?>
+<?php endif;?>

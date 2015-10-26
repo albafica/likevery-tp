@@ -35,7 +35,7 @@ class CvmanagerController extends CompanyBaseController {
      * 查看精英简历
      */
     public function viewmanager() {
-        $employeeId = I('employeeid', 11, 'intval');
+        $employeeId = I('employeeid', 0, 'intval');
         $employeeModel = D('Employee');
         $where = array(
             'id' => $employeeId,
@@ -72,8 +72,11 @@ class CvmanagerController extends CompanyBaseController {
         $this->display();
     }
 
+    /**
+     * 简历竞拍
+     */
     public function auctioncv() {
-        $employeeId = I('employeeid', 11, 'intval');
+        $employeeId = I('get.employeeid', 0, 'intval');
         $employeeModel = D('Employee');
         $where = array(
             'id' => $employeeId,
@@ -92,12 +95,32 @@ class CvmanagerController extends CompanyBaseController {
         $updData = array(
             'auctionstatus' => 1,
             'auctioncompanyid' => session('companyid'),
+            'auctiondate'=> date('Y-m-d'),
         );
         $result = $employeeModel->where(array('id' => $employeeId))->save($updData);
         if ($result) {
             $this->ajaxReturn(array('status' => true), 'JSON');
         }
         $this->ajaxReturn(array('status' => false, 'errCode' => -4, 'errMsg' => '竞拍失败，请稍后再试'), 'JSON');
+    }
+
+    public function auctionlist() {
+        $employeeModel = D('Employee');
+        $map = array(
+            'employee.status' => array('IN', array('01', '04')),
+            'auctionstatus' => 1,
+            'auctioncompanyid' => session('companyid'),
+        );
+        $condition = array(
+            'sort' => 'auctiondate',
+            'order' => 'DESC',
+            'rows' => 10,
+        );
+        $field = 'employee.id,employee.managerid,employee.status,employee.startdate,employee.enddate,manager.jobtype,manager.area,manager.selfintroduce,manager.tag';
+        $join = 'LEFT JOIN manager ON employee.managerid = manager.id';
+        $employeeList = $employeeModel->search($map, $condition, false, $field, $join);
+        $this->employeeList = $employeeList;
+        $this->display();
     }
 
 }

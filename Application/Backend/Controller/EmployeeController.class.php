@@ -108,4 +108,25 @@ class EmployeeController extends BackendBaseController {
         }
     }
 
+    /**
+     * 竞拍审核
+     */
+    public function auctionauth() {
+        $employeeModel = D('Employee');
+        $map = array(
+            'employee.status' => '01',
+            'auctionstatus' => 1,
+        );
+        $condition = array(
+            'sort' => 'auctiondate',
+            'order' => 'ASC',
+            'rows' => 10,
+        );
+        $field = 'employee.id,employee.managerid,employee.status,employee.startdate,employee.enddate,manager.cname,manager.email,manager.mobilephone';
+        $join = 'LEFT JOIN manager ON employee.managerid = manager.id';
+        $employeeList = $employeeModel->search($map, $condition, false, $field, $join);
+        $this->employeeList = $employeeList;
+        $this->display();
+    }
+
 }
