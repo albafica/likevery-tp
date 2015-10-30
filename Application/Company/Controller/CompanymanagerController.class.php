@@ -18,9 +18,9 @@ class CompanymanagerController extends CompanyBaseController {
             $data['contact'] = I('post.contact');
             $data['mobilephone'] = I('post.mobilephone');
             $data['url'] = I('post.url');
-            $data['updatedate'] = date('Y-m-d');
-            $data['id'] = session('companyid');
-            $result = $companyModel->save($data);
+            $data['updatedate'] = date('Y-m-d H:i:s');
+            $data['degree'] = array('exp', "IF(degree = 'A', 'B', degree)");
+            $result = $companyModel->where(array('id' => session('companyid')))->save($data);
             if ($result) {
                 $this->success('更新成功', U('/Company/Companymanager/index'));
             } else {

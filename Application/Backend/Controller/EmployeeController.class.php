@@ -122,11 +122,49 @@ class EmployeeController extends BackendBaseController {
             'order' => 'ASC',
             'rows' => 10,
         );
-        $field = 'employee.id,employee.managerid,employee.status,employee.startdate,employee.enddate,manager.cname,manager.email,manager.mobilephone';
-        $join = 'LEFT JOIN manager ON employee.managerid = manager.id';
+        $field = 'employee.id,employee.managerid,employee.auctiondate,employee.status,company.companyname,company.contact,company.mobilephone';
+        $join = 'LEFT JOIN company ON employee.auctioncompanyid = company.id';
         $employeeList = $employeeModel->search($map, $condition, false, $field, $join);
         $this->employeeList = $employeeList;
         $this->display();
+    }
+    
+    /**
+     * 改变发布状态
+     */
+    public function changeauthtatus() {
+        $employeeId = I('employeeid', 0, 'intval');
+        $managerId = I('managerid', 0, 'intval');
+        $status = I('status', '', 'trim');
+        $updWhere = array(
+            'id' => $employeeId,
+            'managerid' => $managerId,
+        );
+        $updData = array();
+        switch (strtolower($status)) {
+            case 'nopass':
+                //审核不通过
+                $updWhere['status'] = '01';
+                $updData['auctionstatus'] = 0;
+                $updData['auctioncompanyid'] = 0;
+                $updData['auctiondate'] = '';
+                break;
+            case 'pass':
+                //审核通过
+                $updWhere['status'] = '01';
+                $updData['status'] = '04';
+                break;
+            default:
+                $this->error('参数错误', U('Backend/Employee/index'));
+                exit();
+        }
+        $employeeModel = D('Employee');
+        $result = $employeeModel->where($updWhere)->save($updData);
+        if ($result) {
+            $this->success('操作成功');
+        } else {
+            $this->success('操作失败');
+        }
     }
 
 }
