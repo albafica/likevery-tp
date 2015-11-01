@@ -25,12 +25,12 @@
         <![endif]-->
         <?php if(!empty($_topCss) && is_array($_topCss)){
         foreach($_topCss as $css){
-        echo '<link href="__PUBLIC__/css/' . $css . '" rel="stylesheet">';
+        echo '<link href="__PUBLIC__/css/' . $css . (strpos($css, '?') === false ? '?' : '&') . 'version=' . C('ASSETVESION') . '" rel="stylesheet">';
         }
         }?>
         <?php if(!empty($_topJs) && is_array($_topJs)){
         foreach($_topJs as $js){
-        echo '<script src="__PUBLIC__/js/' . $js . '"></script>';
+        echo '<script src="__PUBLIC__/js/' . $js . (strpos($js, '?') === false ? '?' : '&') . 'version=' . C('ASSETVESION') . '"></script>';
         }
         }?>
     </head>
@@ -65,22 +65,26 @@
         </div>
         <?php if(!empty($_btmCss) && is_array($_btmCss)){
         foreach($_btmCss as $css){
-        echo '<link href="__PUBLIC__/css/' . $css . '" rel="stylesheet">';
+        echo '<link href="__PUBLIC__/css/' . $css . (strpos($css, '?') === false ? '?' : '&') . 'version=' . C('ASSETVESION') . '" rel="stylesheet">';
         }
         }?>
         <?php if(!empty($_btmJs) && is_array($_btmJs)){
         foreach($_btmJs as $js){
-        echo '<script src="__PUBLIC__/js/' . $js . '"></script>';
+        echo '<script src="__PUBLIC__/js/' . $js . (strpos($js, '?') === false ? '?' : '&') . 'version=' . C('ASSETVESION') . '"></script>';
         }
         }?>
         <?php if(!empty($_pluginCss) && is_array($_pluginCss)){
         foreach($_pluginCss as $css){
-        echo '<link href="__PUBLIC__/plugin/' . $css . '" rel="stylesheet">';
+        echo '<link href="__PUBLIC__/plugin/' . $css  . (strpos($css, '?') === false ? '?' : '&') . 'version=' . C('ASSETVESION') . '" rel="stylesheet">';
         }
         }?>
         <?php if(!empty($_pluginJs) && is_array($_pluginJs)){
         foreach($_pluginJs as $js){
+        if(strpos($js, 'artDialog.js') === false){
+        echo '<script src="__PUBLIC__/plugin/' . $js . (strpos($js, '?') === false ? '?' : '&') . 'version=' . C('ASSETVESION') . '"></script>';
+        }else{
         echo '<script src="__PUBLIC__/plugin/' . $js . '"></script>';
+        }
         }
         }?>
     </body>

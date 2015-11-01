@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="__PUBLIC__/css/likevery.css?<?php echo C('ASSETVESION')?>" >
         <link rel="stylesheet" href="__PUBLIC__/css/media.css?<?php echo C('ASSETVESION')?>" >
         <link rel="shortcut icon" href="__PUBLIC__/images/favicon.ico?<?php echo C('ASSETVESION')?>">
+        <script src="__PUBLIC__/js/jquery-1.8.3.min.js?<?php echo C('ASSETVESION')?>"></script>
 
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
         <!--[if lt IE 9]>
@@ -21,12 +22,12 @@
 
         <?php if(!empty($_topCss) && is_array($_topCss)){
         foreach($_topCss as $css){
-        echo '<link href="__PUBLIC__/css/' . $css . '" rel="stylesheet">';
+        echo '<link href="__PUBLIC__/css/' . $css . (strpos($css, '?') === false ? '?' : '&') . 'version=' . C('ASSETVESION') . '" rel="stylesheet">';
         }
         }?>
         <?php if(!empty($_topJs) && is_array($_topJs)){
         foreach($_topJs as $js){
-        echo '<script src="__PUBLIC__/js/' . $js . '"></script>';
+        echo '<script src="__PUBLIC__/js/' . $js . (strpos($js, '?') === false ? '?' : '&') . 'version=' . C('ASSETVESION') . '"></script>';
         }
         }?>
     </head>
@@ -54,7 +55,6 @@
         <div class="footer-text">
             <div class="container"><p>2015爱才网-创意猎头解决方案</p></div>
         </div>
-        <script src="__PUBLIC__/js/jquery-1.8.3.min.js?<?php echo C('ASSETVESION')?>"></script>
         <script src="__PUBLIC__/js/jquery-ui-1.10.3.custom.min.js?<?php echo C('ASSETVESION')?>"></script>
         <script src="__PUBLIC__/js/jquery.ui.touch-punch.min.js?<?php echo C('ASSETVESION')?>"></script>
         <script src="__PUBLIC__/js/bootstrap.min.js?<?php echo C('ASSETVESION')?>"></script>
@@ -66,22 +66,26 @@
         <script src="__PUBLIC__/js/jquery.placeholder.js?<?php echo C('ASSETVESION')?>"></script>
         <?php if(!empty($_btmCss) && is_array($_btmCss)){
         foreach($_btmCss as $css){
-        echo '<link href="__PUBLIC__/css/' . $css . '" rel="stylesheet">';
+        echo '<link href="__PUBLIC__/css/' . $css . (strpos($css, '?') === false ? '?' : '&') . 'version=' . C('ASSETVESION') . '" rel="stylesheet">';
         }
         }?>
         <?php if(!empty($_btmJs) && is_array($_btmJs)){
         foreach($_btmJs as $js){
-        echo '<script src="__PUBLIC__/js/' . $js . '"></script>';
+        echo '<script src="__PUBLIC__/js/' . $js . (strpos($js, '?') === false ? '?' : '&') . 'version=' . C('ASSETVESION') . '"></script>';
         }
         }?>
         <?php if(!empty($_pluginCss) && is_array($_pluginCss)){
         foreach($_pluginCss as $css){
-        echo '<link href="__PUBLIC__/plugin/' . $css  . '" rel="stylesheet">';
+        echo '<link href="__PUBLIC__/plugin/' . $css  . (strpos($css, '?') === false ? '?' : '&') . 'version=' . C('ASSETVESION') . '" rel="stylesheet">';
         }
         }?>
         <?php if(!empty($_pluginJs) && is_array($_pluginJs)){
         foreach($_pluginJs as $js){
+        if(strpos($js, 'artDialog.js') === false){
+        echo '<script src="__PUBLIC__/plugin/' . $js . (strpos($js, '?') === false ? '?' : '&') . 'version=' . C('ASSETVESION') . '"></script>';
+        }else{
         echo '<script src="__PUBLIC__/plugin/' . $js . '"></script>';
+        }
         }
         }?>
     </body>
