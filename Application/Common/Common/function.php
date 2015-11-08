@@ -249,3 +249,22 @@ function getWordYearByCode($code) {
             return '其他';
     }
 }
+
+/**
+ * 生成密码串
+ * @param int $length   密码串长度,6-15位
+ * @param int $type  加密复杂度  0-simple/1-complate
+ */
+function generatePwd($length = 6, $type = 0) {
+    $length = $length >= 6 ? $length : 6;
+    $length = $length <= 15 ? $length : 15;
+    $chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $randFrom = 0;
+    $randTo = $type == 0 ? 9 : 35;
+    //简单密码,只生成数字,复杂密码,生成数字字母
+    $pwd = '';
+    for ($i = 0; $i < $length; $i++) {
+        $pwd .= $chars[rand($randFrom, $randTo)];
+    }
+    return $pwd;
+}

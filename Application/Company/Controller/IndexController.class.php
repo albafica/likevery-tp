@@ -77,7 +77,11 @@ class IndexController extends BaseController {
                 }
             }
             session('companyid', $companyId);
-            $this->ajaxReturn(array("status" => 1, "info" => '成功'), 'JSON');
+            $direct = 0;
+            if ($companyInfo['emailstatus'] == 1 && !empty($companyInfo['cname'])) {
+                $direct = 1;
+            }
+            $this->ajaxReturn(array("status" => 1, "info" => '成功', 'direct' => $direct), 'JSON');
             exit();
         }
         layout('Layout/companylayout');
@@ -99,6 +103,32 @@ class IndexController extends BaseController {
     public function logout() {
         session('companyid', null);
         $this->redirect('/Company/Index/index');
+    }
+
+    public function chkemail() {
+        $companyId = I('POST.companyid');
+        $chkcode = I('POST.chkcode');
+        $companyModel = D('Company');
+        $companyInfo = $companyModel->where(array('companyid' => $companyId, 'chkcode' => $chkcode))->find();
+        if (!$companyInfo) {
+            $this->error('参数错误,验证失败', U('/Company/Index/index'));
+            exit();
+        }
+        if ($companyInfo['emailstatus'] == 1) {
+            $this->success('验证通过', U('/Company/Index/index'));
+            exit();
+        }
+        $data = array(
+            'emailstatus' => 1,
+            'updatedate' => date('Y-m-d H:i:s'),
+        );
+        $result = $companyModel->where(array('companyid' => $companyId,))->save($data);
+        if ($result) {
+            $this->success('验证通过', U('/Company/Index/index'));
+            exit();
+        }
+        $this->error('参数错误,验证失败', U('/Company/Index/index'));
+        exit();
     }
 
 }

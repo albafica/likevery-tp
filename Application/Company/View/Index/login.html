@@ -59,7 +59,14 @@ $(document).on('click', '.doLogin', function () {
                 alert(result.info);
                 return false;
             }
-            window.location.href = '{:U("/Company/Cvmanager/index")}';
+            if(result.direct == 1){
+                //邮箱认证通过,基本信息已尽完善,跳完简历列表页面
+                var directUrl = '{:U("/Company/Cvmanager/index")}';
+            }else{
+                //邮箱未认证或基本信息未完善,跳完基本信息完善页面
+                var directUrl = '{:U("/Company/Companymanager/index")}';
+            }
+            window.location.href = directUrl;
         }
     });
     return false;
@@ -102,6 +109,15 @@ $(document).on('click', '.doRegister', function () {
                 alert(result.info);
                 return false;
             }
+            if(result.direct == 1){
+                //邮箱认证通过,基本信息已尽完善,跳完简历列表页面
+                var directUrl = '{:U("/Company/Cvmanager/index")}';
+            }else{
+                //邮箱未认证或基本信息未完善,跳完基本信息完善页面
+                var directUrl = '{:U("/Company/Companymanager/index")}';
+            }
+            window.location.href = directUrl;
+            return false;
             $("#register").hide();
             $("#login").show();
             $("#isLogin").val(1);

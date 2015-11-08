@@ -3,6 +3,21 @@
         <div role="alert" class="alert alert-warning">
             <strong>欢迎访问爱才网</strong>您可以随时更新公司最新信息 
         </div>
+        <div class="modal-body">
+            <ul class="hr-ul">
+                <li class="clearfix">
+                    <span class="pull-left left-form">邮箱地址</span>
+                    <span class="pull-left form-group ">
+                        <input name="companyname" type="text" value="{$companyInfo.email}" class="form-control disabled" readonly maxlength="100">
+                    </span>
+                <if condition="$companyInfo.emailstatus != 1">
+                    <input class="btn btn-primary" style="margin-left: 10px;" type="button" id="validEmail" value="立即认证">
+                    <else />
+                    <input class="btn btn-success" style="margin-left: 10px;" disabled="disabled" type="button" value="已认证">
+                </if>
+                </li>
+            </ul>
+        </div>
         <form action="" method="post">
 
             <div class="modal-body">
@@ -59,3 +74,16 @@
         </form>
     </div>
 </div>
+<script>
+    $(document).on('click', '#validEmail', function () {
+        $('#validEmail').addClass('disabled');
+        $.ajax({
+            url:'{:U("/Company/Companymanager/validEmail")}',
+            dataType : 'json',
+            success:function(data){
+                console.log(data);
+            }
+        });
+        return false;
+    })
+</script>
