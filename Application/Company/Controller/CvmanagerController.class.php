@@ -73,9 +73,30 @@ class CvmanagerController extends CompanyBaseController {
     }
 
     /**
+     * 获取企业职位列表
+     */
+    public function getCaseList() {
+        $caseModel = D('Comcase');
+        $companyId = session('companyid');
+        $caseList = $caseModel->field('id,name')->where(array('companyid' => $companyId))->order('id DESC')->select();
+        $this->ajaxReturn(array('status' => true, 'caselist' => $caseList), 'JSON');
+    }
+
+    /**
      * 简历竞拍
      */
     public function auctioncv() {
+        $companyId = session('companyid');
+        $companyModel = D('Company');
+        $companyInfo = $companyModel->where(array('id' => $companyId))->find();
+        if (!$companyInfo) {
+            //企业信息不存在，返回错误
+            $this->ajaxReturn(array('status' => false, 'errCode' => -1, 'errMsg' => '系统繁忙，请稍后再试'), 'JSON');
+        }
+        //验证公司信息是否完善
+        if ($companyInfo['emailstatus'] != 1 || empty($companyInfo['cname'])) {
+            $this->ajaxReturn(array('status' => false, 'errCode' => -10, 'errMsg' => '请完善公司信息后再竞拍此简历', 'directURL' => U('/Company/Companymanager/index')), 'JSON');
+        }
         $employeeId = I('get.employeeid', 0, 'intval');
         $employeeModel = D('Employee');
         $where = array(
@@ -95,7 +116,7 @@ class CvmanagerController extends CompanyBaseController {
         $updData = array(
             'auctionstatus' => 1,
             'auctioncompanyid' => session('companyid'),
-            'auctiondate'=> date('Y-m-d'),
+            'auctiondate' => date('Y-m-d'),
         );
         $result = $employeeModel->where(array('id' => $employeeId))->save($updData);
         if ($result) {
