@@ -43,7 +43,44 @@ function getCaseList(obj) {
         dataType: 'json',
         data: {},
         success: function (data) {
-            var content = '';
+            console.log(data.caselist);
+            var newContent = '';
+            newContent += '<div><form class="form-horizontal">';
+            newContent += '<div class="form-group"><label class="col-sm-2 control-label">职位名称:</label><div class="col-sm-10"><input type="text" value="" placehold="" /></div></div>';
+            newContent += '<div class="form-group"><label class="col-sm-2 control-label">薪资范围:</label><div class="col-sm-10"><input type="text" value="" placehold="" /></div></div>';
+            newContent += '<div class="form-group"><label class="col-sm-2 control-label">工作职责:</label><div class="col-sm-10"><input type="text" value="" placehold="" /></div></div>';
+            newContent += '<div class="form-group"><label class="col-sm-2 control-label">公司福利:</label><div class="col-sm-10"><input type="text" value="" placehold="" /></div></div>';
+            newContent += '</form><div>';
+            if (data.caselist === null || data.caselist === '') {
+                //case为空,直接展示新增窗口
+                var content = newContent;
+            } else {
+                //case不为空,展示case列表
+                var content = '';
+                content += '<table>';
+                content += '<tr><td style="text-align:center;">选择职位</td></tr>';
+                content += '<tr><td>';
+                $(data.caselist).each(function(idx, val){
+                    content += '<div class="radio"><label>';
+                    content += '<input type="radio" name="caselistradio" id="optionsRadios1" value="' + val.id + '">';
+                    content += val.name;
+                    content += '</label></div>';
+                });
+                content += '</td></tr>';
+                content += '<tr><td style="text-align:center;"><button class="btn btn-default" type="submit">新增职位</button></td></tr>';
+                content += '</table>';
+            }
+
+            art.dialog({
+                id: 'addCase',
+                lock: true,
+                opacity: 0.3, // 透明度
+                title: '职位管理',
+                content: content,
+                ok: function () {
+                    return false;
+                }
+            });
         }
     });
 }
@@ -77,7 +114,7 @@ function auctionCV(obj) {
                         ok: function () {
                             window.location.href = data.directURL;
                             return false;
-                        },
+                        }
                     });
                     return false;
                 }
