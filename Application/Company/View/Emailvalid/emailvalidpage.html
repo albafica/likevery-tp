@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>SUPER精英不一样的猎头体验</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Loading Bootstrap -->
+        <link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Loading  UI -->
+        <link href="__PUBLIC__/css/flat-ui.css" rel="stylesheet">
+        <link href="__PUBLIC__/css/likevery.css" rel="stylesheet">
+        <link href="__PUBLIC__/css/media.css" rel="stylesheet">
+        <link rel="shortcut icon" href="images/favicon.ico">
+        
+        <script src="__PUBLIC__/js/jquery-1.8.3.min.js?<?php echo C('ASSETVESION')?>"></script>
+        <script src="__PUBLIC__/js/base.all.js?<?php echo C('ASSETVESION')?>"></script>
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+        <!--[if lt IE 9]>
+          <script src="__PUBLIC__/js/html5shiv.js"></script>
+          <script src="__PUBLIC__/js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                    <span class="sr-only">SUPER精英</span>
+                </button>
+                <a class="navbar-brand" href="{:U('/Company/Index/index')}">SUPER精英</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse-01">
+                <ul class="nav navbar-nav">           
+                    <li ><a>邮箱认证</a></li>
+                </ul>           
+            </div><!-- /.navbar-collapse -->
+        </nav><!-- /navbar -->
+
+        <div class="container">
+            <div class="login mailconfirm text-center">
+                <div class="login-screen">
+                    <div class="login-icon">
+                        <img src="__PUBLIC__/images/super.png" alt="企业登录">
+                    </div>
+                    <div class="login-form ">
+                        <h4 class="green"><span class="fui-check-inverted"></span> 感谢您注册SUPER精英会员</h4>
+                        <div class="m30">
+                            <p>我们已发送一封确认邮件到您的邮箱：</p>
+                            <h5 class="green">{$companyInfo.email}</h5>
+                            <p>请及时查看并激活账户，完成注册流程，既可享受我们的服务。</p>
+                        </div>
+
+                        <p class="gray">如果您在十分钟内没收到激活邮件，请您选择</p>
+                        <a class="btn btn-primary btn-lg" id='validEmail' >再发一次邮件</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container -->
+        </div>
+        <script>
+            $(document).on('click', '#validEmail', function () {
+                $('#validEmail').addClass('disabled');
+                $.ajax({
+                    url: '{:U("/Company/Emailvalid/validEmail")}',
+                    dataType: 'json',
+                    success: function (data) {
+                        $._promptMes('success', '操作成功');
+                    }
+                });
+                return false;
+            })
+        </script>
+    </body>
+</html>

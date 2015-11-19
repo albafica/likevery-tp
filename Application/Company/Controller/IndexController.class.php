@@ -59,6 +59,8 @@ class IndexController extends BaseController {
                 if ($companyId < 1) {
                     $this->ajaxReturn(array("status" => 0, "info" => '注册失败！' . $userModel->getError()), 'JSON');
                 }
+                //发送注册邮件
+                $companyDll->sendValidEmil($companyId);
                 if ($choseType != "") {
                     $arrType = explode(",", $choseType);
                     if (count($arrType) > 0) {
@@ -78,9 +80,9 @@ class IndexController extends BaseController {
             }
             session('companyid', $companyId);
             $direct = 0;
-            if ($companyInfo['emailstatus'] == 1 && !empty($companyInfo['cname'])) {
-                $direct = 1;
-            }
+//            if ($companyInfo['emailstatus'] == 1 && !empty($companyInfo['cname'])) {
+//                $direct = 1;
+//            }
             $this->ajaxReturn(array("status" => 1, "info" => '成功', 'direct' => $direct), 'JSON');
             exit();
         }
@@ -130,5 +132,5 @@ class IndexController extends BaseController {
         $this->error('参数错误,验证失败', U('/Company/Index/index'));
         exit();
     }
-
+   
 }
