@@ -105,3 +105,84 @@
     </div>
 </div>  
 <div id="timer"></div>
+
+<div class="modal fade" id="addCaseModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h6 class="modal-title">职位管理<small class="green">完善信息即可查看简历</small>
+                </h6>
+            </div>
+            <div class="modal-body">
+                <ul class="hr-ul">
+                    <li class="clearfix">
+                        <span class="pull-left left-form"><span class="green">*</span>职位名称</span>
+                        <span class="pull-left form-group">
+                            <input type="text" id="positionIpt" placeholder="请输入" class="form-control" style="width:360px">
+                        </span>
+                        <!--<span class="pull-left tips has-error">必须输入职位名称</span>-->
+                    </li>
+                    <li class="clearfix">
+                        <span class="pull-left left-form"><span class="green">*</span>薪资范围</span>
+                        <span class="pull-left form-group">
+                            <input type="text" id="salaryIpt" placeholder="20万/年" class="form-control" style="width:360px">
+                        </span>
+                    </li>
+                    <li class="clearfix">
+                        <span class="pull-left left-form"><span class="green">*</span>工作职责</span>
+                        <span class="pull-left form-group  ">
+                            <textarea rows="6" id="contentIpt" class="form-control" style="width:360px">
+                                
+                            </textarea>
+                            <!--<span class="pull-left tips has-error">请完善工作职责</span>-->
+                    </li>
+                    <li class="clearfix">
+                        <span class="pull-left left-form">公司福利</span>
+                        <span class="pull-left form-group">
+                            <textarea class="form-control" id="tagsIpt" style="width:360px"></textarea>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="saveNewCase">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<input type="hidden" id="saveCasePath" value="{:U('/Company/Casemanager/index')}" />
+
+
+<div class="modal fade" id="choseCaseModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h6 class="modal-title">职位管理
+                    <small class="green">请选择对应职位</small>
+                </h6>
+            </div>
+            <div class="modal-body ">
+                <div class="mlr20 mt40 mb40">
+                    <span class="pull-left left-form">选择职位</span>
+                    <span class="pull-left form-group ">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle btn-wide" data-toggle="dropdown">
+                                请选择职位<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" id="caseList" aria-labelledby="dLabel">
+                            </ul>
+                        </div></span>
+                    <a class="btn btn-primary mlr20 " id='showAddCase'><span class="fui-plus"></span>添加职位</a>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>

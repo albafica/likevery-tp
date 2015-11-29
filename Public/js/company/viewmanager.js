@@ -43,54 +43,64 @@ function getCaseList(obj) {
         dataType: 'json',
         data: {},
         success: function (data) {
-            console.log(data.caselist);
-            var newContent = '';
-            newContent += '<div><form class="form-horizontal">';
-            newContent += '<div class="form-group"><label class="col-sm-2 control-label">职位名称:</label><div class="col-sm-10"><input type="text" value="" placehold="" /></div></div>';
-            newContent += '<div class="form-group"><label class="col-sm-2 control-label">薪资范围:</label><div class="col-sm-10"><input type="text" value="" placehold="" /></div></div>';
-            newContent += '<div class="form-group"><label class="col-sm-2 control-label">工作职责:</label><div class="col-sm-10"><input type="text" value="" placehold="" /></div></div>';
-            newContent += '<div class="form-group"><label class="col-sm-2 control-label">公司福利:</label><div class="col-sm-10"><input type="text" value="" placehold="" /></div></div>';
-            newContent += '</form><div>';
+//            console.log(data.caselist);
             if (data.caselist === null || data.caselist === '') {
                 //case为空,直接展示新增窗口
-                var content = newContent;
+                $('#addCaseModal').modal('show');
             } else {
                 //case不为空,展示case列表
-                var content = '';
-                content += '<table>';
-                content += '<tr><td style="text-align:center;">选择职位</td></tr>';
-                content += '<tr><td>';
-                $(data.caselist).each(function(idx, val){
-                    content += '<div class="radio"><label>';
-                    content += '<input type="radio" name="caselistradio" id="optionsRadios1" value="' + val.id + '">';
-                    content += val.name;
-                    content += '</label></div>';
-                });
-                content += '</td></tr>';
-                content += '<tr><td style="text-align:center;"><button class="btn btn-default" type="submit">新增职位</button></td></tr>';
-                content += '</table>';
-            }
 
-            art.dialog({
-                id: 'addCase',
-                lock: true,
-                opacity: 0.3, // 透明度
-                title: '职位管理',
-                content: content,
-                ok: function () {
-                    return false;
-                }
-            });
+                var content = '';
+                $(data.caselist).each(function (idx, val) {
+                    content += '<li value="' + val.id + '" class="caseListOption"><a href="#">' + val.name + '</a></li>';
+//                    content += '<option value="' + val.id + '">' + val.name + '</option>';
+                });
+                $('#caseList').append(content);
+                $('#choseCaseModal').modal('show');
+            }
         }
     });
 }
+
+/**
+ * 保存新增的case
+ */
+$(document).on('click', '#saveNewCase', function () {
+    var position = $('#positionIpt').val();
+    var salary = $('#salaryIpt').val();
+    var content = $('#contentIpt').val();
+    var tags = $('#tagsIpt').val();
+    var requestUrl = $('#saveCasePath').val();
+    $.ajax({
+        type: 'post',
+        url: requestUrl,
+        data: {
+            name: position,
+            salary: salary,
+            content: content,
+            tags: tags,
+            isdelete: 0
+        },
+        dataType: 'json',
+        success: function (data) {
+            if (data.status != 1) {
+                alert(data.message);
+                return;
+            }
+            var caseid = data.caseid;
+            //case保存成功后直接提交
+            auctionCV(caseid);
+        }
+    })
+});
 
 /**
  * 竞拍简历
  * @param {type} obj
  * @returns {undefined}
  */
-function auctionCV(obj) {
+function auctionCV(caseid) {
+    var obj = $('#auctionemploee');
     var submitUrl = obj.attr('href');
     if (submitUrl == '') {
         return false;
@@ -99,7 +109,7 @@ function auctionCV(obj) {
         url: submitUrl,
         type: 'get',
         dataType: 'json',
-        data: {},
+        data: {caseid: caseid},
         success: function (data) {
             if (!data.status) {
                 if (data.errCode == -10) {
@@ -145,3 +155,19 @@ function auctionCV(obj) {
         }
     });
 }
+
+$(document).on('click', '.caseListOption', function () {
+    var caseid = $(this).val();
+//    console.log(caseid);
+    auctionCV(caseid);
+    $('#choseCaseModal').modal('hide');
+    $('#addCaseModal').modal('hide');
+});
+
+/**
+ * 选择case页点击新增case按钮
+ */
+$(document).on('click', '#showAddCase', function () {
+    $('#choseCaseModal').modal('hide');
+    $('#addCaseModal').modal('show');
+});

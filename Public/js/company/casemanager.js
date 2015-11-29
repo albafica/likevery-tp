@@ -80,17 +80,17 @@ $(document).on('click', '.caseDel', function () {
 $(document).on('click', '#saveCase', function () {
     if ($.trim($('#name').val()) == "") {
         $('#nameErr').show();
-        retrun;
+        return;
     }
 
     if ($.trim($('#salary').val()) == "") {
         $('#salaryErr').show();
-        retrun;
+        return;
     }
 
     if ($.trim($('#content').val()) == "") {
         $('#contentErr').show();
-        retrun;
+        return;
     }
 
     var caseId = $('#saveCase').attr("oId");

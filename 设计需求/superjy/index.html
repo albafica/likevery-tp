@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SUPER精英不一样的猎头体验</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Loading Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Loading  UI -->
+<link href="css/flat-ui.css" rel="stylesheet">
+<link href="css/likevery.css" rel="stylesheet">
+<link href="css/media.css" rel="stylesheet">
+<link rel="shortcut icon" href="images/favicon.ico">
+<script type="text/javascript" src="js/jquery-1.10.2.min.js" ></script>
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+<!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+<script>
+	$("#loadPage").on('touchstart mousemove', function () {
+		return false;
+	});
+	var loading = function (a) {
+		if (a == 100) {
+			$('.jinduLine').animate({width: '100%'}, 300, function () {
+				$('#loadNum').html("100%");
+				$('#loadPage').fadeOut(1000);
+			});
+		} else {
+			$('.jinduLine').animate({width: a + '%'}, 300, function () {
+				$('#loadNum').html(a + "%");
+			});
+		}
+	};
+	loading(10);
+</script>
+</head>
+<body>
+<div class="page404" id="loadPage">
+	<div class="moveMain">
+		<div class="moveMain_center">
+			<div class="super_move"><img src="images/superman-fly.gif" class="fudong" /></div>
+			<div class="cloudM1 arrowx1"><img src="images/cloudy-lg.png" class="arrowVe1"/></div>
+			<div class="cloudM2 arrowx2"><img src="images/cloudy-lg2.png" class="arrowVe2" /></div>
+			<div class="cloudM3 arrowx3"><img src="images/cloudy-md.png" class="arrowVe3"/></div>
+			<div class="cloudM4 arrowx4"><img src="images/cloudy-lg.png" class="arrowVe4"/></div>
+			<div class="cloud_S cloudS1"><img src="images/cloudy-sm.png" class="arrowVes1"/></div>
+			<div class="cloud_S cloudS2"><img src="images/cloudy-sm.png" class="arrowVes2"/></div>
+			<div class="cloud_S cloudS3"><img src="images/cloudy-sm.png"/></div>
+			<div class="moon"></div>
+		</div>
+	</div>
+	<div class="content-pic">
+		<div class="pic-text">loading...<span id="loadNum"></span></div>
+		<div class="jindu">
+			<div class="jinduLine" style="width:10%"></div>
+		</div>
+	</div>
+
+</div>
+
+<nav class="navbar navbar-default" role="navigation">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01"> <span class="sr-only">SUPER精英</span> </button>
+		<a class="navbar-brand" href="#">SUPER精英</a> </div>
+	<div class="collapse navbar-collapse" id="navbar-collapse-01">
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="#fakelink">拍卖自己</a></li>
+			<li><a href="#fakelink">竞拍企业</a></li>
+			<li><a href="#fakelink">招聘入口</a></li>
+		</ul>
+	</div>
+	<!-- /.navbar-collapse -->
+</nav>
+<!-- /navbar -->
+<!--banner-->
+<div class="masthead likeBanner">
+	<div class="likeBannerPic likeBannerPictop1">
+		<div class="container">
+			<h3>行业牛人<br/>选择自己喜欢的公司</h3>
+			<p>无需注册 &bull; 匿名推荐 &bull; 选择企业</p>
+			<p class="masthead-button-links"><a class="btn btn-hg btn-primary" href="#" role="button">马上加入</a></p>
+		</div>
+	</div>
+	<script type="text/javascript">loading(20);</script>
+
+</div>
+<div class="masthead">
+	<div class="likeBannerPic likeBannerPicbot1"></div>
+</div>
+<!--/. banner -->
+<div class="container">
+	<div class="step">
+		<div class="menu_content" id="apply"> </div>
+		<div class="title">
+			<i class="num">1</i>提交申请 
+			<p class="title-second">我们目前对互联网技术、设计师、产品经理以及运营人才开放。我们会在3个工作日内给您答复</p>
+		</div>
+		<div class="content">
+			<div class="card_box page-jy-list">
+				<div class="card col-md-3 col-lg-3 col-sm-6 col-xs-12">
+					<div class="card-bg" > <img src="images/super.png" class="card_icon" alt="技术">
+						<h4>产品超人</h4>
+						<p>产品超人，什么都懂。需要带领团队完成一个个不可能完成的任务。</p>
+						<form action="" method="post" enctype="multipart/form-data" class="w-h45"  >
+							<paper-button class="btn  btn-lg btn-primary ">上传简历</paper-button>
+							<input type="hidden" name="job_type" value="rd">
+							<input class="upload_file" type="file" onChange="$(this.form).submit();" name="resumes" id="upload_rd">
+						</form>
+					</div>
+				</div>
+				<!--/card-->
+				<div class="card col-md-3 col-lg-3 col-sm-6 col-xs-12">
+					<div class="card-bg" >
+						<img src="images/bat.png" alt="设计师" class="card_icon">
+						<h4>开发超人</h4>
+						<p>爱代码，爱研发。<br>
+					代码就是一种艺术<br>
+					技术改变生活</p>
+						<form action="http://db.jobdeer.com/?a=resume_save_new" method="post" enctype="multipart/form-data"  class="w-h45" >
+							<paper-button class="btn  btn-lg btn-primary ">上传简历</paper-button>
+							<input type="hidden" name="job_type" value="ue">
+							<input class="upload_file" type="file" onChange="$(this.form).submit();" name="resumes">
+						</form>
+					</div>
+				</div>
+				<!--/card-->
+				<div class="card col-md-3 col-lg-3 col-sm-6 col-xs-12">
+					<div class="card-bg" >
+						<img src="images/iron.png" alt="产品经理" class="card_icon">
+						<h4>设计超人</h4>
+						<p>界面设计师不是美工而是高端艺术设计超人！产品颜值就靠我</p>
+						<form action="http://db.jobdeer.com/?a=resume_save_new" method="post" enctype="multipart/form-data"  class="w-h45" >
+							<paper-button class="btn  btn-lg btn-primary ">上传简历</paper-button>
+							<input type="hidden" name="job_type" value="pm">
+							<input class="upload_file" type="file" onChange="$(this.form).submit();" name="resumes">
+						</form>
+					</div>
+				</div>
+				<!--/card-->
+				<div class="card col-md-3 col-lg-3 col-sm-6 col-xs-12">
+					<div class="card-bg" >
+						<img src="images/etc.png" alt="运营" class="card_icon">
+						<h4>其他超人</h4>
+						<p>负责产品运营，了解客户需求。精策略！勤推广！产品运营全靠我</p>
+						<form action="http://db.jobdeer.com/?a=resume_save_new" method="post" enctype="multipart/form-data" class="w-h45" >
+							<paper-button class="btn  btn-lg btn-primary "> 上传简历</paper-button>
+							<input type="hidden" name="job_type" value="operation">
+							<input class="upload_file" type="file" onChange="$(this.form).submit();" name="resumes">
+						</form>
+					</div>
+				</div>
+				<!--/card-->
+			</div>
+			<!--/card_box-->
+			<!--<div class="niming" phone-hidden> *简历只有在您再次确认后，才会发送给招聘方，<span class="black">没有人会知道您在找工作</span>，请放心。 </div>-->
+		</div>
+		<!--/content-->
+	</div>
+	<!---step one--->
+	<div class="step">
+		<div class="title">
+			<i class="num">2</i>顾问审核
+			<p class="title-second">我们目前对互联网技术、设计师、产品经理以及运营人才开放。我们会在3个工作日内给您答复</p>
+		</div>
+		<div class="content">
+			<!--<div class="f18 mt20 mb50"> 审核通过后，顾问会电话联系您，为您<span class="green">修改简历</span>、准备<span class="green">匿名推荐信</span>、并发送<span class="green">专用客户端</span>。 </div>-->
+			<div class="jd-card card-bg">
+				<div  class=" w-media clearfix"> <img src="images/super.png" width="120" height="120" desktop="" class="mr40 mt13 pull-left w-media">
+					<div flex="" class="f24">
+						<div class="quotes lh200"> 我们的顾问团队由来自知名互联网公司的HRD和猎头公司的资深顾问组成。只有这样的团队才能深刻理解供需双方，为候选人提供最极致的求职体验。 </div>
+						<div class="text-right f18 mt15"> ——佳莹，人才团队负责人 </div>
+					</div>
+				</div>
+			</div>
+			<!--/jd-card-->
+			<!--<div class="f14 gray mt40"> *由于申请人数较多，我们会在<span class="black">2个工作日</span>内对您的申请做出回复。 </div>-->
+		</div>
+		<!--/content-->
+		<script type="text/javascript">loading(50);</script
+	></div>
+	<!--step three-->
+	<div class="step">
+		<div id="company" class="menu_content"></div>
+		<div class="title">
+			<i class="num">3</i>招聘方竞拍
+			<p class="title-second">有意向的招聘方会向您发送邀请，其中除了招聘方的介绍，还有为您开出的薪资范围。</p>
+		</div>
+		<div class="content">
+			<div class="jingpai_company" touch-action="auto">
+				<div class="scroll">
+					<div class="mb20 row">
+						<!--/layout-->
+						<div class="row">
+							<div class="company mt10">
+								<div class="logo"><a href="http://www.sina.com.cn/" target="_blank"><img src="images/logos/sina.png"></a></div>
+								<div class="name"><a href="http://artand.cn/" target="_blank">Artand</a></div>
+								<div class="desc"> 在线艺术画廊 </div>
+							</div>
+							<div class="company mt10">
+								<div class="logo"><a href="http://www.sina.com.cn/" target="_blank"><img src="images/logos/liebao.png"></a></div>
+								<div class="name"><a href="http://www.aayongche.com/" target="_blank">AA用车</a></div>
+								<div class="desc"> 中国版Uber </div>
+							</div>
+							<div class="company mt10">
+								<div class="logo"><a href="http://www.sina.com.cn/" target="_blank"><img src="images/logos/sina.png"></a></div>
+								<div class="name"><a href="http://www.weixinhost.com/" target="_blank">微信候斯特</a></div>
+								<div class="desc"> 第一天就盈利的<br>
+									微信服务平台 </div>
+							</div>
+							<div class="company mt10" pad-hidden="">
+								<div class="logo"><a href="http://www.sina.com.cn/" target="_blank"><img src="images/logos/sina.png"></a></div>
+								<div class="name"><a href="http://xiaosheng.fm/" target="_blank">小声</a></div>
+								<div class="desc"> 最受女大学生欢迎的私密社交工具 </div>
+							</div>
+							<div class="company mt10">
+								<div class="logo"><a href="http://www.sina.com.cn/" target="_blank"><img src="images/logos/add.png"></a></div>
+								<div class="logo"><a href="/recruiter.html?v=6" target="_blank"> </a></div>
+								<div class="name"><a href="/recruiter.html?v=6" target="_blank">注册成为<br>
+									招聘方</a></div>
+							</div>
+						</div>
+						<!--layout-->
+					</div>
+					<!--/scroll-->
+				</div>
+				<!--/jingpai_company-->
+				<div class="text-center btn-goto-recruiter"> <a href="/recruiter.html?v=6" target="_blank" class="btn btn-green-small mt20">成为招聘方</a> </div>
+			</div>
+		</div>
+	</div>
+	<!--step three-->
+	<div class="step">
+		<div id="company" class="menu_content"></div>
+		<div class="title">
+			<i class="num">4</i>精英选择有意向的企业
+			<p class="title-second">有意向的招聘方会向您发送邀请，其中除了招聘方的介绍，还有为您开出的薪资范围。</p>
+		</div>
+		<div class="content">
+			<div class="jingpai_company" touch-action="auto">
+				<div class="scroll">
+					<div class="mb20 row">
+						<!--/layout-->
+						<div class="row">
+							<div class="company mt10">
+								<div class="f18 mt20 mb40">接受的企业</div>
+								<div class="logo">
+									<a href="http://www.sina.com.cn/" target="_blank">
+										<span class="pos dock">
+											<span class="iconCustom icon_gou_green"></span>
+											<img src="images/logos/sina.png">
+										</span>
+									</a>
+								</div>
+								<div class="name"><a href="http://artand.cn/" target="_blank">Artand</a></div>
+								<div class="desc"> 在线艺术画廊 </div>
+							</div>
+							<div class="company mt10">
+								<div class="f18 mt20 mb40">&nbsp;</div>
+								<div class="logo">
+									<a href="http://www.sina.com.cn/" target="_blank">
+										<span class="pos dock">
+											<span class="iconCustom icon_gou_green"></span>
+											<img src="images/logos/liebao.png">
+										</span>
+									</a>
+								</div>
+								<div class="name"><a href="http://www.aayongche.com/" target="_blank">AA用车</a></div>
+								<div class="desc"> 中国版Uber </div>
+							</div>
+							<div class="company mt10">
+								<div class="f18 mt20 mb40">&nbsp;</div>
+								<div class="logo">
+									<a href="http://www.sina.com.cn/" target="_blank">
+										<span class="pos dock">
+											<span class="iconCustom icon_gou_green"></span>
+											<img src="images/logos/sina.png">
+										</span>
+									</a>
+								</div>
+								<div class="name"><a href="http://www.weixinhost.com/" target="_blank">微信候斯特</a></div>
+								<div class="desc"> 第一天就盈利的<br>
+									微信服务平台 </div>
+							</div>
+							<div class="company mt10" pad-hidden="">
+								<div class="f18 mt20 mb40">被拒绝的企业</div>
+								<div class="logo">
+									<a href="http://www.sina.com.cn/" target="_blank">
+										<span class="pos dock">
+											<span class="iconCustom icon_cha_red"></span>
+											<img src="images/logos/sina.png">
+										</span>
+									</a>
+								</div>
+								<div class="name"><a href="http://xiaosheng.fm/" target="_blank">小声</a></div>
+								<div class="desc"> 最受女大学生欢迎的私密社交工具 </div>
+							</div>
+							<div class="company mt10" pad-hidden="">
+								<div class="f18 mt20 mb40">&nbsp;</div>
+								<div class="logo">
+									<a href="http://www.sina.com.cn/" target="_blank">
+										<span class="pos dock">
+											<span class="iconCustom icon_cha_red"></span>
+											<img src="images/logos/sina.png">
+										</span>
+									</a>
+								</div>
+								<div class="name"><a href="http://xiaosheng.fm/" target="_blank">小声</a></div>
+								<div class="desc"> 最受女大学生欢迎的私密社交工具 </div>
+							</div>
+						</div>
+						<!--layout-->
+					</div>
+					<!--/scroll-->
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">loading(80);</script
+
+	></div>
+	<!--step four-->
+	<div class="step">
+		<div class="title"> <i class="num">5</i>极速面试 </div>
+		<div class="content">
+			<div class="f18 lh180 mt20"> 从众多邀请中选择你喜欢的招聘方，接受请求，等待面试预约。<br>
+				在竞鹿，<span class="green">平均每个候选人会收到10个邀请</span>，可选择多家面试，把握求职的主导权。 </div>
+		</div>
+	</div>
+	<!--step five-->
+	<div class="step">
+		<div class="title"> <i class="num">6</i>欢乐入职 </div>
+		<div class="content">
+			<div class="f18 lh180 mt20"> 从提供Offer的公司中选取自己最喜欢的，然后开始新的奋斗吧！<br>
+				<!--
+当然，不要忘记来领取您的<span class="green">竞鹿入职大礼包</span>!
+-->
+			</div>
+		</div>
+	</div>
+	<!--step six-->
+	<!-- /.container -->
+</div>
+<!--footer-->
+<div class="footer-text">
+	<div class="container"><p>2015SUPER精英-创意猎头解决方案</p></div>
+</div>
+<script type="text/javascript">loading(100);</script
+></body>
+</html>

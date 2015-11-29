@@ -61,7 +61,7 @@ class CasemanagerController extends CompanyBaseController {
             if ($result < 1) {
                 $this->ajaxReturn(array("status" => 0, "message" => '保存失败'), 'JSON');
             } else {
-                $this->ajaxReturn(array("status" => 1, "message" => '保存成功'), 'JSON');
+                $this->ajaxReturn(array("status" => 1, "message" => '保存成功', 'caseid' => $result), 'JSON');
             }
             exit();
         }

@@ -8,6 +8,7 @@ $conf = array(
     'ASSETVESION' => time(),
     'FROM_EMALI_ADDR' => 'admin@likevery.com',
     'FROM_EMAIL_NAME' => '系统管理员',
+    'URL_MODEL' => 1, //PATHINFO模式
 );
 
 return array_merge($localConf, $conf);

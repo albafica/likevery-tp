@@ -1,0 +1,181 @@
+@charset "utf-8";
+.btn_rgst{ width:18%; padding: 9px 19px; margin-left:20px;}
+.title-second{ color:#34495e; font-size:16px;}
+@media (max-width:480px){
+.likeBannerPictop {
+  background: url(../images/banner-p1.jpg) center top no-repeat;
+  height: 480px;
+  background-size: auto 480px;
+}
+.likeBannerPicbot {
+  background: url(../images/banner-p2.jpg) center top no-repeat;
+  height: 69px;
+  background-size: auto 69px;
+
+}
+.likeBannerPictop1 {
+  background: url(../images/banner-p3.jpg) center top no-repeat;
+  height: 480px;
+  background-size: auto 480px;
+}
+.likeBannerPicbot1 {
+  background: url(../images/banner-p4.jpg) center top no-repeat;
+  height: 49px;
+  background-size: auto 49px;
+
+}
+
+.likeBannerPic .container {
+  padding-top: 24px;
+}
+.likeBannerPic h3{ font-size:30px;margin-top: 0px; margin-bottom: 10px;}
+.likeBannerPic p{ font-size:20px;}
+.login-zc .form-group {
+  float:none;
+  margin-left: 0px;
+  width: 100%;}
+ .indexBtn_w{width:26%;padding: 7px 19px;}
+.likeBannerPictop1 .container {
+    padding-top: 148px;
+}
+.btn_rgst{ width:40%;  margin-left:0px;}
+
+.jd-card .w-media{ text-align:center;}
+.jd-card .w-media img{ float:inherit!important; margin:0;}
+.jd-card .w-media .quotes{ text-align:left;}
+/*404*/
+.page404{ margin-top:-20px;}
+.page404Bg{ background:none;}
+.text404{position:absolute; z-index:2; margin-left:-105px; left:50%; top:50%;}
+.text404 h1{ font-size:50px; margin-bottom:0;}
+.text404 p{ font-size:14px; font-weight:bold; color:#dcdcdc;}
+.moon{ left:220px;}
+.moveMain_center{ margin-left:20%;}
+.menu_miadia .main-btn h6{ display:none;}
+.menu_miadia .main-btn i {
+  margin-bottom: -6px;
+}
+.info h4{ font-size:18px;}
+}
+@media (min-width:481px) and (max-width:768px){
+.text404{position:absolute; z-index:2; margin-left:-105px; left:50%; top:50%;}
+.text404 h1{ font-size:50px; margin-bottom:0;}
+.text404 p{ font-size:14px; font-weight:bold; color:#dcdcdc;}
+	.likeBannerPic h3 {
+    font-size: 46px;
+	}
+.page404Bg{ background:none;}
+.text404{ margin-top:10%;}
+}
+
+@media (min-width:768px){
+	.step .title{
+		text-align:left
+		}
+	.content {
+	margin-left: 40px;
+	}
+	.jingpai_company .company {
+	width: 20%;
+	}
+    #activity{
+        margin-top:150px;
+    }
+    .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand{
+        margin-left:0px;
+    }
+    .navbar-brand
+    {
+       width:270px;
+       height:52px;
+       background: url(../images/logo.png) no-repeat;
+       text-indent:-2000px;
+       position:relative;
+	   top:12px;
+	   left:12px;	  
+       overflow:hidden;
+    }
+
+    .jobdeer-nav .navbar-nav{
+        position:relative;
+        left:-120px;
+    }
+
+
+
+
+    .jobdeer-nav{
+        padding-top:36px;
+        padding-bottom:15px;
+    }
+    .jobdeer-nav .navbar-brand{
+        font-size:60px;
+        color:#000;
+    }
+    .jobdeer-nav .navbar-nav>li>a
+    {
+        font-size:18px;
+        color:#424242;
+        position:relative;
+        top:15px;
+        padding:15px 30px;
+    }
+    .jobdeer-nav .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus
+    {
+        font-size:24px;
+        color:#424242;
+        font-weight:bold;
+        background:none;
+    }
+	
+
+}
+
+@media  (min-width:768px) and (max-width:992px){
+    .navbar-brand
+    {
+       width:52px;
+       height:52px;
+       background:url(../images/logo-sm.png?v=1) no-repeat;
+       text-indent:-2000px;
+       position:relative;
+       top:8px;
+	   left:20px;
+       overflow:hidden;
+    }
+    .jobdeer-nav .navbar-nav{
+        position:relative;
+        left:-60px;
+    }
+	.title-second{ margin-left:52px;}
+
+}
+
+@media (max-width:1099px)
+{
+   .step .title{
+        padding:10px;
+   }
+   .login-icon {
+	float: none;
+	text-align: center;
+	margin-bottom:20px
+	}
+	.login-form {
+	float:none;
+	margin:0;
+	width:100%
+	}
+.page-jy-list .card-bg {
+  padding: 16px 14px;
+}
+	.title-second{ margin-left:52px;}
+}
+@media (min-width:1100px){
+ /*   .step{
+        position:relative;
+        left:-50px;
+    }*/
+	.title-second{ margin-left:52px;}
+}
+

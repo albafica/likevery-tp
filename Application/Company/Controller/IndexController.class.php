@@ -108,10 +108,11 @@ class IndexController extends BaseController {
     }
 
     public function chkemail() {
-        $companyId = I('POST.companyid');
-        $chkcode = I('POST.chkcode');
+        $companyId = I('companyid');
+        $chkcode = I('chkcode');
         $companyModel = D('Company');
-        $companyInfo = $companyModel->where(array('companyid' => $companyId, 'chkcode' => $chkcode))->find();
+        $where = array('id' => $companyId, 'chkcode' => $chkcode);
+        $companyInfo = $companyModel->where($where)->find();
         if (!$companyInfo) {
             $this->error('参数错误,验证失败', U('/Company/Index/index'));
             exit();
@@ -124,7 +125,7 @@ class IndexController extends BaseController {
             'emailstatus' => 1,
             'updatedate' => date('Y-m-d H:i:s'),
         );
-        $result = $companyModel->where(array('companyid' => $companyId,))->save($data);
+        $result = $companyModel->where(array('id' => $companyId,))->save($data);
         if ($result) {
             $this->success('验证通过', U('/Company/Index/index'));
             exit();

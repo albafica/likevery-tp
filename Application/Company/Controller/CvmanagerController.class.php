@@ -94,7 +94,7 @@ class CvmanagerController extends CompanyBaseController {
             $this->ajaxReturn(array('status' => false, 'errCode' => -1, 'errMsg' => '系统繁忙，请稍后再试'), 'JSON');
         }
         //验证公司信息是否完善
-        if ($companyInfo['emailstatus'] != 1 || empty($companyInfo['cname'])) {
+        if ($companyInfo['emailstatus'] != 1 || empty($companyInfo['companyname'])) {
             $this->ajaxReturn(array('status' => false, 'errCode' => -10, 'errMsg' => '请完善公司信息后再竞拍此简历', 'directURL' => U('/Company/Companymanager/index')), 'JSON');
         }
         $employeeId = I('get.employeeid', 0, 'intval');
