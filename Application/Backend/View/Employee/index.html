@@ -13,8 +13,8 @@
                 <th>姓名</th>
                 <th>邮箱</th>
                 <th>联系方式</th>
-<!--                <th>开始时间</th>
-                <th>结束时间</th>-->
+                <!--                <th>开始时间</th>
+                                <th>结束时间</th>-->
                 <th>发布状态</th>
                 <th>操作</th>
             </tr>
@@ -33,24 +33,33 @@
                     <td>{$employeeInfo.cname}</td>
                     <td>{$employeeInfo.email}</td>
                     <td>{$employeeInfo.mobilephone}</td>
-<!--                    <td>{$employeeInfo.startdate}</td>
-                    <td>{$employeeInfo.enddate}</td>-->
+                    <!--                    <td>{$employeeInfo.startdate}</td>
+                                        <td>{$employeeInfo.enddate}</td>-->
                     <td>
                         <?php
-                        if($employeeInfo['status'] == '01'){
+                        if($employeeInfo['status'] == '03'){
+                        echo '已关闭';    
+                        }elseif($employeeInfo['enddate'] < date('Y-m-d')){
+                        echo '已过期';
+                        }elseif($employeeInfo['status'] == '01'){
                         echo '发布中';
                         }else{
-                        echo '暂停中';
+                        echo '已暂停';
                         }
                         ?>
                     </td>
                     <td>
-                        <?php if($employeeInfo['status'] == '01'): ?>
+                        <?php if($employeeInfo['status'] == '03'):?>
+                        -
+                        <?php elseif($employeeInfo['enddate'] < date('Y-m-d')):?>
+                        <a href="{:U('Backend/Employee/republic', array('employeeid' => $employeeInfo['id'], 'status' => 'republic', 'managerid' => $employeeInfo['managerid'],))}" onClick="return confirm('确定重新发布?') ? true : false;">重新发布</a>
+                        <?php elseif($employeeInfo['status'] == '01'):?>
                         <a href="{:U('Backend/Employee/changetatus', array('employeeid' => $employeeInfo['id'], 'status' => 'stop', 'managerid' => $employeeInfo['managerid'],))}" onClick="return confirm('确定暂停?') ? true : false;">暂停</a>
-                        <?php else: ?>
+                        <a href="{:U('Backend/Employee/endEmplyee', array('employeeid' => $employeeInfo['id'], 'status' => 'end', 'managerid' => $employeeInfo['managerid'],))}" onClick="return confirm('确定关闭?') ? true : false;">关闭</a>
+                        <?php else:?>
                         <a href="{:U('Backend/Employee/changetatus', array('employeeid' => $employeeInfo['id'], 'status' => 'restart', 'managerid' => $employeeInfo['managerid'],))}" onClick="return confirm('确定继续?') ? true : false;">继续</a>
-                        <?php endif; ?>
-                        <a href="{:U('Backend/Employee/endEmplyee', array('employeeid' => $employeeInfo['id'], 'status' => 'end', 'managerid' => $employeeInfo['managerid'],))}" onClick="return confirm('确定结束?') ? true : false;">结束</a>
+                        <a href="{:U('Backend/Employee/endEmplyee', array('employeeid' => $employeeInfo['id'], 'status' => 'end', 'managerid' => $employeeInfo['managerid'],))}" onClick="return confirm('确定关闭?') ? true : false;">关闭</a>
+                        <?php endif;?>
                     </td>
                 </tr>
             </volist>

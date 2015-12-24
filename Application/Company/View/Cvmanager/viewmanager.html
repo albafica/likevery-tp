@@ -98,8 +98,16 @@
                     <div id="retroclockbox"></div>
                 </div>
                 <p><small class="gray">超时将不能邀请求职者，牛人可遇不可求哦，要抓紧！！！</small></p>
-                <a class="btn btn-lg btn-info " href="#" style="width:30%">查看简历</a>
-                <a class="btn btn-primary btn-lg" id='auctionemploee' getcaselisturl="{:U('/Company/Cvmanager/getCaseList', array('employeeid' => $employeeInfo['id']))}" target='_blank' href="{:U('/Company/Cvmanager/auctioncv', array('employeeid' => $employeeInfo['id']))}" style="width:30%">邀请我吧</a>
+                <a class="btn btn-lg btn-info" href="{:U('/Company/Cvmanager/downloadcv', array('filePath' => urlencode(base64_encode($cvInfo['path'])), 'filename' => urlencode(base64_encode($cvInfo['filename']))))}" style="width:30%">查看简历</a>
+                <?php if($employeeInfo['auctionstatus'] == 0):?>
+                <a class="btn btn-primary btn-lg" id='auctionemploee' getcaselisturl="{:U('/Company/Cvmanager/getCaseList', array('employeeid' => $employeeInfo['id']))}" target='_blank' href="{:U('/Company/Cvmanager/auctioncv', array('employeeid' => $employeeInfo['id']))}" style="width:30%">
+                    邀请我吧
+                </a>
+                <?php else:?>
+                <a class="btn btn-primary btn-lg" style="width:30%">
+                    已被竞拍
+                </a>
+                <?php endif;?>
             </div>
         </div>
     </div>

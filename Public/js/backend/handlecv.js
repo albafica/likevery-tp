@@ -127,7 +127,7 @@ function hideErrTip() {
  * @returns {Boolean}
  */
 function uploadNewCV(cvid) {
-    var content = '<form action="/likevery/index.php/Backend/CvHandle/coverCV" method="post" enctype="multipart/form-data">'
+    var content = '<form action="index.php/Backend/CvHandle/coverCV" method="post" enctype="multipart/form-data">'
             + '<paper-button class="btn  btn-lg btn-primary ">上传新简历</paper-button>'
             + '<input type="hidden" name="cvid" value="' + cvid + '">'
             + '<input class="upload_file" type="file" onchange="$(this.form).submit();" name="uploadNewCv" id="uploadNewCv">'

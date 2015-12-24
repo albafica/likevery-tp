@@ -22,6 +22,7 @@ class CvmanagerController extends CompanyBaseController {
             'startdate' => array('elt', date('Y-m-d')),
             'enddate' => array('egt', date('Y-m-d')),
             'employee.status' => '01',
+//            'employee.auctionstatus' => 0, //查询未被竞拍的简历
         );
         $field = 'employee.id,employee.managerid,employee.status,employee.startdate,employee.enddate,manager.jobtype,manager.area,manager.selfintroduce,manager.tag';
         $join = 'LEFT JOIN manager ON employee.managerid = manager.id';
@@ -57,8 +58,14 @@ class CvmanagerController extends CompanyBaseController {
             $this->error('该求职者简历不存在或者已经下线');
             exit();
         }
+        $cvModel = D('Cvupload');
+        $cvwhere = array(
+            'id' => $managerInfo['cvid'],
+        );
+        $cvInfo = $cvModel->where($cvwhere)->find();
         $this->employeeInfo = $employeeInfo;
         $this->managerInfo = $managerInfo;
+        $this->cvInfo = $cvInfo;
         $tagArr = array();
         if (!empty($managerInfo['tag'])) {
             $tagArr = explode(' ', $managerInfo['tag']);
@@ -125,6 +132,9 @@ class CvmanagerController extends CompanyBaseController {
         $this->ajaxReturn(array('status' => false, 'errCode' => -4, 'errMsg' => '竞拍失败，请稍后再试'), 'JSON');
     }
 
+    /**
+     * 已竞拍的简历列表
+     */
     public function auctionlist() {
         $employeeModel = D('Employee');
         $map = array(
@@ -142,6 +152,22 @@ class CvmanagerController extends CompanyBaseController {
         $employeeList = $employeeModel->search($map, $condition, false, $field, $join);
         $this->employeeList = $employeeList;
         $this->display();
+    }
+
+    /**
+     * 简历下载
+     */
+    public function downloadcv() {
+        $fileDownload = new \Lib\FileDownload();
+        $realFilePath = C('UPLOAD_PATH') . str_replace(array('../', './'), array('', ''), base64_decode(I('filePath', '', 'urldecode')));
+        $fileName = base64_decode(I('filename', '', 'urldecode'));
+        if (empty($fileName)) {
+            $this->error('未找到文件');
+        }
+        $result = $fileDownload->downloadFile($realFilePath, $fileName);
+        if (!$result) {
+            $this->error($fileDownload->getErrMsg());
+        }
     }
 
 }

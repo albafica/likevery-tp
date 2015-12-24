@@ -143,6 +143,7 @@ function auctionCV(caseid) {
             } else {
                 //不可继续竞拍，将竞拍按钮清空
                 obj.addClass('disabled');
+                obj.text('已被竞拍');
                 obj.attr('url', '');
                 art.dialog({
                     id: 'auctionSucc',

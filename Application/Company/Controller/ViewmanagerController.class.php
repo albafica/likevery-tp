@@ -6,6 +6,10 @@ use Company\Controller\CompanyBaseController;
 
 class ViewmanagerController extends CompanyBaseController {
 
+    public function __construct() {
+        $this->redirect('/Company');
+    }
+
     /**
      * 简历库列表
      */
