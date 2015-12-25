@@ -13,7 +13,7 @@
     <link href="css/likevery.css" rel="stylesheet">
     <link href="css/media.css" rel="stylesheet">
     <link rel="shortcut icon" href="images/favicon.ico">
-
+    <link rel="stylesheet" href="trumbowyg/design/css/trumbowyg.css">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
@@ -96,8 +96,13 @@
                 </li>
                                 <li class="clearfix">
                     <span class="pull-left left-form"><span class="green">*</span>工作职责</span>
-                    <span class="pull-left form-group  "><textarea rows="10" class="form-control" style="width:360px"></textarea>
-                    <span class="pull-left tips has-error">请完善工作职责</span>
+                    <span class="pull-left form-group">
+                    	<!--<textarea rows="10" class="form-control" style="width:360px"></textarea>-->
+                        <!--text edit-->
+                        <div id="simple-editor"></div>
+                        <!--text edit end-->
+                        <span class="pull-left tips has-error">请完善工作职责</span>
+                    </span>
           </li>
                                 <li class="clearfix">
                     <span class="pull-left left-form">公司福利</span>
@@ -177,7 +182,84 @@
         <button type="button" class="btn btn-primary btn-danger">确定</button>      </div>
     </div><!-- /.modal-content -->
     
+<!-- text edit-->
+        <script src="js/jquery-1.10.2.min.js"></script>
+        <script src="trumbowyg/trumbowyg.js"></script>
+        <script src="trumbowyg/langs/fr.js"></script>
+        <script src="trumbowyg/plugins/upload/trumbowyg.upload.js"></script>
+        <script src="trumbowyg/plugins/base64/trumbowyg.base64.js"></script>
+        <script>
+            /** Default editor configuration **/
+            $('#simple-editor').trumbowyg();
 
-  
+
+
+            /********************************************************
+             * Customized button pane + buttons groups + dropdowns
+             * Use upload plugin
+             *******************************************************/
+
+            /*
+             * Add your own groups of button
+             */
+            $.trumbowyg.btnsGrps.test = ['bold', 'link'];
+
+            /* Add new words for customs btnsDef just below */
+            $.extend(true, $.trumbowyg.langs, {
+                fr: {
+                    align: 'Alignement',
+                    image: 'Image'
+                }
+            });
+            $('#customized-buttonpane').trumbowyg({
+                lang: 'fr',
+                closable: true,
+                fixedBtnPane: true,
+                btnsDef: {
+                    // Customizables dropdowns
+                    align: {
+                        dropdown: ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                        ico: 'justifyLeft'
+                    },
+                    image: {
+                        dropdown: ['insertImage', 'upload', 'base64'],
+                        ico: 'insertImage'
+                    }
+                },
+                btns: ['viewHTML',
+                    '|', 'formatting',
+                    '|', 'btnGrp-test',
+                    '|', 'align',
+                    '|', 'btnGrp-lists',
+                    '|', 'image']
+            });
+
+
+
+            /** Simple customization with current options **/
+            $('#form-content').trumbowyg({
+                lang: 'fr',
+                closable: true,
+                mobile: true,
+                fixedBtnPane: true,
+                fixedFullWidth: true,
+                semantic: true,
+                resetCss: true,
+                autoAjustHeight: true,
+                autogrow: true
+            });
+
+
+
+
+            $('.editor').on('dblclick', function(e){
+                $(this).trumbowyg({
+                    lang: 'fr',
+                    closable: true,
+                    fixedBtnPane: true
+                });
+            });
+        </script>
+
   </body>
 </html>

@@ -1,6 +1,16 @@
 @charset "utf-8";
 .btn_rgst{ width:18%; padding: 9px 19px; margin-left:20px;}
 .title-second{ color:#34495e; font-size:16px;}
+@media (max-width:320px){
+.jingpai_company .company {
+  width: 154px;
+}
+.row {
+  margin-right: -10px;
+  margin-left: -10px;
+}
+
+}
 @media (max-width:480px){
 .likeBannerPictop {
   background: url(../images/banner-p1.jpg) center top no-repeat;
@@ -56,6 +66,11 @@
   margin-bottom: -6px;
 }
 .info h4{ font-size:18px;}
+.step .title {
+  font-size: 21px;
+}
+
+}
 }
 @media (min-width:481px) and (max-width:768px){
 .text404{position:absolute; z-index:2; margin-left:-105px; left:50%; top:50%;}
