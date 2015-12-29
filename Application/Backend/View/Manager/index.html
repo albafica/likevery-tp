@@ -35,20 +35,15 @@
                     <td><?php echo transJobType($managerInfo['jobtype']);?></td>
                     <td><a target="_blank" href="{:U('Backend/CvHandle/downloadcv', array('filePath' => base64_encode($managerInfo['path']), 'filename' => base64_encode($managerInfo['filename'])))}" title="下载简历">{$managerInfo.filename}</a></td>
                     <td>
-                <if condition="$managerList['issys'] == 1">
-                    -
-                    <else />
-                    <a href="{:U('Backend/Manager/viewManager', array('managerid' => $managerInfo['id']))}">查看</a>
-                    <a href="{:U('Backend/Manager/editManager', array('managerid' => $managerInfo['id']))}">编辑</a>
-                    <a href="javascript:void(0);" onclick="uploadNewCV({$managerInfo.cvid}, {$managerInfo.id});">更新简历</a>
-                    <?php if($managerInfo['releasestatus'] == '00'):?>
-                    <a href="{:U('Backend/Manager/releaseManager', array('managerid' => $managerInfo['id']))}" onClick="return confirm('确定发布此求职者信息?') ? true : false;">发布</a>
-                    <?php else:?>
-                    已发布
-                    <?php endif;?>
-
-                </if>
-                </td>
+                        <a href="{:U('Backend/Manager/viewManager', array('managerid' => $managerInfo['id']))}">查看</a>
+                        <a href="{:U('Backend/Manager/editManager', array('managerid' => $managerInfo['id']))}">编辑</a>
+                        <a href="javascript:void(0);" onclick="uploadNewCV({$managerInfo.cvid}, {$managerInfo.id});">更新简历</a>
+                        <?php if($managerInfo['releasestatus'] == '00'):?>
+                        <a href="{:U('Backend/Manager/releaseManager', array('managerid' => $managerInfo['id']))}" onClick="return confirm('确定发布此求职者信息?') ? true : false;">发布</a>
+                        <?php else:?>
+                        已发布
+                        <?php endif;?>
+                    </td>
                 </tr>
             </volist>
             </tbody>

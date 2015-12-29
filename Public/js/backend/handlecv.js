@@ -34,11 +34,23 @@ $(document).on('click', '.customerinfo', function () {
 $(document).on('click', '.simpleHandleCV', function () {
     submitUrl = $(this).attr('href');
     var cvid = $(this).attr('cvid');
+    var jobtype = $(this).attr('jobtype');
+    jobtype = parseInt(jobtype);
     var contentHtml = '<div class="alert alert-danger alert-dismissible" id="errtip" style="display:none;" role="alert">'
             + '<button type="button" class="close" id="closetip"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>'
             + '<div id="errcontent"></div>'
             + '</div>'
             + '<table class="table table-bordered table-hover">'
+            + '<tr>'
+            + '<td style="width:100px;" class="text-center"><label for="cname" class="control-label" style="padding:6px 12px;">职位:</label></td>'
+            + '<td style="width:300px;"><select name="jobtype" id="jobtype">'
+            + '<option value="1"' + (jobtype == 1 ? 'selected' : '') + '>技术</option>'
+            + '<option value="2"' + (jobtype == 2 ? 'selected' : '') + '>设计师</option>'
+            + '<option value="3"' + (jobtype == 3 ? 'selected' : '') + '>产品经理</option>'
+            + '<option value="4"' + (jobtype == 4 ? 'selected' : '') + '>产品运营</option>'
+            + '<option value="5"' + ((jobtype != 1 && jobtype != 2 && jobtype != 3 && jobtype != 4) ? 'selected' : '') + '>其他</option>'
+            + '</select></td>'
+            + '</tr>'
             + '<tr>'
             + '<td style="width:100px;" class="text-center"><label for="cname" class="control-label" style="padding:6px 12px;">姓名:</label><input type="hidden" id="cvid" name="cvid" value="' + cvid + '"></td>'
             + '<td style="width:300px;"><input type="text" class="form-control" id="cname" name="cname" placeholder="姓名" value=""></td>'
@@ -77,6 +89,7 @@ $(document).on('click', '#submituserinfo', function () {
     var mobilephone = $('#mobilephone').val();
     var email = $('#email').val();
     var cvid = $('#cvid').val();
+    var jobtype = $('#jobtype').val();
     if (cname.length <= 0) {
         showErrTip('姓名不可为空');
         return false;
@@ -96,7 +109,8 @@ $(document).on('click', '#submituserinfo', function () {
             cvid: cvid,
             cname: cname,
             mobilephone: mobilephone,
-            email: email
+            email: email,
+            jobtype: jobtype
         },
         dataType: 'json',
         success: function (result) {

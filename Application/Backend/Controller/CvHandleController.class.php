@@ -28,7 +28,7 @@ class CvHandleController extends BackendBaseController {
             'isassigned' => '0',
             '_string' => "status = '00' OR status = '01'",
         );
-        $field = 'id,filename,createdate,status';
+        $field = 'id,filename,createdate,status,jobtype';
         $condition = array('sort' => 'createdate', 'order' => 'ASC', 'rows' => 10,);
         $cvList = $cvUploadModel->search($map, $condition, false, $field);
         $this->cvList = $cvList;
@@ -45,7 +45,7 @@ class CvHandleController extends BackendBaseController {
             'status' => '00',
             'assignerid' => session('userid'),
         );
-        $field = 'id,path,filename,createdate';
+        $field = 'id,path,filename,createdate,jobtype';
         $condition = array('sort' => 'createdate', 'order' => 'ASC', 'rows' => 10,);
         $cvList = $cvUploadModel->search($map, $condition, false, $field);
         $this->cvList = $cvList;
@@ -62,7 +62,7 @@ class CvHandleController extends BackendBaseController {
             'isassigned' => '1',
             'assignerid' => session('userid'),
         );
-        $field = 'id,path,filename,operadate,operatorid,operatorname,cname,email,mobilephone';
+        $field = 'id,path,filename,operadate,operatorid,operatorname,cname,email,mobilephone,jobtype';
         $condition = array('sort' => 'operadate', 'order' => 'ASC', 'rows' => 10,);
         $cvList = $cvUploadModel->search($map, $condition, false, $field);
         $this->cvList = $cvList;
@@ -174,6 +174,8 @@ class CvHandleController extends BackendBaseController {
         $cname = I('post.cname', '', 'trim');
         $mobilephone = I('post.mobilephone', '', 'trim');
         $email = I('post.email', '', 'trim');
+        $jobtype = I('post.jobtype', 5);
+        $jobtype = in_array($jobtype, array(1, 2, 3, 4, 5)) ? $jobtype : 5;
         if (empty($cname) || (empty($mobilephone) && empty($email))) {
             $this->error('姓名必填，手机和邮箱必填一个');
         }
@@ -182,6 +184,7 @@ class CvHandleController extends BackendBaseController {
             'cname' => $cname,
             'mobilephone' => $mobilephone,
             'email' => $email,
+            'jobtype' => $jobtype,
             'status' => '01',
             'operatorid' => session('userid'),
             'operatorname' => cookie('cname'),

@@ -12,6 +12,7 @@
                 <th>简历id</th>
                 <th>简历名称</th>
                 <th>上传日期</th>
+                <th>简历职位</th>
                 <th>状态</th>
                 <th>操作</th>
             </tr>
@@ -19,7 +20,7 @@
         <if condition='$cvList.total == 0'>
             <tbody>
                 <tr style="text-align: center; font-size: 16px;">
-                    <td colspan="5"><b>没有未分配的简历</b></td>
+                    <td colspan="6"><b>没有未分配的简历</b></td>
                 </tr>
             </tbody>
             <else />
@@ -29,6 +30,7 @@
                     <td>{$cvInfo.id}</td>
                     <td>{$cvInfo.filename}</td>
                     <td><?php echo date('Y-m-d', strtotime($cvInfo['createdate']));?></td>
+                    <td><?php echo transJobType($cvInfo['jobtype']);?></td>
                     <td><?php echo $cvInfo['status'] == '00' ? '未处理' : '初审通过';?></td>
                     <td>
                         <a href="{:U('Backend/CvHandle/assigncv', array('cvid' => $cvInfo['id']))}" onClick="return confirm('确定将此简历分配给自己?') ? true : false;">分配简历</a>
@@ -38,7 +40,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="5">
+                    <td colspan="6">
                         <div class="pageNav">{$cvList.show}</div>
                     </td>
                 </tr>

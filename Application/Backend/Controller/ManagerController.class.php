@@ -177,7 +177,7 @@ class ManagerController extends BackendBaseController {
                 $companyIdArr[] = $subscriptionList[$i]['companyid'];
             }
             $cvmailModel = D('Cvmail');
-            $cvmailModel->sendSubscriptionMial($managerId, $companyIdArr);
+            $cvmailModel->sendSubscriptionMial($managerId, $companyIdArr, $result);
             $this->success('发布成功', U('Backend/Manager/index'));
         } else {
             $employeeModel->rollback();

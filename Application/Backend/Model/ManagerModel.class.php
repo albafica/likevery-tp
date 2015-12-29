@@ -67,6 +67,7 @@ class ManagerModel extends BaseModel {
             'memo' => $memo,
             'cvid' => $cvid,
             'createdate' => date('Y-m-d'),
+            'updatedate' => date('Y-m-d'),
             'status' => '01',
             'jobtype' => $jobtype,
         );
@@ -151,6 +152,7 @@ class ManagerModel extends BaseModel {
             'selfintroduce' => $selfintroduce,
             'memo' => $memo,
             'status' => '01',
+            'updatedate' => date('Y-m-d'),
         );
         //1、插入精英信息
         $result = $this->where($where)->save($data);
