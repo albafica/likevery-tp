@@ -33,7 +33,7 @@
                     <td>{$managerInfo.email}</td>
                     <td>{$managerInfo.mobilephone}</td>
                     <td><?php echo transJobType($managerInfo['jobtype']);?></td>
-                    <td><a target="_blank" href="{:U('Backend/CvHandle/downloadcv', array('filePath' => base64_encode($managerInfo['path']), 'filename' => base64_encode($managerInfo['filename'])))}" title="下载简历">{$managerInfo.filename}</a></td>
+                    <td><a target="_blank" href="{:U('Backend/Cvhandle/downloadcv', array('filePath' => base64_encode($managerInfo['path']), 'filename' => base64_encode($managerInfo['filename'])))}" title="下载简历">{$managerInfo.filename}</a></td>
                     <td>
                         <a href="{:U('Backend/Manager/viewManager', array('managerid' => $managerInfo['id']))}">查看</a>
                         <a href="{:U('Backend/Manager/editManager', array('managerid' => $managerInfo['id']))}">编辑</a>

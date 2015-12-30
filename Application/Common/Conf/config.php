@@ -9,6 +9,7 @@ $conf = array(
     'FROM_EMALI_ADDR' => 'admin@likevery.com',
     'FROM_EMAIL_NAME' => '系统管理员',
     'URL_MODEL' => 1, //PATHINFO模式
+    'URL_CASE_INSENSITIVE' => true,
 );
 
 return array_merge($localConf, $conf);

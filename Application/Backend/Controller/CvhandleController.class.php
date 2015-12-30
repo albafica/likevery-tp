@@ -213,7 +213,7 @@ class CvHandleController extends BackendBaseController {
             if (!$result[0]) {
                 $this->error($result[1]);
             } else {
-                $this->success('审核成功', U('Backend/CvHandle/simplePassedCv'));
+                $this->success('审核成功', U('Backend/Cvhandle/simplePassedCv'));
             }
             exit();
         }
@@ -257,7 +257,7 @@ class CvHandleController extends BackendBaseController {
         if (!$result) {
             $this->error('操作失败。' . $cvModel->getDbError());
         } else {
-            $this->success('操作成功', U('Backend/CvHandle/simplePassedCv'));
+            $this->success('操作成功', U('Backend/Cvhandle/simplePassedCv'));
         }
     }
 
@@ -292,7 +292,7 @@ class CvHandleController extends BackendBaseController {
         );
         $cvInfo = $cvModel->field('id')->where($where)->find();
         if (empty($cvInfo)) {
-            $this->error('上传失败，请稍后重试', U('Backend/CvHandle/simplePassedCv'));
+            $this->error('上传失败，请稍后重试', U('Backend/Cvhandle/simplePassedCv'));
             exit();
         }
         $upload = new \Think\Upload();
@@ -309,7 +309,7 @@ class CvHandleController extends BackendBaseController {
         $info = $upload->uploadOne($_FILES['uploadNewCv']);
         if (!$info) {
             // 上传错误提示错误信息        
-            $this->error($upload->getError(), U('Backend/CvHandle/simplePassedCv'));
+            $this->error($upload->getError(), U('Backend/Cvhandle/simplePassedCv'));
         } else {
             try {
                 // 上传成功 获取上传文件信息,保存数据库
@@ -331,7 +331,7 @@ class CvHandleController extends BackendBaseController {
                 //添加记录失败，返回错误信息，同时删除上传的附件
                 $fileHandle = new \Lib\FileHandle();
                 $fileHandle->tryDelFile(C('UPLOAD_PATH') . $info['savepath'] . $info['savename']);
-                $this->error('系统繁忙，简历上传失败，请稍后再试', U('Backend/CvHandle/simplePassedCv'), 3);
+                $this->error('系统繁忙，简历上传失败，请稍后再试', U('Backend/Cvhandle/simplePassedCv'), 3);
             }
             $this->success('简历上传成功');
         }

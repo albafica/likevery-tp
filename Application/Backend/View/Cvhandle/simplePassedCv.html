@@ -29,15 +29,15 @@
             <volist name='cvList.rows' id="cvInfo">
                 <tr>
                     <td>{$cvInfo.id}</td>
-                    <td><a target="_blank" href="{:U('Backend/CvHandle/downloadcv', array('filePath' => base64_encode($cvInfo['path']), 'filename' => base64_encode($cvInfo['filename'])))}" title="下载简历">{$cvInfo.filename}</a></td>
+                    <td><a target="_blank" href="{:U('Backend/Cvhandle/downloadcv', array('filePath' => base64_encode($cvInfo['path']), 'filename' => base64_encode($cvInfo['filename'])))}" title="下载简历">{$cvInfo.filename}</a></td>
                     <td><?php echo transJobType($cvInfo['jobtype']);?></td>
                     <td><?php echo date('Y-m-d', strtotime($cvInfo['operadate']));?></td>
                     <td>{$cvInfo['operatorname']}</td>
                     <td><a class='customerinfo' href="" cname='{$cvInfo.cname}' mobilephone='{$cvInfo.mobilephone}' email='{$cvInfo.email}'>{$cvInfo.cname}</a></td>
                     <td>
-                        <a href="{:U('Backend/CvHandle/cancelassigncv', array('cvid' => $cvInfo['id']))}" onClick="return confirm('确定取消分配此简历?') ? true : false;">取消分配</a>
-                        <a href="{:U('Backend/CvHandle/auditcv', array('cvid' => $cvInfo['id']))}">审核简历</a>
-                        <a href="{:U('Backend/CvHandle/unAuditcv', array('cvid' => $cvInfo['id']))}">审核不通过</a>
+                        <a href="{:U('Backend/Cvhandle/cancelassigncv', array('cvid' => $cvInfo['id']))}" onClick="return confirm('确定取消分配此简历?') ? true : false;">取消分配</a>
+                        <a href="{:U('Backend/Cvhandle/auditcv', array('cvid' => $cvInfo['id']))}">审核简历</a>
+                        <a href="{:U('Backend/Cvhandle/unAuditcv', array('cvid' => $cvInfo['id']))}">审核不通过</a>
                         <a href="javascript:void(0);" onclick="uploadNewCV({$cvInfo.id});">更新简历</a>
                     </td>
                 </tr>
