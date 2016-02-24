@@ -77,6 +77,13 @@ padding:10px
 .alert-danger { background:none; color:#e74c3c }
 .alert { border:none}
 
+/*dropdown*/
+.dropdown-arrow { left: 20px}
+
+/*tag input*/
+.tagsinput input{ width: 200px} 
+
+
 /*common*/
 .step {
 margin: 12px 0px;
@@ -162,8 +169,8 @@ color: #a3a3a3;
 .jd-card {
 background: #fff;
 padding: 30px;
-box-shadow: 0px 4px 10px rgba(0,0,0,.1);
-}
+/*box-shadow: 0px 4px 10px rgba(0,0,0,.1);
+*/}
 /*steptwo*/
 .card-bg { background:#edeff1;}
 .jingpai_company .company .logo img {
