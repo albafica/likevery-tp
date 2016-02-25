@@ -271,7 +271,7 @@ border-bottom: 1px dashed #e4e4e4;
 .likeBannerPic{width:100%; max-width:1920px; margin:0 auto;color:#1abc9c;}
 .likeBannerPictop{ background:url(../images/banner-p1.jpg) center top no-repeat;  height:1053px; }
 .likeBannerPicbot{ background:url(../images/banner-p2.jpg) center top no-repeat; height:150px;}
-.likebot{ background-color:#c7e8eb;padding-bottom: 20px;}
+.likebot{ background-color:#c7e8eb;}
 .jumbotron{ text-align:center;}
 .likeBannerPic .container{ padding-top:94px;}
 .likeBannerPic h3{ font-size:72px; line-height:1.5em; font-weight:normal;}
