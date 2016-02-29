@@ -127,10 +127,20 @@
 
                             </div>
                             <div class="company mt10">
-                                <div class="logo"><a href="http://www.sina.com.cn/" target="_blank"><img src="__PUBLIC__/images/logos/add.png"></a></div>
-                                <div class="logo"><a href="/recruiter.html?v=6" target="_blank"> </a></div>
-                                <div class="name"><a href="/recruiter.html?v=6" target="_blank">注册成为<br>
-                                    招聘方</a></div>
+                                <div class="logo">
+                                    <a href="{:U('Company/Index/login')}" target="_blank">
+                                        <img src="__PUBLIC__/images/logos/add.png">
+                                    </a>
+                                </div>
+                                <div class="logo">
+                                    <a href="{:U('Company/Index/login')}" target="_blank"> 
+                                    </a>
+                                </div>
+                                <div class="name">
+                                    <a href="{:U('Company/Index/login')}" target="_blank">
+                                        注册成为<br>招聘方
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <!--layout-->
@@ -138,7 +148,9 @@
                     <!--/scroll-->
                 </div>
                 <!--/jingpai_company-->
-                <div class="text-center btn-goto-recruiter"> <a href="/recruiter.html?v=6" target="_blank" class="btn btn-green-small mt20">成为招聘方</a> </div>
+                <div class="text-center btn-goto-recruiter"> 
+                    <a href="{:U('Company/Index/login')}" target="_blank" class="btn btn-green-small mt20">成为招聘方</a> 
+                </div>
             </div>
         </div>
     </div>

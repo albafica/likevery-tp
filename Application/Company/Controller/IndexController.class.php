@@ -118,7 +118,7 @@ class IndexController extends BaseController {
             exit();
         }
         if ($companyInfo['emailstatus'] == 1) {
-            $this->success('验证通过', U('/Company/Index/index'));
+            $this->success('验证通过', U('/Company/Cvmanager/index'));
             exit();
         }
         $data = array(
@@ -127,7 +127,7 @@ class IndexController extends BaseController {
         );
         $result = $companyModel->where(array('id' => $companyId,))->save($data);
         if ($result) {
-            $this->success('验证通过', U('/Company/Index/index'));
+            $this->success('验证通过', U('/Company/Cvmanager/index'));
             exit();
         }
         $this->error('参数错误,验证失败', U('/Company/Index/index'));
