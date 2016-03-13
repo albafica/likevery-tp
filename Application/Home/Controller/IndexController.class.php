@@ -17,7 +17,7 @@ class IndexController extends BaseController {
         $upload = new \Think\Upload();
         // 简历附件最大2M
         $upload->maxSize = 2097152;
-        $upload->exts = array('doc', 'docx');
+        $upload->exts = array('doc', 'docx', 'pdf');
         //只允许上传word文档
         $upload->mimes = array(
 //            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
