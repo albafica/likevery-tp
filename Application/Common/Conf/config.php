@@ -10,6 +10,8 @@ $conf = array(
     'FROM_EMAIL_NAME' => '系统管理员',
     'URL_MODEL' => 1, //PATHINFO模式
     'URL_CASE_INSENSITIVE' => true,
+    'TMPL_ACTION_SUCCESS' => APP_PATH . 'CommonTpl/dispatch_jump.tpl',
+    'TMPL_ACTION_ERROR' => APP_PATH . 'CommonTpl/dispatch_jump.tpl',
 );
 
 return array_merge($localConf, $conf);
