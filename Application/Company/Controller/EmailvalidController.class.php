@@ -38,7 +38,8 @@ class EmailvalidController extends BaseController {
             if ($mailResult) {
                 $this->ajaxReturn(array('status' => true, 'errMsg' => '认证邮件已发送', 'code' => $emailChkCode), 'JSON');
             } else {
-                $this->ajaxReturn(array('status' => false, 'errMsg' => '邮件发送失败',), 'JSON');
+                $errMsg = $mail->getErrMsg();
+                $this->ajaxReturn(array('status' => false, 'errMsg' => $errMsg,), 'JSON');
             }
         } else {
             $this->ajaxReturn(array('status' => false, 'errMsg' => '认证失败,请稍后再试'), 'JSON');

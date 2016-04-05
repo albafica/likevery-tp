@@ -62,10 +62,10 @@ class CvmailController extends BackendBaseController {
             $this->success('发送成功', U('Backend/Cvmail/sendmail'));
             exit();
         }
-        $mail = new \Lib\Mail();
+        $mailClass = new \Lib\Mail();
         $errNum = $succNum = 0;
         foreach ($mailList as $mail) {
-            $mailResult = $mail->sendMail('订阅邮件', $mail['content'], $mail['email'], $mail['contact']);
+            $mailResult = $mailClass->sendMail('订阅邮件', $mail['content'], $mail['email'], $mail['contact']);
             if (!$mailResult) {
                 $errNum++;
                 continue;
